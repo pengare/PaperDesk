@@ -27,7 +27,7 @@ namespace DisplayStack
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string HostIP = "130.15.33.34";
+        static string HostIP = "130.15.5.136";
         enum DisplayMode
         {
             Initial,
@@ -38,7 +38,10 @@ namespace DisplayStack
         }
         DisplayMode displayMode = DisplayMode.Initial;
         Boolean modeChanged = true;
-        
+
+        string keyCode = "";
+        Boolean newKeyPressed = false;
+
         //index used to indicate which images shown on device1
         int pileIndex = 0;
 
@@ -120,43 +123,48 @@ namespace DisplayStack
                     Console.WriteLine("Connect to flexible display");
                     while (true)
                     {
-                        if (modeChanged)
+                        //if (modeChanged)
+                        if(newKeyPressed)
                         {
-                            switch (displayMode)
-                            {
-                                case DisplayMode.Initial:
-                                    //string id = sr.ReadLine();
-                                    //Console.WriteLine("Connect to am350 - " + id);
-                                    Thread.Sleep(10);
-                                    displayMode = DisplayMode.Pile;
-                                    modeChanged = true;
-                                    break;
-                                case DisplayMode.Pile:
-                                    String msg = "1 pile1 2 pile2 3 pile3";
-                                    if (pileIndex == 0)
-                                    {
-                                        msg = "1 pile1 2 pile2 3 pile3";  
-                                    }
-                                    else if (pileIndex == 1)
-                                    {
-                                        msg = "1 pile2 2 pile3 3 pile1";
-                                    }
-                                    else if (pileIndex == 2)
-                                    {
-                                        msg = "1 pile3 2 pile1 3 pile2";
-                                    }
-                                    sw.WriteLine(msg);
-                                    //sw2.WriteLine(msg);
-                                    //sw3.WriteLine(msg);
-                                    modeChanged = false; //avoid sending command for many times
-                                    break;
-                                case DisplayMode.Stack:
-                                    break;
-                                case DisplayMode.Linear:
-                                    break;
-                                case DisplayMode.Fan:
-                                    break;
-                            }
+                            newKeyPressed = false;
+
+                            String msg = keyCode;
+                            sw.WriteLine(msg);
+                            //switch (displayMode)
+                            //{
+                            //    case DisplayMode.Initial:
+                            //        //string id = sr.ReadLine();
+                            //        //Console.WriteLine("Connect to am350 - " + id);
+                            //        Thread.Sleep(10);
+                            //        displayMode = DisplayMode.Pile;
+                            //        modeChanged = true;
+                            //        break;
+                            //    case DisplayMode.Pile:
+                            //        String msg = "1 pile1 2 pile2 3 pile3";
+                            //        if (pileIndex == 0)
+                            //        {
+                            //            msg = "1 pile1 2 pile2 3 pile3";  
+                            //        }
+                            //        else if (pileIndex == 1)
+                            //        {
+                            //            msg = "1 pile2 2 pile3 3 pile1";
+                            //        }
+                            //        else if (pileIndex == 2)
+                            //        {
+                            //            msg = "1 pile3 2 pile1 3 pile2";
+                            //        }
+                            //        sw.WriteLine(msg);
+                            //        //sw2.WriteLine(msg);
+                            //        //sw3.WriteLine(msg);
+                            //        modeChanged = false; //avoid sending command for many times
+                            //        break;
+                            //    case DisplayMode.Stack:
+                            //        break;
+                            //    case DisplayMode.Linear:
+                            //        break;
+                            //    case DisplayMode.Fan:
+                            //        break;
+                            //}
                         }
 
                         Thread.Sleep(50);
@@ -213,22 +221,20 @@ namespace DisplayStack
                 }
             }
 
-            //if (e.Key == Key.O && !readInit)
-            //{
-            //    //readThread = new Thread(InputThread);
-            //    //readThread.Start();
-            //    readInit = true;
-            //}
+            if (e.Key == Key.A)
+                keyCode = "a";
+            if (e.Key == Key.S)
+                keyCode = "s";
+            if (e.Key == Key.D)
+                keyCode = "d";
+            if (e.Key == Key.W)
+                keyCode = "w";
+            if (e.Key == Key.E)
+                keyCode = "e";
+            if (e.Key == Key.R)
+                keyCode = "r";
 
-            //if (e.Key == Key.C)
-            //{
-            //    //HttpGet();
-            //    playSound(1);
-            //}
-            //if (e.Key == Key.V)
-            //{
-            //    playSound(4);
-            //}
+            newKeyPressed = true;
         }
 
 

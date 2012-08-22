@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package hml.displaystack;
+package hml.paperdeskandroid;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;
