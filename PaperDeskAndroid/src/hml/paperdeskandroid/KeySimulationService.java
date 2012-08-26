@@ -6,7 +6,9 @@ import android.app.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -27,6 +29,11 @@ public class KeySimulationService extends Service {
 	//this service can broadcast specific activty with action
 	public static final String receiverAction = "hml.paperdeskandroid.action.command";
 	
+	
+	//command
+	private String command = "hide";
+	private boolean bCommandChanged = false;
+	
 	public KeySimulationService() {
     }
 
@@ -40,6 +47,7 @@ public class KeySimulationService extends Service {
     {
     	super.onCreate();
     	new Thread(DataStuff).start();
+    	new Thread(NotifStuff).start();
     }
     
     @Override
@@ -48,12 +56,44 @@ public class KeySimulationService extends Service {
     	super.onDestroy();	
     }
     
+    //Thread used to broadcast PC's notif to other devices
+    private Runnable NotifStuff = new Thread()
+    {
+    	public void run()
+    	{
+    		try {
+    			ServerSocket serverSocket = new ServerSocket(2222);
+    			while(true)
+    			{
+    				Socket socket = serverSocket.accept();
+    				OutputStream os = socket.getOutputStream();
+    				while(true)
+    				{
+    					if(bCommandChanged) //there are new command, apply it
+    					{
+    						bCommandChanged = false;
+    						
+    						if(command.equals("show"))
+    							os.write("show\n".getBytes("utf-8"));
+    						else
+    							os.write("hide\n".getBytes("utf-8"));
+    					}
+    				}
+    			}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
+    };
     
+    //Thread used to receive notif from PC
 	private Runnable DataStuff = new Thread() {
     	public void run() {
     		
     		try
     		{	
+    			//Connect to PC
     			Socket socket = new Socket(HostIP, 2222);
     			//Socket socket = new Socket("192.168.0.197", 2222);
     			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -90,9 +130,21 @@ public class KeySimulationService extends Service {
     					simulateKey(KeyEvent.KEYCODE_BACK);
     				}
     				//msg is a command or status notif
-    				else if(msg.startsWith("map"))
+    				else if(msg.equals("show"))
     				{
     					broadcastCommand(msg);
+    					
+    					//notify other devices
+    					command = "show";
+    					bCommandChanged = true;
+    				}
+    				else if(msg.equals("hide"))
+    				{
+    					broadcastCommand(msg);
+    					
+    					//notify other devices
+    					command = "hide";
+    					bCommandChanged = true;
     				}
 
 

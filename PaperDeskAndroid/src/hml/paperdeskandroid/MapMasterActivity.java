@@ -17,6 +17,8 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Menu;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class MapMasterActivity extends MapActivity {
@@ -40,7 +42,7 @@ public class MapMasterActivity extends MapActivity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.startsWith("map"))
+			//if(command.startsWith("map"))
 			{
 				String token[] = command.split(",");
 				Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
@@ -52,6 +54,11 @@ public class MapMasterActivity extends MapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //set full screen
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         setContentView(R.layout.activity_map_master);
         
         posBitmap = BitmapFactory.decodeResource(getResources(),
