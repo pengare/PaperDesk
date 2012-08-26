@@ -3,9 +3,9 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-<!--     <uses-sdk
+    <uses-sdk
         android:minSdkVersion="7"
-        android:targetSdkVersion="15" /> -->
+        android:targetSdkVersion="15" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -21,12 +21,51 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".KeySimulationService">
+        <service android:name=".KeySimulationService" >
         </service>
+
+        <activity
+            android:name=".DocBookViewActivity"
+            android:label="@string/title_activity_doc_book_view" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DocChapterViewActivity"
+            android:label="@string/title_activity_doc_chapter_view" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DocPageViewActivity"
+            android:label="@string/title_activity_doc_page_view" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MapMasterActivity"
+            android:label="@string/title_activity_map_master" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    	<uses-library android:name="com.google.android.maps" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" ></uses-permission>
-    <uses-permission android:name="android.permission.INJECT_EVENTS"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INJECT_EVENTS" >
+    </uses-permission>
 
 </manifest>

@@ -25,8 +25,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
-	private static final String id = "1";  //device id
-	private static final String HostIP = "130.15.5.136";
+	public static final String id = "1";  //device id
+	public static final String HostIP = "130.15.5.136";
 	
 	ImageView imageView;
 	
@@ -67,6 +67,30 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				stopService(intent);
+			}
+		});
+        
+        Button btnDoc = (Button)findViewById(R.id.btnDoc);
+        btnDoc.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentDoc = new Intent();
+				intentDoc.setClass(MainActivity.this, DocBookViewActivity.class);
+				startActivity(intentDoc);
+				
+			}
+		});
+        
+        Button btnMap = (Button)findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intentMap = new Intent();
+				intentMap.setClass(MainActivity.this, MapMasterActivity.class);
+				startActivity(intentMap);
+				
 			}
 		});
         

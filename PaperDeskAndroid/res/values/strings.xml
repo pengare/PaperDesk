@@ -4,5 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_doc_book_view">DocBookViewActivity</string>
+    <string name="title_activity_doc_chapter_view">DocChapterViewActivity</string>
+    <string name="title_activity_doc_page_view">DocPageViewActivity</string>
+    <string name="title_activity_map_master">MapMasterActivity</string>
+    <string name="title_activity_map_slave">MapSlaveActivity</string>
 
 </resources>

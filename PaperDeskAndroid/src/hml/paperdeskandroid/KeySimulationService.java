@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.text.InputFilter.LengthFilter;
 import android.util.Log;
@@ -22,6 +23,9 @@ public class KeySimulationService extends Service {
     
 	private static final String id = "1";  //device id
 	private static final String HostIP = "130.15.5.136";
+	
+	//this service can broadcast specific activty with action
+	public static final String receiverAction = "hml.paperdeskandroid.action.command";
 	
 	public KeySimulationService() {
     }
@@ -60,6 +64,7 @@ public class KeySimulationService extends Service {
     			while(true)
     			{
     				String msg = in.readLine();
+    				//msg is a navigation key
     				if(msg.equals("w"))
     				{
     					simulateKey(KeyEvent.KEYCODE_DPAD_UP);
@@ -83,6 +88,11 @@ public class KeySimulationService extends Service {
     				else if(msg.equals("r"))
     				{
     					simulateKey(KeyEvent.KEYCODE_BACK);
+    				}
+    				//msg is a command or status notif
+    				else if(msg.startsWith("map"))
+    				{
+    					broadcastCommand(msg);
     				}
 
 
@@ -122,5 +132,13 @@ public class KeySimulationService extends Service {
     			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
     		}
         	
+        }
+        
+        public void broadcastCommand(String command)
+        {     	
+        	Intent intent = new Intent();
+        	intent.setAction(receiverAction);
+        	intent.putExtra("command", command);
+        	sendBroadcast(intent); 	
         }
 }
