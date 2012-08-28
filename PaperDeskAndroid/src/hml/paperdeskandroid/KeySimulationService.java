@@ -30,10 +30,6 @@ public class KeySimulationService extends Service {
 	public static final String receiverAction = "hml.paperdeskandroid.action.command";
 	
 	
-	//command
-	private String command = "hide";
-	private boolean bCommandChanged = false;
-	
 	public KeySimulationService() {
     }
 
@@ -47,7 +43,7 @@ public class KeySimulationService extends Service {
     {
     	super.onCreate();
     	new Thread(DataStuff).start();
-    	new Thread(NotifStuff).start();
+    	
     }
     
     @Override
@@ -56,36 +52,6 @@ public class KeySimulationService extends Service {
     	super.onDestroy();	
     }
     
-    //Thread used to broadcast PC's notif to other devices
-    private Runnable NotifStuff = new Thread()
-    {
-    	public void run()
-    	{
-    		try {
-    			ServerSocket serverSocket = new ServerSocket(2222);
-    			while(true)
-    			{
-    				Socket socket = serverSocket.accept();
-    				OutputStream os = socket.getOutputStream();
-    				while(true)
-    				{
-    					if(bCommandChanged) //there are new command, apply it
-    					{
-    						bCommandChanged = false;
-    						
-    						if(command.equals("show"))
-    							os.write("show\n".getBytes("utf-8"));
-    						else
-    							os.write("hide\n".getBytes("utf-8"));
-    					}
-    				}
-    			}
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-    	}
-    };
     
     //Thread used to receive notif from PC
 	private Runnable DataStuff = new Thread() {
@@ -130,22 +96,19 @@ public class KeySimulationService extends Service {
     					simulateKey(KeyEvent.KEYCODE_BACK);
     				}
     				//msg is a command or status notif
-    				else if(msg.equals("show"))
+    				else if(msg.startsWith("map"))
     				{
     					broadcastCommand(msg);
     					
-    					//notify other devices
-    					command = "show";
-    					bCommandChanged = true;
     				}
-    				else if(msg.equals("hide"))
-    				{
-    					broadcastCommand(msg);
-    					
-    					//notify other devices
-    					command = "hide";
-    					bCommandChanged = true;
-    				}
+//    				else if(msg.startsWith("map"))
+//    				{
+//    					broadcastCommand(msg);
+//    					
+//    					//notify other devices
+//    					command = "hide";
+//    					bCommandChanged = true;
+//    				}
 
 
     			}
