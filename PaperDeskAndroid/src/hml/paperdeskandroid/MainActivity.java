@@ -97,6 +97,18 @@ public class MainActivity extends Activity {
 			}
 		});
         
+        Button btnMapSlave = (Button)findViewById(R.id.btnMapSlave);
+        btnMapSlave.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentMapSlave = new Intent();
+				intentMapSlave.setClass(MainActivity.this, MapSlaveActivity.class);
+				startActivity(intentMapSlave);
+				
+			}
+		});
+        
     }
     
 	@Override

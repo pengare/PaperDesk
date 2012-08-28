@@ -29,6 +29,7 @@ public final class R {
     public static final class id {
         public static final int btnDoc=0x7f070016;
         public static final int btnMap=0x7f070017;
+        public static final int btnMapSlave=0x7f070018;
         public static final int buttonEndKeyService=0x7f070015;
         public static final int buttonStartKeyService=0x7f070014;
         public static final int checkedTextView1=0x7f070002;
@@ -48,9 +49,9 @@ public final class R {
         public static final int imageButton7=0x7f07000f;
         public static final int imageButton8=0x7f070011;
         public static final int imageView=0x7f070013;
-        public static final int menu_settings=0x7f07001a;
-        public static final int mv=0x7f070018;
-        public static final int mvSlave=0x7f070019;
+        public static final int menu_settings=0x7f07001b;
+        public static final int mv=0x7f070019;
+        public static final int mvSlave=0x7f07001a;
         public static final int tableRow1=0x7f070000;
         public static final int tableRow2=0x7f070007;
         public static final int tableRow3=0x7f07000e;
