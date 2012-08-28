@@ -1,11 +1,8 @@
 package hml.paperdeskandroid;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
-import android.view.MotionEvent;
-import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -17,16 +14,11 @@ public class PosOverLay extends Overlay {
 	Bitmap posBitmap;
 	// 定义该PosOverLay绘制位图的位置
 	GeoPoint gp;
-	
-	//Base context(map view), used to show toast
-	MapMasterActivity context;
-	
-	public PosOverLay(GeoPoint gp, Bitmap posBitmap, MapMasterActivity context)
+	public PosOverLay(GeoPoint gp, Bitmap posBitmap)
 	{
 		super();
 		this.gp = gp;
 		this.posBitmap = posBitmap;
-		this.context = context;
 	}
 
 	@Override
@@ -45,19 +37,4 @@ public class PosOverLay extends Overlay {
 				, p.y - posBitmap.getHeight(), null);
 		}
 	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent e, MapView mapView) {
-		// TODO Auto-generated method stub
-		//return super.onTouchEvent(e, mapView);
-		
-		if(e.getAction() == 1)
-		{
-			//GeoPoint p = mapView.getProjection()e;
-			Toast.makeText(context, "x: "+ e.getX() + "\ny: "+e.getY(), Toast.LENGTH_SHORT).show();
-			context.bCommandChanged = true;
-		}
-		return false;
-	}
-	
 }

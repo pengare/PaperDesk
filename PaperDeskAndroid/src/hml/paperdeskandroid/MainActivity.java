@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
-	
+
 	public static final String id = "1";  //device id
 	public static final String HostIP = "130.15.5.136";
 	
@@ -96,17 +96,6 @@ public class MainActivity extends Activity {
 				
 			}
 		});
-        
-        Button btnMapSlave = (Button)findViewById(R.id.btnMapSlave);
-        btnMapSlave.setOnClickListener(new OnClickListener(){
-        	
-        	public void onClick(View arg0)
-        	{
-        		Intent intentMapSlave = new Intent();
-        		intentMapSlave.setClass(MainActivity.this, MapSlaveActivity.class);
-        		startActivity(intentMapSlave);
-        	}
-        });
         
     }
     

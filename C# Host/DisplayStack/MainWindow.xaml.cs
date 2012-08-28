@@ -234,9 +234,9 @@ namespace DisplayStack
             if (e.Key == Key.R)
                 keyCode = "r";
             if (e.Key == Key.J)
-                keyCode = "map, 1-2";
+                keyCode = "show";
             if (e.Key == Key.K)
-                keyCode = "map, 2-1";
+                keyCode = "hide";
 
             newKeyPressed = true;
         }
