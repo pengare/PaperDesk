@@ -1,5 +1,8 @@
 package hml.paperdeskandroid;
 
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
 
 import com.google.android.maps.GeoPoint;
@@ -31,6 +34,17 @@ public class MapMasterActivity extends MapActivity {
 	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
 	MyReceiver receiver;
 	
+	
+	//command
+	private String command = "hide";
+	private boolean bCommandChanged = false;
+	
+	//The property of slave display
+	int slaveMapCenterLong = 0;
+	int slaveMapCenterLat = 0;
+	int slaveMapZoomLevel = 1;
+
+	
 	public class MyReceiver extends BroadcastReceiver
 	{
 		public MyReceiver()
@@ -41,7 +55,8 @@ public class MapMasterActivity extends MapActivity {
 		public void onReceive(Context context, Intent intent)
 		{
 			Bundle bundle = intent.getExtras();
-			String command = bundle.getString("command");
+			command = bundle.getString("command");
+			bCommandChanged = true;
 			//if(command.startsWith("map"))
 			{
 				String token[] = command.split(",");
@@ -71,6 +86,7 @@ public class MapMasterActivity extends MapActivity {
         updateMapView();
         //initToPCConnection();
         registerBroadcastReceiver();
+        new Thread(NotifStuff).start();
         
     }
 
@@ -113,4 +129,36 @@ public class MapMasterActivity extends MapActivity {
 		ol.clear();
 		ol.add(new PosOverLay(mapPoint, posBitmap)); 
 	}
+	
+	
+    //Thread used to broadcast PC's notif to other devices
+    private Runnable NotifStuff = new Thread()
+    {
+    	public void run()
+    	{
+    		try {
+    			ServerSocket serverSocket = new ServerSocket(2222);
+    			while(true)
+    			{
+    				Socket socket = serverSocket.accept();
+    				OutputStream os = socket.getOutputStream();
+    				while(true)
+    				{
+    					if(bCommandChanged) //there are new command, apply it
+    					{
+    						bCommandChanged = false;
+    						
+    						if(command.equals("show"))
+    							os.write("show\n".getBytes("utf-8"));
+    						else
+    							os.write("hide\n".getBytes("utf-8"));
+    					}
+    				}
+    			}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
+    };
 }

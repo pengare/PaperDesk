@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
