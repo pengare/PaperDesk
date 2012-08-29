@@ -235,8 +235,8 @@ public class MapMasterActivity extends MapActivity {
     		GeoPoint ptGeoCenter = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
     		GeoPoint ptGeoEdge = mv.getProjection().fromPixels(0, screenHeight/2);
     		
-    		slaveMapCenterLong = ptGeoCenter.getLongitudeE6();
-    		slaveMapCenterLat = ptGeoCenter.getLatitudeE6() ;//+ side * ptGeoEdge.getLatitudeE6() * 2;
+    		slaveMapCenterLong = ptGeoCenter.getLongitudeE6() + side * (ptGeoCenter.getLongitudeE6() - ptGeoEdge.getLongitudeE6()) * 2;
+    		slaveMapCenterLat = ptGeoCenter.getLatitudeE6();
     		slaveMapZoomLevel = mv.getZoomLevel();
     		
     	}
