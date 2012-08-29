@@ -22,9 +22,11 @@ import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+import android.widget.ZoomButtonsController.OnZoomListener;
 
 public class MapMasterActivity extends MapActivity {
 
@@ -39,7 +41,7 @@ public class MapMasterActivity extends MapActivity {
 	
 	//command
 	private String command = "hide";
-	private boolean bCommandChanged = false;
+	public static boolean bCommandChanged = false;
 	
 	//The property of slave display
 	int slaveMapCenterLong = 0;
@@ -68,7 +70,8 @@ public class MapMasterActivity extends MapActivity {
 		}
 	}
 	
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -83,6 +86,24 @@ public class MapMasterActivity extends MapActivity {
         
         mv = (MapView)findViewById(R.id.mv);
         mv.setBuiltInZoomControls(true);
+        mv.getZoomButtonsController().setOnZoomListener(new OnZoomListener() {
+			
+			public void onZoom(boolean zoomIn) {
+				// TODO Auto-generated method stub
+				if(zoomIn)
+					mapController.zoomIn();
+				else
+					mapController.zoomOut();
+				
+				bCommandChanged = true;
+				
+			}
+			
+			public void onVisibilityChanged(boolean visible) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
         mv.displayZoomControls(true);
         mapController = mv.getController();
         updateMapView();
@@ -131,7 +152,7 @@ public class MapMasterActivity extends MapActivity {
 		ol.clear();
 		ol.add(new PosOverLay(mapPoint, posBitmap)); 
 	}
-	
+
 	
     //Thread used to broadcast PC's notif to other devices
     private Runnable NotifStuff = new Thread()

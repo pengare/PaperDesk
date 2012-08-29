@@ -3,6 +3,7 @@ package hml.paperdeskandroid;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.view.MotionEvent;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -37,4 +38,16 @@ public class PosOverLay extends Overlay {
 				, p.y - posBitmap.getHeight(), null);
 		}
 	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent e, MapView mapView) {
+		if(e.getAction() == MotionEvent.ACTION_UP)
+		{
+			MapMasterActivity.bCommandChanged = true;
+		}
+		return super.onTouchEvent(e, mapView);
+	}
+	
+	
+	
 }
