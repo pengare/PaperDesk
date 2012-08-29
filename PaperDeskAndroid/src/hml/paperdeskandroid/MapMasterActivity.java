@@ -19,6 +19,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
@@ -59,9 +61,9 @@ public class MapMasterActivity extends MapActivity {
 			bCommandChanged = true;
 			//if(command.startsWith("map"))
 			{
-				String token[] = command.split(",");
-				Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
-				toast.show();
+				//String token[] = command.split(",");
+				//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
+				//toast.show();
 			}
 		}
 	}
@@ -149,9 +151,47 @@ public class MapMasterActivity extends MapActivity {
     						bCommandChanged = false;
     						
     						if(command.equals("show"))
+    						{
     							os.write("show\n".getBytes("utf-8"));
-    						else
+    							//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
+    							//toast.show();
+    						}
+    						else if(command.equals("hide"))
+    						{
     							os.write("hide\n".getBytes("utf-8"));
+    							//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
+    							//toast.show();
+    						}
+    						else if(command.startsWith("map"))
+    						{
+    							Log.d("master map", "receive msg:" + command);
+    							//os.write("show\n".getBytes("utf-8"));
+    							String token[] = command.split("\\,");
+    							String adjacent = token[1];
+    							String[] deviceId = adjacent.split("\\*");
+    							if(deviceId[0].equals("1")) //1-2, 2 is at the right of 1
+    							{
+    								//Calculate the map center lat/long of other device and inform to other device
+    								//Toast.makeText(MapMasterActivity.this, "right", Toast.LENGTH_SHORT).show();
+    								Log.d("right", "right");
+    								CalculateMapOffset(1);
+    							}
+    							else if(deviceId[1].equals("1")) //2-1, 2 is at the left of 1
+    							{
+    								//Calculate the map center lat/long of other device and inform to other device
+    								//Toast.makeText(MapMasterActivity.this, "right", Toast.LENGTH_SHORT).show();
+    								Log.d("left", "left");
+    								CalculateMapOffset(-1);
+    							}
+    							else
+    							{
+    								Log.d("master map", "third chance");
+    							}
+    							
+    							//send it to slave device
+    							Log.d("position", ""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel);
+    							os.write((""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel+"\n").getBytes("utf-8"));
+    						}
     					}
     				}
     			}
@@ -160,5 +200,25 @@ public class MapMasterActivity extends MapActivity {
 				// TODO: handle exception
 			}
     	}
+    	
+    	
+     	//Now we only support two devices, one master(id 1), one slave(id 2) 
+    	public void CalculateMapOffset(int side) //side -1 means at slave at left, 1 means right
+    	{
+    		//Get the size of screen
+    		DisplayMetrics displaysMetrics = new DisplayMetrics();
+    		getWindowManager().getDefaultDisplay().getMetrics(displaysMetrics);
+    		int screenWidth = displaysMetrics.widthPixels;
+    		int screenHeight = displaysMetrics.heightPixels;
+    		
+    		GeoPoint ptGeoCenter = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
+    		GeoPoint ptGeoEdge = mv.getProjection().fromPixels(0, screenHeight/2);
+    		
+    		slaveMapCenterLong = ptGeoCenter.getLongitudeE6();
+    		slaveMapCenterLat = ptGeoCenter.getLatitudeE6() ;//+ side * ptGeoEdge.getLatitudeE6() * 2;
+    		slaveMapZoomLevel = mv.getZoomLevel();
+    		
+    	}
+
     };
 }

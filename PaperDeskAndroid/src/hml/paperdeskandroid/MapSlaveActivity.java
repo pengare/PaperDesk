@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -31,6 +32,14 @@ public class MapSlaveActivity extends MapActivity {
 	
 	Handler myHandler;
 	
+	boolean bSlaveMapInitialized = false;
+	
+	//geo center of display, set by thread that receives msg from master, and used by UI thread to update mapview
+	int slaveMapCenterLong = 0;
+	int slaveMapCenterLat = 0;
+	int slaveMapZoomLevel = 1;
+
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +57,14 @@ public class MapSlaveActivity extends MapActivity {
         		if(msg.what == 0x1234)
         		{
         			mvSlave.setVisibility(MapView.VISIBLE);
+        			if(!bSlaveMapInitialized)
+        			{
+        				bSlaveMapInitialized = true;
+        				mvSlave.setVisibility(MapView.VISIBLE);
+        			}
+        			GeoPoint ptCenter = new GeoPoint(slaveMapCenterLat, slaveMapCenterLong);
+        			mapControllerSlave.setCenter(ptCenter);
+        			mapControllerSlave.setZoom(slaveMapZoomLevel);
         		}
         		else if(msg.what == 0x5678)
         		{
@@ -109,6 +126,17 @@ public class MapSlaveActivity extends MapActivity {
 					{
 						Message notif = new Message();
 						notif.what = 0x5678;
+						myHandler.sendMessage(notif);
+					}
+					else
+					{
+						String tokens[] = msg.split("\\*");
+						slaveMapCenterLat = Integer.parseInt(tokens[0]);
+						slaveMapCenterLong = Integer.parseInt(tokens[1]);
+						slaveMapZoomLevel = Integer.parseInt(tokens[2]);
+						Log.d("slave map", ""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel);
+						Message notif = new Message();
+						notif.what = 0x1234;
 						myHandler.sendMessage(notif);
 					}
 				}
