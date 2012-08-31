@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
+    <WebView
+        android:id="@+id/webView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".DocPageViewActivity" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
