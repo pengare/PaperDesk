@@ -51,7 +51,7 @@ namespace DisplayStack
         int readCounter = 0;
 
         //eInk Socket
-        static TcpListener eink = new TcpListener(IPAddress.Parse(HostIP), 2222);
+        static TcpListener eink = new TcpListener(IPAddress.Parse(HostIP), 7777);
         //Socket communicate with device 1
         Socket soc;
         NetworkStream s;
@@ -227,8 +227,8 @@ namespace DisplayStack
                 keyCode = "s";
             if (e.Key == Key.D)
                 keyCode = "d";
-            if (e.Key == Key.W)
-                keyCode = "w";
+            //if (e.Key == Key.W)
+            //    keyCode = "w";
             if (e.Key == Key.E)
                 keyCode = "e";
             if (e.Key == Key.R)
@@ -241,6 +241,19 @@ namespace DisplayStack
                 keyCode = "map,1*2";
             if (e.Key == Key.M)
                 keyCode = "map,2*1";
+            if (e.Key == Key.Left)
+                keyCode = "left";
+            if (e.Key == Key.Right)
+                keyCode = "right";
+            if (e.Key == Key.Enter)
+                keyCode = "enter";
+            
+            if (e.Key == Key.H)
+                keyCode = "hot";
+            if (e.Key == Key.W)
+                keyCode = "warm";
+            if (e.Key == Key.C)
+                keyCode = "cold";
 
             newKeyPressed = true;
         }

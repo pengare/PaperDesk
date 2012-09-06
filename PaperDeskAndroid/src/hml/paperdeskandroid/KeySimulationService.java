@@ -24,7 +24,8 @@ import android.widget.Toast;
 public class KeySimulationService extends Service {
     
 	private static final String id = "1";  //device id
-	private static final String HostIP = "130.15.5.136";
+	//private static final String HostIP = "130.15.5.136";
+	private static final String HostIP = "130.15.5.156";
 	
 	//this service can broadcast specific activty with action
 	public static final String receiverAction = "hml.paperdeskandroid.action.command";
@@ -60,7 +61,7 @@ public class KeySimulationService extends Service {
     		try
     		{	
     			//Connect to PC
-    			Socket socket = new Socket(HostIP, 2222);
+    			Socket socket = new Socket(HostIP, 7777);
     			//Socket socket = new Socket("192.168.0.197", 2222);
     			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
     			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -94,6 +95,23 @@ public class KeySimulationService extends Service {
     				else if(msg.equals("r"))
     				{
     					simulateKey(KeyEvent.KEYCODE_BACK);
+    					broadcastCommand("return");
+    				}
+    				else if(msg.equals("left"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_DPAD_LEFT);
+    				}
+    				else if(msg.equals("right"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_DPAD_RIGHT);
+    				}
+    				else if(msg.equals("enter"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_DPAD_CENTER);
+    				}
+    				else if(msg.equals("i"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_I);
     				}
     				//msg is a command or status notif
     				else if(msg.equals("show"))
@@ -118,8 +136,18 @@ public class KeySimulationService extends Service {
 //    					command = msg;
 //    					bCommandChanged = true;
     				}
-
-
+    				else if(msg.equals("hot"))
+    				{
+    					broadcastCommand(msg);
+    				}
+    				else if(msg.equals("warm"))
+    				{
+    					broadcastCommand(msg);
+    				}
+    				else if(msg.equals("cold"))
+    				{
+    					broadcastCommand(msg);
+    				}
     			}
     		}
     		catch (UnknownHostException e) 

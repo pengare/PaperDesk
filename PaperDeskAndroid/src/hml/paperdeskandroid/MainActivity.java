@@ -26,7 +26,9 @@ import android.widget.ImageView;
 public class MainActivity extends Activity {
 
 	public static final String id = "1";  //device id
-	public static final String HostIP = "130.15.5.136";
+	//public static final String HostIP = "130.15.5.136";
+	public static final String HostIP = "130.15.5.156";
+	public static final String MasterDisplayIP = "130.15.5.171";
 	
 	ImageView imageView;
 	
@@ -105,6 +107,41 @@ public class MainActivity extends Activity {
 				Intent intentMapSlave = new Intent();
 				intentMapSlave.setClass(MainActivity.this, MapSlaveActivity.class);
 				startActivity(intentMapSlave);
+				
+			}
+		});
+        
+        Button btnPhoto = (Button)findViewById(R.id.btnPhotoViewer);
+        btnPhoto.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentPhotoViewer = new Intent();
+				intentPhotoViewer.setClass(MainActivity.this, PhotoViewerActivity.class);
+				startActivity(intentPhotoViewer);
+				
+			}
+		});
+        
+        Button btnPhotoSlave = (Button)findViewById(R.id.btnPhotoViewerSlave);
+        btnPhotoSlave.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentPhotoViewerSlave = new Intent();
+				intentPhotoViewerSlave.setClass(MainActivity.this, PhotoViewerSlaveActivity.class);
+				startActivity(intentPhotoViewerSlave);	
+			}
+		});
+        
+        Button btnPhotoEmail = (Button)findViewById(R.id.btnPhotoViewerEmail);
+        btnPhotoEmail.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentPhotoViewerEmail = new Intent();
+				intentPhotoViewerEmail.setClass(MainActivity.this, PhotoViewerEmailActivity.class);
+				startActivity(intentPhotoViewerEmail);	
 				
 			}
 		});

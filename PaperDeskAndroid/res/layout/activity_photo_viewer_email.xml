@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"
+        android:text="To: "
+        tools:context=".PhotoViewerEmailActivity" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="35dp"
+        android:text="Subject: "
+        android:textSize="30sp"
+        tools:context=".PhotoViewerEmailActivity" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/textView2"
+        android:ems="10"
+        android:hint="XXXX@cs.queensu.ca"
+        android:text="AutoCompleteTextView" />
+
+    <AutoCompleteTextView
+        android:id="@+id/AutoCompleteTextView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/autoCompleteTextView1"
+        android:layout_alignTop="@+id/textView2"
+        android:ems="10"
+        android:layout_marginRight="20dp"
+        android:text="AutoCompleteTextView" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/AutoCompleteTextView01"
+        android:layout_marginTop="85dp"
+        android:ems="10"
+        android:lines="35"
+        android:text="AutoCompleteTextView" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/AutoCompleteTextView01"
+        android:layout_marginBottom="26dp"
+        android:layout_marginRight="152dp"
+        android:text="    Send    " />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnCancel"
+        android:layout_alignBottom="@+id/btnCancel"
+        android:layout_marginRight="52dp"
+        android:layout_toLeftOf="@+id/btnCancel"
+        android:text="  Cancel  " />
+
+</RelativeLayout>

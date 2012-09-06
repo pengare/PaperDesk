@@ -28,7 +28,7 @@ public class MapSlaveActivity extends MapActivity {
 	
 	//used to comm with master map device(main eink)
 	private static final String id = "2";  //device id
-	private static final String MasterDisplayIP = "130.15.5.171";//"130.15.5.169";
+	private static final String MasterDisplayIP = MainActivity.MasterDisplayIP;
 	
 	Handler myHandler;
 	

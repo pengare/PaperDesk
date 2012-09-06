@@ -19,19 +19,43 @@ public final class R {
         public static final int a6_kingston=0x7f020005;
         public static final int a7_flight=0x7f020006;
         public static final int a8_astronomy=0x7f020007;
-        public static final int ic_action_search=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int pile1=0x7f02000a;
-        public static final int pile2=0x7f02000b;
-        public static final int pile3=0x7f02000c;
-        public static final int pos=0x7f02000d;
+        public static final int chapter1=0x7f020008;
+        public static final int chapter2=0x7f020009;
+        public static final int ic_action_search=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int photo_1=0x7f02000c;
+        public static final int photo_10=0x7f02000d;
+        public static final int photo_11=0x7f02000e;
+        public static final int photo_12=0x7f02000f;
+        public static final int photo_2=0x7f020010;
+        public static final int photo_3=0x7f020011;
+        public static final int photo_4=0x7f020012;
+        public static final int photo_5=0x7f020013;
+        public static final int photo_6=0x7f020014;
+        public static final int photo_7=0x7f020015;
+        public static final int photo_8=0x7f020016;
+        public static final int photo_9=0x7f020017;
+        public static final int pile1=0x7f020018;
+        public static final int pile2=0x7f020019;
+        public static final int pile3=0x7f02001a;
+        public static final int pos=0x7f02001b;
     }
     public static final class id {
+        public static final int AutoCompleteTextView01=0x7f070024;
+        public static final int autoCompleteTextView1=0x7f070023;
+        public static final int autoCompleteTextView2=0x7f070025;
+        public static final int btnCancel=0x7f070026;
         public static final int btnDoc=0x7f070017;
         public static final int btnMap=0x7f070018;
         public static final int btnMapSlave=0x7f070019;
+        public static final int btnPhotoViewer=0x7f07001a;
+        public static final int btnPhotoViewerEmail=0x7f07001c;
+        public static final int btnPhotoViewerSlave=0x7f07001b;
+        public static final int btnSend=0x7f070027;
         public static final int buttonEndKeyService=0x7f070016;
         public static final int buttonStartKeyService=0x7f070015;
+        public static final int chapterIcon=0x7f070029;
+        public static final int chapterLabel=0x7f07002a;
         public static final int checkedTextView1=0x7f070002;
         public static final int checkedTextView2=0x7f070004;
         public static final int checkedTextView3=0x7f070006;
@@ -40,6 +64,7 @@ public final class R {
         public static final int checkedTextView6=0x7f07000d;
         public static final int checkedTextView7=0x7f070010;
         public static final int checkedTextView8=0x7f070012;
+        public static final int image1=0x7f07002b;
         public static final int imageButton1=0x7f070001;
         public static final int imageButton2=0x7f070003;
         public static final int imageButton3=0x7f070005;
@@ -49,12 +74,17 @@ public final class R {
         public static final int imageButton7=0x7f07000f;
         public static final int imageButton8=0x7f070011;
         public static final int imageView=0x7f070014;
-        public static final int menu_settings=0x7f07001c;
-        public static final int mv=0x7f07001a;
-        public static final int mvSlave=0x7f07001b;
+        public static final int menu_settings=0x7f07002c;
+        public static final int mv=0x7f07001d;
+        public static final int mvSlave=0x7f07001e;
+        public static final int photoDetail=0x7f07001f;
+        public static final int photoFavoriteGrid=0x7f070028;
+        public static final int photoGrid=0x7f070020;
         public static final int tableRow1=0x7f070000;
         public static final int tableRow2=0x7f070007;
         public static final int tableRow3=0x7f07000e;
+        public static final int textView1=0x7f070021;
+        public static final int textView2=0x7f070022;
         public static final int webView1=0x7f070013;
     }
     public static final class layout {
@@ -64,6 +94,13 @@ public final class R {
         public static final int activity_main=0x7f030003;
         public static final int activity_map_master=0x7f030004;
         public static final int activity_map_slave=0x7f030005;
+        public static final int activity_photo_detail=0x7f030006;
+        public static final int activity_photo_viewer=0x7f030007;
+        public static final int activity_photo_viewer_email=0x7f030008;
+        public static final int activity_photo_viewer_slave=0x7f030009;
+        public static final int doc_chapter_row_layout=0x7f03000a;
+        public static final int photo_grid_cell=0x7f03000b;
+        public static final int photo_grid_cell_slave=0x7f03000c;
     }
     public static final class menu {
         public static final int activity_doc_book_view=0x7f060000;
@@ -72,6 +109,9 @@ public final class R {
         public static final int activity_main=0x7f060003;
         public static final int activity_map_master=0x7f060004;
         public static final int activity_map_slave=0x7f060005;
+        public static final int activity_photo_viewer=0x7f060006;
+        public static final int activity_photo_viewer_email=0x7f060007;
+        public static final int activity_photo_viewer_slave=0x7f060008;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -83,6 +123,9 @@ public final class R {
         public static final int title_activity_main=0x7f040003;
         public static final int title_activity_map_master=0x7f040007;
         public static final int title_activity_map_slave=0x7f040008;
+        public static final int title_activity_photo_viewer=0x7f040009;
+        public static final int title_activity_photo_viewer_email=0x7f04000b;
+        public static final int title_activity_photo_viewer_slave=0x7f04000a;
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;

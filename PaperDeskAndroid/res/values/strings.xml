@@ -9,5 +9,8 @@
     <string name="title_activity_doc_page_view">DocPageViewActivity</string>
     <string name="title_activity_map_master">MapMasterActivity</string>
     <string name="title_activity_map_slave">MapSlaveActivity</string>
+    <string name="title_activity_photo_viewer">PhotoViewerActivity</string>
+    <string name="title_activity_photo_viewer_slave">PhotoViewerSlaveActivity</string>
+    <string name="title_activity_photo_viewer_email">PhotoViewerEmailActivity</string>
 
 </resources>

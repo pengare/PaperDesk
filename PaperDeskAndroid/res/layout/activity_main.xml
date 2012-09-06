@@ -56,4 +56,29 @@
         android:layout_marginTop="15dp"
         android:text="Slave map" />
 
+    <Button
+        android:id="@+id/btnPhotoViewer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnMapSlave"
+        android:layout_marginTop="38dp"
+        android:text="Photo Viewer" />
+
+    <Button
+        android:id="@+id/btnPhotoViewerSlave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnPhotoViewer"
+        android:text="Photo Viewer Slave" />
+
+    <Button
+        android:id="@+id/btnPhotoViewerEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnPhotoViewerSlave"
+        android:text="Photo Viewer Email" />
+
 </RelativeLayout>

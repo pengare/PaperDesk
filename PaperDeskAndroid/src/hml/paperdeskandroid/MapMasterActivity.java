@@ -70,7 +70,7 @@ public class MapMasterActivity extends MapActivity {
 		}
 	}
 	
-    @SuppressWarnings("deprecation")
+   
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
