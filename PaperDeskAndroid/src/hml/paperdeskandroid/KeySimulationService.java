@@ -25,7 +25,8 @@ public class KeySimulationService extends Service {
     
 	private static final String id = "1";  //device id
 	//private static final String HostIP = "130.15.5.136";
-	private static final String HostIP = "130.15.5.156";
+	private static final String HostIP = MainActivity.HostIP;
+	private static final int HostIPPort = MainActivity.HostIPPort;
 	
 	//this service can broadcast specific activty with action
 	public static final String receiverAction = "hml.paperdeskandroid.action.command";
@@ -43,7 +44,11 @@ public class KeySimulationService extends Service {
     public void onCreate()
     {
     	super.onCreate();
+    	//thread get command from pc
     	new Thread(DataStuff).start();
+    	
+    	//thread send processed command to secondary display
+    	new Thread(CommandToClientStuff).start();
     	
     }
     
@@ -61,7 +66,7 @@ public class KeySimulationService extends Service {
     		try
     		{	
     			//Connect to PC
-    			Socket socket = new Socket(HostIP, 7777);
+    			Socket socket = new Socket(HostIP, HostIPPort);
     			//Socket socket = new Socket("192.168.0.197", 2222);
     			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
     			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -148,6 +153,12 @@ public class KeySimulationService extends Service {
     				{
     					broadcastCommand(msg);
     				}
+    				
+    				//new architecture
+    				else if(msg.startsWith("collocate"))
+    				{
+    					broadcastCommand(msg);
+    				}
     			}
     		}
     		catch (UnknownHostException e) 
@@ -193,4 +204,56 @@ public class KeySimulationService extends Service {
         	intent.putExtra("command", command);
         	sendBroadcast(intent); 	
         }
+        
+        
+    	//Thread used to broadcast command from every activity to slave display
+    	private Runnable CommandToClientStuff = new Thread() {
+        	public void run() {
+        		
+        		try
+        		{	
+        			int iClientCounter = 1;
+        			ServerSocket serverSocket = new ServerSocket(MainActivity.MasterDisplayPort);
+        			while(iClientCounter < MainActivity.clientNum )
+        			{
+        				MainActivity.clientSocket[iClientCounter] = serverSocket.accept();
+        				MainActivity.os[iClientCounter] = MainActivity.clientSocket[iClientCounter].getOutputStream();
+        				
+        				iClientCounter++;
+        			}
+        			
+        			while(true)
+        			{
+        				for(int i = 1; i <= MainActivity.clientNum; ++i)
+        				{
+        					if(MainActivity.clientCommandChanged[i] == true)
+        					{
+        						MainActivity.os[i].write((MainActivity.clientCommand[i]).getBytes("utf-8"));
+        						MainActivity.clientCommand[i] = "";
+        						MainActivity.clientCommandChanged[i] = false;
+        					}
+        				}
+        			}
+    	
+        		}
+        		catch (UnknownHostException e) 
+        		{
+        			Log.d(id, "UnknownHost");
+        			
+        		} catch (IOException e) 
+        		{
+        			String error = e.toString();
+        			String msg = e.getMessage();
+        			Log.d(id, "IOException");
+        		}
+        		catch(Exception e)
+        		{
+        			String error = e.toString();
+        			String msg = e.getMessage();
+        			Log.d(id, error);
+        		}
+        		
+        		
+        	}
+        	};
 }

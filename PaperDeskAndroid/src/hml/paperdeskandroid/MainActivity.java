@@ -1,21 +1,21 @@
 package hml.paperdeskandroid;
 
-import hml.paperdeskandroid.R;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -25,13 +25,38 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
-	public static final String id = "1";  //device id
-	//public static final String HostIP = "130.15.5.136";
-	public static final String HostIP = "130.15.5.156";
-	public static final String MasterDisplayIP = "130.15.5.171";
 	
+	//all information saved here 
+	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
+	public static final String HostIP = "130.15.5.136";
+	//public static final String HostIP = "130.15.5.156";
+	//public static final String HostIP = "192.168.0.104";
+	public static final int HostIPPort = 7777;
+	
+	public static final int AndroidServerListenPort = 8888;
+	
+	
+	public static final int clientNum = 2; //include primary display
+	
+	public static final String MasterDisplayIP = "130.15.5.171";
+	public static final int MasterDisplayPort = 3333; //for the other two displays to connect
+	
+	public static final int clientPort[] = {0, 4444, 5555};  //
+	public static Socket clientSocket[] = new Socket[3];
+	public static OutputStream os[] = new OutputStream[3];
+	
+	
+	public static String[] clientStatus = {"mainApp", "blank", "blank"};  //blank, mainApp, map, doc, email, photo
 	ImageView imageView;
 	
+	
+	//System info
+	public static int screenWidth, screenHeight;
+	
+	public static boolean[] clientCommandChanged = {false, false, false}; //0 should always be false, it is primary
+	public static String[] clientCommand = {"", "", ""};  // 0 should always be empty, because it is primary
+	
+	public static MapMasterActivity mapActivity;
 	//Used to simulate keyboard or touch event
 	
 	
@@ -47,105 +72,180 @@ public class MainActivity extends Activity {
         
         setContentView(R.layout.activity_main);
         
-        imageView = (ImageView)findViewById(R.id.imageView);
-        //new Thread(DataStuff).start();
+        initializeSystemInfo(); //get and save system info like screen solution
         
         
-        Button btnStart = (Button)findViewById(R.id.buttonStartKeyService);
-        Button btnEnd = (Button)findViewById(R.id.buttonEndKeyService);
-        final Intent intent = new Intent();
-        intent.setClass(MainActivity.this, KeySimulationService.class);
+//        Button btnStartServer = (Button)findViewById(R.id.btnStartServer);
+//        btnStartServer.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intent = new Intent();
+//		        intent.setClass(MainActivity.this, KeySimulationService.class);
+//				startService(intent);
+//				
+//			}
+//		});
         
-        btnStart.setOnClickListener(new OnClickListener() {
+        Button btnStartClient1 = (Button)findViewById(R.id.btnStartClient1);
+        btnStartClient1.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//Start key service
-		        
-		        startService(intent);
+				MainActivity.id = "0";  //master display
+				
+				Intent intentMainApp = new Intent();
+				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
+				startActivity(intentMainApp);
+				
+				Intent intent = new Intent();
+		        intent.setClass(MainActivity.this, KeySimulationService.class);
+				startService(intent);
 				
 			}
 		});
         
-        btnEnd.setOnClickListener(new OnClickListener() {
+        Button btnStartClient2 = (Button)findViewById(R.id.btnStartClient2);
+        btnStartClient2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				stopService(intent);
-			}
-		});
-        
-        Button btnDoc = (Button)findViewById(R.id.btnDoc);
-        btnDoc.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intentDoc = new Intent();
-				intentDoc.setClass(MainActivity.this, DocBookViewActivity.class);
-				startActivity(intentDoc);
+				MainActivity.id = "1"; //slave
 				
-			}
-		});
-        
-        Button btnMap = (Button)findViewById(R.id.btnMap);
-        btnMap.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intentMap = new Intent();
-				intentMap.setClass(MainActivity.this, MapMasterActivity.class);
-				startActivity(intentMap);
+				Intent intentMainApp = new Intent();
+				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
+				startActivity(intentMainApp);
 				
+				Intent intent = new Intent();
+		        intent.setClass(MainActivity.this, KeySimulationSlaveService.class);
+				startService(intent);
 			}
 		});
         
-        Button btnMapSlave = (Button)findViewById(R.id.btnMapSlave);
-        btnMapSlave.setOnClickListener(new OnClickListener() {
+        Button btnStartClient3 = (Button)findViewById(R.id.btnStartClient3);
+        btnStartClient3.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intentMapSlave = new Intent();
-				intentMapSlave.setClass(MainActivity.this, MapSlaveActivity.class);
-				startActivity(intentMapSlave);
+				MainActivity.id = "2"; //slave
 				
-			}
-		});
-        
-        Button btnPhoto = (Button)findViewById(R.id.btnPhotoViewer);
-        btnPhoto.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intentPhotoViewer = new Intent();
-				intentPhotoViewer.setClass(MainActivity.this, PhotoViewerActivity.class);
-				startActivity(intentPhotoViewer);
+				Intent intentMainApp = new Intent();
+				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
+				startActivity(intentMainApp);
 				
+				Intent intent = new Intent();
+		        intent.setClass(MainActivity.this, KeySimulationSlaveService.class);
+				startService(intent);
 			}
 		});
         
-        Button btnPhotoSlave = (Button)findViewById(R.id.btnPhotoViewerSlave);
-        btnPhotoSlave.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intentPhotoViewerSlave = new Intent();
-				intentPhotoViewerSlave.setClass(MainActivity.this, PhotoViewerSlaveActivity.class);
-				startActivity(intentPhotoViewerSlave);	
-			}
-		});
+//        
+//        Button btnStart = (Button)findViewById(R.id.buttonStartKeyService);
+//        Button btnEnd = (Button)findViewById(R.id.buttonEndKeyService);
+//        final Intent intent = new Intent();
+//        intent.setClass(MainActivity.this, KeySimulationService.class);
+//        
+//        btnStart.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				//Start key service
+//		        
+//		        startService(intent);
+//				
+//			}
+//		});
+//        
+//        btnEnd.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				stopService(intent);
+//			}
+//		});
+//        
+//        Button btnDoc = (Button)findViewById(R.id.btnDoc);
+//        btnDoc.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intentDoc = new Intent();
+//				intentDoc.setClass(MainActivity.this, DocBookViewActivity.class);
+//				startActivity(intentDoc);
+//				
+//			}
+//		});
+//        
+//        Button btnMap = (Button)findViewById(R.id.btnMap);
+//        btnMap.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View arg0) {
+//				// TODO Auto-generated method stub
+//				Intent intentMap = new Intent();
+//				intentMap.setClass(MainActivity.this, MapMasterActivity.class);
+//				startActivity(intentMap);
+//				
+//			}
+//		});
+//        
+//        Button btnMapSlave = (Button)findViewById(R.id.btnMapSlave);
+//        btnMapSlave.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intentMapSlave = new Intent();
+//				intentMapSlave.setClass(MainActivity.this, MapSlaveActivity.class);
+//				startActivity(intentMapSlave);
+//				
+//			}
+//		});
+//        
+//        Button btnPhoto = (Button)findViewById(R.id.btnPhotoViewer);
+//        btnPhoto.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intentPhotoViewer = new Intent();
+//				intentPhotoViewer.setClass(MainActivity.this, PhotoViewerActivity.class);
+//				startActivity(intentPhotoViewer);
+//				
+//			}
+//		});
+//        
+//        Button btnPhotoSlave = (Button)findViewById(R.id.btnPhotoViewerSlave);
+//        btnPhotoSlave.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intentPhotoViewerSlave = new Intent();
+//				intentPhotoViewerSlave.setClass(MainActivity.this, PhotoViewerSlaveActivity.class);
+//				startActivity(intentPhotoViewerSlave);	
+//			}
+//		});
+//        
+//        Button btnPhotoEmail = (Button)findViewById(R.id.btnPhotoViewerEmail);
+//        btnPhotoEmail.setOnClickListener(new OnClickListener() {
+//			
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intentPhotoViewerEmail = new Intent();
+//				intentPhotoViewerEmail.setClass(MainActivity.this, PhotoViewerEmailActivity.class);
+//				startActivity(intentPhotoViewerEmail);	
+//				
+//			}
+//		});
         
-        Button btnPhotoEmail = (Button)findViewById(R.id.btnPhotoViewerEmail);
-        btnPhotoEmail.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intentPhotoViewerEmail = new Intent();
-				intentPhotoViewerEmail.setClass(MainActivity.this, PhotoViewerEmailActivity.class);
-				startActivity(intentPhotoViewerEmail);	
-				
-			}
-		});
-        
+    }
+    
+    
+    public void initializeSystemInfo()
+    {
+    	//Get the size of screen
+		DisplayMetrics displaysMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaysMetrics);
+		screenWidth = displaysMetrics.widthPixels;
+		screenHeight = displaysMetrics.heightPixels;
+		
     }
     
 	@Override
@@ -154,126 +254,9 @@ public class MainActivity extends Activity {
 		
 		if (keyCode == KeyEvent.KEYCODE_Q)	
 			this.finish();
-		else if(keyCode == KeyEvent.KEYCODE_DPAD_UP)
-			imageView.setImageResource(R.drawable.pile2);
-		else if(keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
-			imageView.setImageResource(R.drawable.pile3);
     	
     	return super.onKeyDown(keyCode, msg);
     }
 	
-	private Runnable DataStuff = new Thread() {
-    	public void run() {
-    		
-    		try
-    		{	
-    			imageView.clearFocus();
-    			Socket socket = new Socket(HostIP, 2222);
-    			//Socket socket = new Socket("192.168.0.197", 2222);
-    			Log.d(id, "Created Socket");
-    			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-    			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-    					
-    			//out.println(id); //tell device id to host
-    			
-    			while(true)
-    			{
-    				String msg = in.readLine();
-    				if(msg.equals("w"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_DPAD_UP);
-    				}
-    				else if(msg.equals("s"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_DPAD_DOWN);
-    				}
-    				else if(msg.equals("a"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_DPAD_LEFT);
-    				}
-    				else if(msg.equals("d"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_DPAD_RIGHT);
-    				}
-    				else if(msg.equals("e"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_DPAD_CENTER);
-    				}
-    				else if(msg.equals("r"))
-    				{
-    					simulateKey(KeyEvent.KEYCODE_BACK);
-    				}
-    					
-    				
-    				//Below is old change picture code
-/*    	            String msg = in.readLine();
-    	            String[] tokens = msg.split(" ");
-    	            String imageName = "";
-    	            if(id.equals("1"))
-    	            	imageName = tokens[1];
-    	            else if(id.equals("2"))
-    	            	imageName = tokens[3];
-    	            else
-    	            	imageName = tokens[5];
-    	            
-    	            if(imageName.equals("pile1"))
-    	            {
-    	            	imageView.post(new Runnable() {
-    	            	        public void run() {
-    	            	        	imageView.setImageResource(R.drawable.pile1);
-    	            	        }
-    	            	      });
-    	            }
-    	            else if(imageName.equals("pile2"))  	
-    	            {
-    	            	imageView.post(new Runnable() {
-	            	        public void run() {
-	            	        	imageView.setImageResource(R.drawable.pile2);
-	            	        }
-	            	      });
-    	            }
-    	            else if(imageName.equals("pile3"))  	
-    	            {
-    	            	imageView.post(new Runnable() {
-	            	        public void run() {
-	            	        	imageView.setImageResource(R.drawable.pile3);
-	            	        }
-	            	      });
-    	            }*/
-    			}
-    		}
-    		catch (UnknownHostException e) 
-    		{
-    			Log.d(id, "UnknownHost");
-    			
-    		} catch (IOException e) 
-    		{
-    			String error = e.toString();
-    			String msg = e.getMessage();
-    			Log.d(id, "IOException");
-    		}
-    		catch(Exception e)
-    		{
-    			String error = e.toString();
-    			String msg = e.getMessage();
-    			Log.d(id, error);
-    		}
-    		
-    		
-    	}
-    	};
-    	
-    public static void simulateKey(final int KeyCode)
-    {
-    	try {
-    		Instrumentation inst = new Instrumentation();
-    		inst.sendKeyDownUpSync(KeyCode);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.e("Exception when sendKeyDownUpSync", e.toString());
-		}
-    	
-    }
 	
 }

@@ -12,5 +12,7 @@
     <string name="title_activity_photo_viewer">PhotoViewerActivity</string>
     <string name="title_activity_photo_viewer_slave">PhotoViewerSlaveActivity</string>
     <string name="title_activity_photo_viewer_email">PhotoViewerEmailActivity</string>
+    <string name="title_activity_blank">BlankActivity</string>
+    <string name="title_activity_main_app">MainAppActivity</string>
 
 </resources>

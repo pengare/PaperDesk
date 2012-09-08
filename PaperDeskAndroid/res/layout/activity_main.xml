@@ -1,16 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
 
-    <Button
+
+<!--     <Button
         android:id="@+id/buttonStartKeyService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,6 +74,61 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/btnPhotoViewerSlave"
-        android:text="Photo Viewer Email" />
+        android:text="Photo Viewer Email" /> -->
+
+    <CheckedTextView
+        android:id="@+id/RoleTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:text="Select a role for device" 
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal|center_vertical"/>
+
+    <Button
+        android:id="@+id/btnStartServer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/RoleTitle"
+        android:layout_marginTop="70dp"
+        android:text="Android Server" 
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/btnStartClient1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/btnStartServer"
+        android:layout_marginTop="80dp"
+        android:text="Android Client 1"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btnStartClient2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/btnStartClient1"
+        android:layout_marginTop="40dp"
+        android:text="Android Client 2"
+        android:textSize="25sp" />
+    
+   <Button
+        android:id="@+id/btnStartClient3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/btnStartClient2"
+        android:layout_marginTop="40dp"
+        android:text="Android Client 3"
+        android:textSize="25sp" />
 
 </RelativeLayout>

@@ -75,6 +75,8 @@ public class MapMasterActivity extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        MainActivity.mapActivity = this;
+        
         //set full screen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -160,11 +162,11 @@ public class MapMasterActivity extends MapActivity {
     	public void run()
     	{
     		try {
-    			ServerSocket serverSocket = new ServerSocket(2222);
+    			//ServerSocket serverSocket = new ServerSocket(2222);
     			while(true)
     			{
-    				Socket socket = serverSocket.accept();
-    				OutputStream os = socket.getOutputStream();
+    				//Socket socket = serverSocket.accept();
+    				//OutputStream os = socket.getOutputStream();
     				while(true)
     				{
     					if(bCommandChanged) //there are new command, apply it
@@ -173,29 +175,41 @@ public class MapMasterActivity extends MapActivity {
     						
     						if(command.equals("show"))
     						{
-    							os.write("show\n".getBytes("utf-8"));
+    							//os.write("show\n".getBytes("utf-8"));
     							//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
     							//toast.show();
     						}
     						else if(command.equals("hide"))
     						{
-    							os.write("hide\n".getBytes("utf-8"));
+    							//os.write("hide\n".getBytes("utf-8"));
     							//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
     							//toast.show();
     						}
-    						else if(command.startsWith("map"))
+    						else if(command.startsWith("collocate"))
     						{
     							Log.d("master map", "receive msg:" + command);
     							//os.write("show\n".getBytes("utf-8"));
-    							String token[] = command.split("\\,");
+    							String token[] = command.split("\\#");
     							String adjacent = token[1];
-    							String[] deviceId = adjacent.split("\\*");
+    							String[] deviceId = adjacent.split("\\:");
     							if(deviceId[0].equals("1")) //1-2, 2 is at the right of 1
     							{
     								//Calculate the map center lat/long of other device and inform to other device
     								//Toast.makeText(MapMasterActivity.this, "right", Toast.LENGTH_SHORT).show();
     								Log.d("right", "right");
     								CalculateMapOffset(1);
+    								
+    								if(deviceId[1].equals("2"))
+    								{
+    									MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+    									MainActivity.clientCommandChanged[1] = true;
+    								}
+    								else if(deviceId[1].equals("3"))
+    								{
+    									MainActivity.clientCommand[2] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+    									MainActivity.clientCommandChanged[2] = true;
+    								}
+    								
     							}
     							else if(deviceId[1].equals("1")) //2-1, 2 is at the left of 1
     							{
@@ -203,15 +217,27 @@ public class MapMasterActivity extends MapActivity {
     								//Toast.makeText(MapMasterActivity.this, "right", Toast.LENGTH_SHORT).show();
     								Log.d("left", "left");
     								CalculateMapOffset(-1);
+    								
+    								if(deviceId[0].equals("2"))
+    								{
+    									MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+    									MainActivity.clientCommandChanged[1] = true;
+    								}
+    								else if(deviceId[0].equals("3"))
+    								{
+    									MainActivity.clientCommand[2] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+    									MainActivity.clientCommandChanged[2] = true;
+    								}
     							}
     							else
     							{
     								Log.d("master map", "third chance");
     							}
     							
+    							
     							//send it to slave device
-    							Log.d("position", ""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel);
-    							os.write((""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel+"\n").getBytes("utf-8"));
+    							Log.d("location#", ""+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel);
+    							//os.write(("location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n").getBytes("utf-8"));
     						}
     					}
     				}

@@ -28,6 +28,7 @@ namespace DisplayStack
     public partial class MainWindow : Window
     {
         static string HostIP = "130.15.5.136";
+        //static string HostIP = "192.168.0.104";
         enum DisplayMode
         {
             Initial,
@@ -254,6 +255,11 @@ namespace DisplayStack
                 keyCode = "warm";
             if (e.Key == Key.C)
                 keyCode = "cold";
+
+            if (e.Key == Key.N)
+                keyCode = "collocate#1:2";
+            if (e.Key == Key.M)
+                keyCode = "collocate#2:1";
 
             newKeyPressed = true;
         }
