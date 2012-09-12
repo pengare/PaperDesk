@@ -27,8 +27,8 @@ namespace DisplayStack
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string HostIP = "130.15.5.136";
-        //static string HostIP = "192.168.0.105";
+        //static string HostIP = "130.15.5.136";
+        static string HostIP = "192.168.0.105";
         enum DisplayMode
         {
             Initial,
@@ -131,41 +131,6 @@ namespace DisplayStack
 
                             String msg = keyCode;
                             sw.WriteLine(msg);
-                            //switch (displayMode)
-                            //{
-                            //    case DisplayMode.Initial:
-                            //        //string id = sr.ReadLine();
-                            //        //Console.WriteLine("Connect to am350 - " + id);
-                            //        Thread.Sleep(10);
-                            //        displayMode = DisplayMode.Pile;
-                            //        modeChanged = true;
-                            //        break;
-                            //    case DisplayMode.Pile:
-                            //        String msg = "1 pile1 2 pile2 3 pile3";
-                            //        if (pileIndex == 0)
-                            //        {
-                            //            msg = "1 pile1 2 pile2 3 pile3";  
-                            //        }
-                            //        else if (pileIndex == 1)
-                            //        {
-                            //            msg = "1 pile2 2 pile3 3 pile1";
-                            //        }
-                            //        else if (pileIndex == 2)
-                            //        {
-                            //            msg = "1 pile3 2 pile1 3 pile2";
-                            //        }
-                            //        sw.WriteLine(msg);
-                            //        //sw2.WriteLine(msg);
-                            //        //sw3.WriteLine(msg);
-                            //        modeChanged = false; //avoid sending command for many times
-                            //        break;
-                            //    case DisplayMode.Stack:
-                            //        break;
-                            //    case DisplayMode.Linear:
-                            //        break;
-                            //    case DisplayMode.Fan:
-                            //        break;
-                            //}
                         }
 
                         Thread.Sleep(50);
@@ -181,10 +146,6 @@ namespace DisplayStack
 
         void MainLoopToReadArduino(object sender, EventArgs e)
         {
-            //if (readInit)
-            //{
-            //    input.ReadSideBend();
-            //}
         }
 
         void KeyDownEventHandler(object sender, KeyEventArgs e)
@@ -268,9 +229,9 @@ namespace DisplayStack
                 keyCode = "collocate#1:0";
 
             if (e.Key == Key.T) //simulate top bend sensor up
-                keyCode = "key#0:bendsensortopup";
+                keyCode = "key#1:bendsensortopup";
             if (e.Key == Key.Y)
-                keyCode = "key#0:bendsensortopdown";
+                keyCode = "key#1:bendsensortopdown";
             if (e.Key == Key.U)
                 keyCode = "key#0:bendsensormiddleup";
             if (e.Key == Key.I)
@@ -281,17 +242,21 @@ namespace DisplayStack
                 keyCode = "key#0:bendsensorleftdown";
 
             if (e.Key == Key.H)
-                keyCode = "zone#0:hot";
+                keyCode = "zone#1:hot";
             if (e.Key == Key.W)
-                keyCode = "zone#0:warm";
+                keyCode = "zone#1:warm";
             if (e.Key == Key.C)
-                keyCode = "zone#0:cold";
+                keyCode = "zone#1:cold";
             
             //Training
             if (e.Key == Key.Z)
                 keyCode = "tap#0:1:30";
             if (e.Key == Key.X)
                 keyCode = "tap#0:1:reset";
+
+            //Task 1
+            if (e.Key == Key.V)
+                keyCode = "tap#1:2:30";
 
 
 

@@ -1,5 +1,6 @@
 package hml.paperdeskandroid;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,7 +66,18 @@ public class TaskChooserActivity extends Activity {
 					intent.setClass(TaskChooserActivity.this, TrainingId0BlankActivity.class);
 					startActivity(intent);
 				}
-				
+				else if(MainActivity.id == "1")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, TrainingId1BookViewActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "2")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, TrainingId2AppActivity.class);
+					startActivity(intent);
+				}
 				
 				TaskChooserActivity.this.finish();
 			}
@@ -75,11 +87,25 @@ public class TaskChooserActivity extends Activity {
 		btnTask1.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				MainActivity.taskType = MainActivity.TaskType.Task1Document;
-				Intent intent = new Intent();
-				intent.setClass(TaskChooserActivity.this, MainActivity.class);
-				startActivity(intent);
+				if(MainActivity.id == "0")
+				{
+					
+				}
+				else if(MainActivity.id == "1")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task1Id1BlankActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "2")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task1Id2BookActivity.class);
+					startActivity(intent);
+				}
+				
 
 				TaskChooserActivity.this.finish();
 

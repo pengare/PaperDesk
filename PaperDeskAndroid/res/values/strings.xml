@@ -32,5 +32,14 @@
     <string name="title_activity_training_id2_app">TrainingId2AppActivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_temp">TempActivity</string>
+    <string name="title_activity_task1_id2_book">Task1Id2BookActivity</string>
+    <string name="title_activity_task1_id1_blank">Task1Id1BlankActivity</string>
+    <string name="title_activity_task1_id1_bookcover">Task1Id1BookcoverActivity</string>
+    <string name="title_activity_task1_id1_chapter">Task1Id1ChapterActivity</string>
+    <string name="title_activity_task1_id1_page">Task1Id1PageActivity</string>
+    <string name="title_activity_task1_id0_blank">Task1Id0BlankActivity</string>
+    <string name="title_activity_task1_id0_page">Task1Id0PageActivity</string>
+    <string name="title_activity_task1_id1_blank_before_collocate">Task1Id1BlankBeforeCollocateActivity</string>
+    <string name="title_activity_task1_id1_collocate_slave">Task1Id1CollocateSlaveActivity</string>
 
 </resources>
