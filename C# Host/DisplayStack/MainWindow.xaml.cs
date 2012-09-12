@@ -27,8 +27,8 @@ namespace DisplayStack
     /// </summary>
     public partial class MainWindow : Window
     {
-        //static string HostIP = "130.15.5.136";
-        static string HostIP = "192.168.0.105";
+        static string HostIP = "130.15.5.136";
+        //static string HostIP = "192.168.0.105";
         enum DisplayMode
         {
             Initial,
@@ -229,9 +229,9 @@ namespace DisplayStack
                 keyCode = "collocate#1:0";
 
             if (e.Key == Key.T) //simulate top bend sensor up
-                keyCode = "key#1:bendsensortopup";
+                keyCode = "key#0:bendsensortopup";
             if (e.Key == Key.Y)
-                keyCode = "key#1:bendsensortopdown";
+                keyCode = "key#0:bendsensortopdown";
             if (e.Key == Key.U)
                 keyCode = "key#0:bendsensormiddleup";
             if (e.Key == Key.I)
@@ -242,11 +242,11 @@ namespace DisplayStack
                 keyCode = "key#0:bendsensorleftdown";
 
             if (e.Key == Key.H)
-                keyCode = "zone#1:hot";
+                keyCode = "zone#0:hot";
             if (e.Key == Key.W)
-                keyCode = "zone#1:warm";
+                keyCode = "zone#0:warm";
             if (e.Key == Key.C)
-                keyCode = "zone#1:cold";
+                keyCode = "zone#0:cold";
             
             //Training
             if (e.Key == Key.Z)
@@ -256,7 +256,9 @@ namespace DisplayStack
 
             //Task 1
             if (e.Key == Key.V)
-                keyCode = "tap#1:2:30";
+                keyCode = "tap#1:2:30:50";
+            else if (e.Key == Key.B)
+                keyCode = "";
 
 
 

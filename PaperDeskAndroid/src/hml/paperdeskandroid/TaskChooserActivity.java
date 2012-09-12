@@ -122,11 +122,15 @@ public class TaskChooserActivity extends Activity {
 				
 				if(MainActivity.id == "0")
 				{
-
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task2Id0BlankActivity.class);
+					startActivity(intent);
 				}
 				else if(MainActivity.id == "1")
 				{
-
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task2Id1BlankActivity.class);
+					startActivity(intent);
 				}
 				else if(MainActivity.id == "2")
 				{
@@ -145,9 +149,25 @@ public class TaskChooserActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.taskType = MainActivity.TaskType.Task3Email;
-				Intent intent = new Intent();
-				intent.setClass(TaskChooserActivity.this, MainActivity.class);
-				startActivity(intent);
+				
+				if(MainActivity.id == "0")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task3Id0BlankActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "1")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task3Id1BlankActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "2")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task3Id2AppActivity.class);
+					startActivity(intent);
+				}
 				
 				TaskChooserActivity.this.finish();
 				

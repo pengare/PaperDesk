@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp"
+        android:text="To:" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Task3Id0EmailReplyTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkedTextView1"
+        android:layout_alignBottom="@+id/checkedTextView1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="36dp"
+        android:ems="10"
+        android:text="AutoCompleteTextView" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Task3Id0EmailReplyTo"
+        android:layout_marginTop="110dp"
+        android:text="Subject: " />
+
+    <AutoCompleteTextView
+        android:id="@+id/Task3Id0EmailReplySubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkedTextView2"
+        android:layout_alignBottom="@+id/checkedTextView2"
+        android:layout_alignLeft="@+id/Task3Id0EmailReplyTo"
+        android:ems="10"
+        android:text="AutoCompleteTextView" />
+
+    <AutoCompleteTextView
+        android:id="@+id/Task3Id0EmailReplyContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Task3Id0EmailReplySubject"
+        android:layout_marginTop="49dp"
+        android:ems="10"
+        android:lines="15"
+        android:text="AutoCompleteTextView" />
+
+</RelativeLayout>

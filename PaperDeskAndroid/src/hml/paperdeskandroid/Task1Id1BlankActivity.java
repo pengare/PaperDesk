@@ -63,7 +63,7 @@ public class Task1Id1BlankActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     

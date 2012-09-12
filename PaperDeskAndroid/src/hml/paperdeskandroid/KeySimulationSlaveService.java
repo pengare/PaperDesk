@@ -57,7 +57,11 @@ public class KeySimulationSlaveService extends Service {
 					String msg = in.readLine();
 					
 					//map command
-					if(msg.startsWith("location"))
+//					if(msg.startsWith("location"))
+//					{
+//						broadcastCommand(msg);
+//					}
+//					else 
 					{
 						broadcastCommand(msg);
 					}

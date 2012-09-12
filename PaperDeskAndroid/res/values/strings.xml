@@ -46,5 +46,14 @@
     <string name="title_activity_task2_id1_album2">Task2Id1Album2Activity</string>
     <string name="title_activity_task2_id0_blank">Task2Id0BlankActivity</string>
     <string name="title_activity_task2_id0_album1">Task2Id0Album1Activity</string>
+    <string name="title_activity_task3_id2_app">Task3Id2AppActivity</string>
+    <string name="title_activity_task2_id2_blank">Task2Id2BlankActivity</string>
+    <string name="title_activity_task3_id0_blank">Task3Id0BlankActivity</string>
+    <string name="title_activity_task3_id0_email_list">Task3Id0EmailListActivity</string>
+    <string name="title_activity_task3_id0_email_detail">Task3Id0EmailDetailActivity</string>
+    <string name="title_activity_task3_id1_blank">Task3Id1BlankActivity</string>
+    <string name="title_activity_task3_id1_email_detail">Task3Id1EmailDetailActivity</string>
+    <string name="title_activity_task3_id0_new_email_detail">Task3Id0NewEmailDetailActivity</string>
+    <string name="title_activity_task3_id0_email_reply">Task3Id0EmailReplyActivity</string>
 
 </resources>

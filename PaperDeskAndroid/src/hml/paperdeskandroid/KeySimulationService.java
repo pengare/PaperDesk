@@ -74,6 +74,7 @@ public class KeySimulationService extends Service {
     			while(true)
     			{
     				String msg = in.readLine();
+    				
     				//msg is a navigation key
     				if(msg.equals("w"))
     				{
@@ -175,7 +176,29 @@ public class KeySimulationService extends Service {
     				//new architecture
     				else //collocate, key, zone
     				{
+        				//String[] tokens = msg.split("\\#");
+            			
+//        				if(tokens[0].equals("zone"))
+//        				{
+//        					if(tokens[1].startsWith("0"))
+//        						broadcastCommand(msg);
+//        					else if(tokens[1].startsWith("1"))
+//        					{
+//        						MainActivity.clientCommandChanged[1] = true;
+//        						MainActivity.clientCommand[1] = msg;
+//        					}
+//        					else if(tokens[2].startsWith("2"))
+//        					{
+//        						MainActivity.clientCommandChanged[2] = true;
+//        						MainActivity.clientCommand[2] = msg;
+//        					}
+//        				}
+
     					broadcastCommand(msg);
+        				MainActivity.clientCommandChanged[1] = true;
+						MainActivity.clientCommand[1] = msg;
+  						MainActivity.clientCommandChanged[2] = true;
+						MainActivity.clientCommand[2] = msg;
     				}
     			}
     		}

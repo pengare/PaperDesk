@@ -28,9 +28,9 @@ public class MainActivity extends Activity {
 	
 	//all information saved here 
 	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
-	//public static final String HostIP = "130.15.5.136";
+	public static final String HostIP = "130.15.5.136";
 	//public static final String HostIP = "130.15.5.156";
-	public static final String HostIP = "192.168.0.105";
+	//public static final String HostIP = "192.168.0.105";
 	public static final int HostIPPort = 7777;
 	
 	public static final int AndroidServerListenPort = 8888;
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
 				startActivity(intentTaskChooser);
 				
 				Intent intent = new Intent();
-		        intent.setClass(MainActivity.this, KeySimulationService.class);
+		        intent.setClass(MainActivity.this, KeySimulationSlaveService.class);
 				startService(intent);
 			}
 		});
