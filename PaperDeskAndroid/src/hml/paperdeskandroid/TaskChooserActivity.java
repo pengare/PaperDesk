@@ -91,7 +91,9 @@ public class TaskChooserActivity extends Activity {
 				MainActivity.taskType = MainActivity.TaskType.Task1Document;
 				if(MainActivity.id == "0")
 				{
-					
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task1Id0BlankActivity.class);
+					startActivity(intent);
 				}
 				else if(MainActivity.id == "1")
 				{
@@ -106,7 +108,6 @@ public class TaskChooserActivity extends Activity {
 					startActivity(intent);
 				}
 				
-
 				TaskChooserActivity.this.finish();
 
 			}
@@ -118,9 +119,21 @@ public class TaskChooserActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.taskType = MainActivity.TaskType.Task2Photo;
-				Intent intent = new Intent();
-				intent.setClass(TaskChooserActivity.this, MainActivity.class);
-				startActivity(intent);
+				
+				if(MainActivity.id == "0")
+				{
+
+				}
+				else if(MainActivity.id == "1")
+				{
+
+				}
+				else if(MainActivity.id == "2")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task2Id2AppActivity.class);
+					startActivity(intent);
+				}
 				
 				TaskChooserActivity.this.finish();
 			}

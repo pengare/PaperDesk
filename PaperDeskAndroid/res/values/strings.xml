@@ -41,5 +41,10 @@
     <string name="title_activity_task1_id0_page">Task1Id0PageActivity</string>
     <string name="title_activity_task1_id1_blank_before_collocate">Task1Id1BlankBeforeCollocateActivity</string>
     <string name="title_activity_task1_id1_collocate_slave">Task1Id1CollocateSlaveActivity</string>
+    <string name="title_activity_task2_id2_app">Task2Id2AppActivity</string>
+    <string name="title_activity_task2_id1_blank">Task2Id1BlankActivity</string>
+    <string name="title_activity_task2_id1_album2">Task2Id1Album2Activity</string>
+    <string name="title_activity_task2_id0_blank">Task2Id0BlankActivity</string>
+    <string name="title_activity_task2_id0_album1">Task2Id0Album1Activity</string>
 
 </resources>
