@@ -94,7 +94,9 @@ public final class R {
         public static final int btnCancel=0x7f07002f;
         public static final int btnDoc=0x7f07001c;
         public static final int btnEmail=0x7f070020;
+        public static final int btnEmailApp=0x7f07003c;
         public static final int btnMap=0x7f07001e;
+        public static final int btnMapApp=0x7f07003d;
         public static final int btnPhoto=0x7f07001d;
         public static final int btnPreliminary=0x7f070032;
         public static final int btnSend=0x7f070030;
@@ -108,8 +110,8 @@ public final class R {
         public static final int btnTask4=0x7f070037;
         public static final int btnTraining=0x7f070033;
         public static final int buttonShow=0x7f070016;
-        public static final int chapterIcon=0x7f07003c;
-        public static final int chapterLabel=0x7f07003d;
+        public static final int chapterIcon=0x7f07003e;
+        public static final int chapterLabel=0x7f07003f;
         public static final int checkedTextView1=0x7f070002;
         public static final int checkedTextView2=0x7f070004;
         public static final int checkedTextView3=0x7f070006;
@@ -119,7 +121,7 @@ public final class R {
         public static final int checkedTextView7=0x7f070010;
         public static final int checkedTextView8=0x7f070012;
         public static final int checkedTextView9=0x7f07003b;
-        public static final int image1=0x7f07003e;
+        public static final int image1=0x7f070040;
         public static final int imageAlbumButton1=0x7f070023;
         public static final int imageAlbumButton2=0x7f070024;
         public static final int imageAlbumButton3=0x7f070025;
@@ -138,7 +140,7 @@ public final class R {
         public static final int imageView2=0x7f070015;
         public static final int imageViewPage=0x7f070039;
         public static final int imageViewTrainingBookcover=0x7f070038;
-        public static final int menu_settings=0x7f07003f;
+        public static final int menu_settings=0x7f070041;
         public static final int mv=0x7f070021;
         public static final int mvSlave=0x7f070022;
         public static final int photoDetail=0x7f070028;
@@ -182,9 +184,10 @@ public final class R {
         public static final int activity_training_id0_chapter=0x7f03001a;
         public static final int activity_training_id0_page=0x7f03001b;
         public static final int activity_training_id1_book_view=0x7f03001c;
-        public static final int doc_chapter_row_layout=0x7f03001d;
-        public static final int photo_grid_cell=0x7f03001e;
-        public static final int photo_grid_cell_slave=0x7f03001f;
+        public static final int activity_training_id2_app=0x7f03001d;
+        public static final int doc_chapter_row_layout=0x7f03001e;
+        public static final int photo_grid_cell=0x7f03001f;
+        public static final int photo_grid_cell_slave=0x7f030020;
     }
     public static final class menu {
         public static final int activity_blank=0x7f060000;
@@ -216,9 +219,10 @@ public final class R {
         public static final int activity_training_id0_chapter=0x7f06001a;
         public static final int activity_training_id0_page=0x7f06001b;
         public static final int activity_training_id1_book_view=0x7f06001c;
-        public static final int doc_chapter_row_layout=0x7f06001d;
-        public static final int photo_grid_cell=0x7f06001e;
-        public static final int photo_grid_cell_slave=0x7f06001f;
+        public static final int activity_training_id2_app=0x7f06001d;
+        public static final int doc_chapter_row_layout=0x7f06001e;
+        public static final int photo_grid_cell=0x7f06001f;
+        public static final int photo_grid_cell_slave=0x7f060020;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
