@@ -14,5 +14,23 @@
     <string name="title_activity_photo_viewer_email">PhotoViewerEmailActivity</string>
     <string name="title_activity_blank">BlankActivity</string>
     <string name="title_activity_main_app">MainAppActivity</string>
+    <string name="title_activity_photo_album_view">PhotoAlbumViewActivity</string>
+    <string name="title_activity_photo_detail_view">PhotoDetailViewActivity</string>
+    <string name="title_activity_email_folder_view">EmailFolderViewActivity</string>
+    <string name="title_activity_email_list_view">EmailListViewActivity</string>
+    <string name="title_activity_email_detail">EmailDetailActivity</string>
+    <string name="title_activity_task_chooser">TaskChooserActivity</string>
+    <string name="title_activity_preliminary_id0">PreliminaryId0Activity</string>
+    <string name="title_activity_preliminary_id1">PreliminaryId1Activity</string>
+    <string name="title_activity_preliminary_id2">PreliminaryId2Activity</string>
+    <string name="title_activity_training_id0_blank">TrainingId0BlankActivity</string>
+    <string name="title_activity_training_id0_bookcover">TrainingId0BookcoverActivity</string>
+    <string name="title_activity_training_id0_chapter">TrainingId0ChapterActivity</string>
+    <string name="title_activity_training_id0_page">TrainingId0PageActivity</string>
+    <string name="title_activity_training_id0_blank_between_doc_and_photo">TrainingId0BlankBetweenDocAndPhotoActivity</string>
+    <string name="title_activity_training_id1_book_view">TrainingId1BookViewActivity</string>
+    <string name="title_activity_training_id2_app">TrainingId2AppActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_temp">TempActivity</string>
 
 </resources>

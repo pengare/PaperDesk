@@ -1,0 +1,217 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
+    
+    <CheckedTextView
+        android:id="@+id/checkedTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="HML Photo Viewer"
+        android:textSize="30sp" 
+        android:textStyle="bold"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/white"
+        android:layout_margin="60dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageButton
+                    android:id="@+id/imageAlbumButton1"
+                    android:layout_width="300dip"
+                    android:layout_height="390dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dip"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/animal_album" />
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="16sp" />  
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageButton
+                    android:id="@+id/imageAlbumButton2"
+                    android:layout_width="300dip"
+                    android:layout_height="390dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dip"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/art_album" />
+
+                 <CheckedTextView
+                    android:id="@+id/checkedTextView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageButton
+                    android:id="@+id/imageAlbumButton3"
+                    android:layout_width="300dip"
+                    android:layout_height="390dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dip"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/architecture_album" />
+
+                 <CheckedTextView
+                    android:id="@+id/checkedTextView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageButton
+                    android:id="@+id/imageAlbumButton4"
+                    android:layout_width="300dip"
+                    android:layout_height="390dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dip"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/car_album" />
+
+                 <CheckedTextView
+                    android:id="@+id/checkedTextView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <ImageButton
+                    android:id="@+id/imageAlbumButton5"
+                    android:layout_width="300dip"
+                    android:layout_height="390dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dip"
+                    android:layout_marginRight="1dip"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/travel_album" />
+
+                 <CheckedTextView
+                    android:id="@+id/checkedTextView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="16sp" /> 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dip" >
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

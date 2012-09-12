@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dip"
+                android:layout_weight="1" >
+
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a1_android_developer" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Android Development" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a2_beginning_python" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Beginning Python" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a3_opengl_es_for_android" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Pro OpenGL ES for Android" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_weight="1">
+            
+                        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dip" 
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a4_biology" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Introduction to Biology" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dip" 
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton5"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a5_classical_composer" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Spiritual Lives of the Great Composers" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton6"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:src="@drawable/a6_kingston" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Uncovering Kingston" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_weight="1">
+          	<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton7"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+            
+           <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imageButton8"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                android:padding="5dip"
+                android:layout_weight="1">
+                
+                    <ImageButton
+                    android:id="@+id/imageButton9"
+                    android:layout_width="221dip"
+                    android:layout_height="377dip"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip" 
+                    android:layout_weight="0.2"/>
+
+                <CheckedTextView
+                    android:id="@+id/checkedTextView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="" 
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

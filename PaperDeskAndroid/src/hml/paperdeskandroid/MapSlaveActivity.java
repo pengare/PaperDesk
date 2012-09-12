@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -57,6 +58,7 @@ public class MapSlaveActivity extends MapActivity {
 			
 		}
 		
+		@Override
 		public void onReceive(Context context, Intent intent)
 		{
 			Bundle bundle = intent.getExtras();
@@ -79,7 +81,8 @@ public class MapSlaveActivity extends MapActivity {
         //Handler to receive information from master dispaly and update
         myHandler = new Handler()
         {
-        	public void handleMessage(Message msg)
+        	@Override
+			public void handleMessage(Message msg)
         	{
         		if(msg.what == 0x1000) //location:
         		{
@@ -91,11 +94,11 @@ public class MapSlaveActivity extends MapActivity {
         			slaveMapZoomLevel = Integer.parseInt(latlonglevel[2]);
         			Log.d("slave map", ""+slaveMapCenterLat+"*"+slaveMapCenterLong+"*"+slaveMapZoomLevel);
         			
-        			mvSlave.setVisibility(MapView.VISIBLE);
+        			mvSlave.setVisibility(View.VISIBLE);
         			if(!bSlaveMapInitialized)
         			{
         				bSlaveMapInitialized = true;
-        				mvSlave.setVisibility(MapView.VISIBLE);
+        				mvSlave.setVisibility(View.VISIBLE);
         			}
         			GeoPoint ptCenter = new GeoPoint(slaveMapCenterLat, slaveMapCenterLong);
         			mapControllerSlave.setCenter(ptCenter);
@@ -103,13 +106,13 @@ public class MapSlaveActivity extends MapActivity {
         		}
         		else if(msg.what == 0x5678)
         		{
-        			mvSlave.setVisibility(MapView.INVISIBLE);
+        			mvSlave.setVisibility(View.INVISIBLE);
         		}
         	}
         };
         
         mvSlave = (MapView)findViewById(R.id.mvSlave);
-        mvSlave.setVisibility(MapView.INVISIBLE);
+        mvSlave.setVisibility(View.INVISIBLE);
 //        try {
 //			Thread.sleep(3000);
 //		} catch (InterruptedException e) {
@@ -148,6 +151,7 @@ public class MapSlaveActivity extends MapActivity {
 	//New thread to receive information from master display
 	private Runnable DataStuff = new Thread()
 	{
+		@Override
 		public void run()
 		{
 			try {

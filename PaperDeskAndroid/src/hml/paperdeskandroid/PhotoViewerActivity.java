@@ -1,5 +1,7 @@
 package hml.paperdeskandroid;
 
+import hml.paperdeskandroid.MapMasterActivity.MyReceiver;
+
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.R.color;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -28,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 public class PhotoViewerActivity extends Activity {
-
+	
 	int[] photoIds = new int[]
 	{
 		R.drawable.photo_1, R.drawable.photo_2, R.drawable.photo_3,
@@ -43,32 +48,48 @@ public class PhotoViewerActivity extends Activity {
 	
 	
 	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
-	//MyReceiver receiver;
+	MyReceiver receiver;
 	
 	
 	//command
 	private String command = "";
 	public static boolean bCommandChanged = false;
-//	public class MyReceiver extends BroadcastReceiver
-//	{
-//		public MyReceiver()
-//		{
-//			
-//		}
-//		
-//		public void onReceive(Context context, Intent intent)
-//		{
-//			Bundle bundle = intent.getExtras();
-//			command = bundle.getString("command");
-//			bCommandChanged = true;
-//			//if(command.equals("left"))
-//			{
-//				//String token[] = command.split(",");
-//				//Toast toast = Toast.makeText(MapMasterActivity.this, "command recevied", Toast.LENGTH_LONG);
-//				//toast.show();
-//			}
-//		}
-//	}
+
+	public class MyReceiver extends BroadcastReceiver
+	{
+		public MyReceiver()
+		{
+			
+		}
+		
+		@Override
+		public void onReceive(Context context, Intent intent)
+		{
+			Bundle bundle = intent.getExtras();
+			command = bundle.getString("command");
+			bCommandChanged = true;
+			
+			
+/*			if(command.equals("cold"))
+			{
+				
+			}
+			else if(command.equals("warm"))
+			{
+				
+			}
+			else if(command.equals("hot"))
+			{
+				if(PhotoService.iAlbumIndex != -1 && PhotoService.iPhotoIndex != -1)
+				{
+					setContentView(R.layout.activity_photo_detail);
+					ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
+					photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
+				}
+			}
+			bCommandChanged = true;*/
+		}
+	}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +100,8 @@ public class PhotoViewerActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         setContentView(R.layout.activity_photo_viewer);
+        
+        MainActivity.activeActivity = this;
         
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
         for(int i=0; i < photoIds.length; ++i)
@@ -104,12 +127,10 @@ public class PhotoViewerActivity extends Activity {
 				int position , long id)
 			{
 				iSelPhotoIndex = position % photoIds.length;
-				bInDetailView = true;
+				//bInDetailView = true;
+				PhotoService.iPhotoIndex = iSelPhotoIndex;
 				
-				setContentView(R.layout.activity_photo_detail);
-				ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
-				photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
-				//setupListenerForImageView();
+				//view.setBackgroundColor(getResources().getColor(Color.GRAY));
 			}
 			public void onNothingSelected(AdapterView<?> parent){}			
 		});
@@ -120,18 +141,37 @@ public class PhotoViewerActivity extends Activity {
 				, View view, int position, long id)
 			{
 				iSelPhotoIndex = position % photoIds.length;
-				bInDetailView = true;
+				//bInDetailView = true;
+				PhotoService.iPhotoIndex = iSelPhotoIndex;
 				
-				setContentView(R.layout.activity_photo_detail);
-				ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
-				photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
-				//setupListenerForImageView();
-				new Thread(NotifStuff).start();
+				Intent intentDetailView = new Intent();
+				intentDetailView.setClass(PhotoViewerActivity.this, PhotoDetailViewActivity.class);
+				startActivity(intentDetailView);
+				
+				PhotoViewerActivity.this.finish();
+						
+//				setContentView(R.layout.activity_photo_detail);
+//				ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
+//				photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
+//				//setupListenerForImageView();
+//				new Thread(NotifStuff).start();
 			}
 		});
+		
+        //receive command
+        registerBroadcastReceiver();
+        //process command
+        new Thread(NotifStuff).start();
         
     }
 
+    public void registerBroadcastReceiver()
+    {
+    	receiver = new MyReceiver();
+    	IntentFilter filter = new IntentFilter();
+    	filter.addAction(KeySimulationService.receiverAction);
+    	this.registerReceiver(receiver, filter);
+    }
 //    public void setupListenerForImageView()
 //    {
 //    	ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
@@ -161,39 +201,6 @@ public class PhotoViewerActivity extends Activity {
 //		});
 //    }
     
-    @Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT)
-		{
-			ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
-			
-			--iSelPhotoIndex;
-			if(iSelPhotoIndex == -1)
-				iSelPhotoIndex = photoIds.length-1;
-			photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
-			
-		}
-		else if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT)
-		{
-			ImageView photoDetail = (ImageView)findViewById(R.id.photoDetail);
-			
-			++iSelPhotoIndex;
-			if(iSelPhotoIndex == photoIds.length)
-				iSelPhotoIndex = 0;		
-			photoDetail.setImageResource(photoIds[iSelPhotoIndex]);
-						
-		}
-		else if(keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
-		{
-			//record in variables to send to slave
-			
-			command = "photo:"+iSelPhotoIndex+"\n";
-			bCommandChanged = true;
-		}
-		
-		return super.onKeyDown(keyCode, event);
-	}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,16 +209,97 @@ public class PhotoViewerActivity extends Activity {
     }
     
     
-//    public void registerBroadcastReceiver()
-//    {
-//    	receiver = new MyReceiver();
-//    	IntentFilter filter = new IntentFilter();
-//    	filter.addAction(KeySimulationService.receiverAction);
-//    	this.registerReceiver(receiver, filter);
-//    }
+	
+	// Thread used to broadcast PC's notif to other devices
+	private Runnable NotifStuff = new Thread() {
+		@Override
+		public void run() 
+		{
+			try 
+			{
+				while (true) 
+				{
+					if (bCommandChanged) // there are new command, apply it
+					{
+						bCommandChanged = false;
+
+						if (command.startsWith("zone")) 
+						{
+							Log.d("master photo", "receive msg:" + command);
+							String token[] = command.split("\\#");
+							String[] deviceIdAndZone = token[1].split("\\:");
+							int deviceId = Integer.parseInt(deviceIdAndZone[0]);
+							String zone = deviceIdAndZone[1];
+
+							if (deviceId == 0) // self
+							{
+								if (zone.equals("cold")) {
+									PhotoService.iCurrentZone = 2; // cold zone
+									
+									Intent intentAlbum = new Intent();
+									intentAlbum.setClass(PhotoViewerActivity.this, PhotoAlbumViewActivity.class);
+									startActivity(intentAlbum);
+									
+									PhotoViewerActivity.this.finish();
+								} 
+								else if (zone.equals("warm")) 
+								{
+									PhotoService.iCurrentZone = 1; // warm zone
+								}
+								else if(zone.equals("hot"))
+								{
+									PhotoService.iCurrentZone = 0; //hot zone
+									if(PhotoService.iAlbumIndex != -1 && PhotoService.iPhotoIndex != -1)
+									{
+										//start the photo detail activity
+										Intent intentPhotoDetail = new Intent();
+										intentPhotoDetail.setClass(PhotoViewerActivity.this, PhotoDetailViewActivity.class);
+										startActivity(intentPhotoDetail);
+										
+										PhotoViewerActivity.this.finish();
+									}
+								}
+							} else {
+								MainActivity.clientCommand[deviceId] = "zone#"
+										+ zone + "\n";
+								MainActivity.clientCommandChanged[deviceId] = true;
+							}
+						} 
+						else if (command.startsWith("key")) 
+						{
+/*							String tokens[] = command.split("\\#");
+							String deviceAndKey[] = tokens[1].split("\\:");
+							int deviceId = Integer.parseInt(deviceAndKey[0]);
+							String keyCode = deviceAndKey[1];
+
+							if (deviceId == 0) // self
+							{
+								key = keyCode;
+
+								Message notif = new Message();
+								notif.what = 0x2000;
+								myHandler.sendMessage(notif);
+
+							} 
+							else 
+							{
+								MainActivity.clientCommand[deviceId] = "key#"
+										+ keyCode + "\n";
+								MainActivity.clientCommandChanged[deviceId] = true;
+							}*/
+
+						}
+						
+					}
+					sleep(200);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	};
     
-    
-    //Thread used to broadcast pick photo to slave devices
+/*    //Thread used to broadcast pick photo to slave devices
     private Runnable NotifStuff = new Thread()
     {
     	public void run()
@@ -244,7 +332,7 @@ public class PhotoViewerActivity extends Activity {
 				// TODO: handle exception
 			}
     	}
-    };
+    };*/
     
     
     

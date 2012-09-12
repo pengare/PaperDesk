@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/checkedTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Please choose a task" 
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/btnPreliminary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Preliminary Task" 
+        android:textSize="30sp"/>
+    
+    <Button
+        android:id="@+id/btnTraining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Training Session"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btnTask1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Task 1: Document Interaction"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btnTask2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Task 2: Photo Interaction"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btnTask3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Task 3: Email Interaction"
+        android:textSize="30sp" />
+    
+    <Button
+        android:id="@+id/btnTask4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Task 4: Map Interaction"
+        android:textSize="30sp" />
+
+</LinearLayout>

@@ -36,6 +36,7 @@ public class DocChapterViewActivity extends ListActivity {
 			
 		}
 		
+		@Override
 		public void onReceive(Context context, Intent intent)
 		{
 			Bundle bundle = intent.getExtras();

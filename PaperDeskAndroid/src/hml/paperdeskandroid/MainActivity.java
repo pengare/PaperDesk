@@ -30,11 +30,12 @@ public class MainActivity extends Activity {
 	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
 	public static final String HostIP = "130.15.5.136";
 	//public static final String HostIP = "130.15.5.156";
-	//public static final String HostIP = "192.168.0.104";
+	//public static final String HostIP = "192.168.0.105";
 	public static final int HostIPPort = 7777;
 	
 	public static final int AndroidServerListenPort = 8888;
 	
+	public static Activity activeActivity;
 	
 	public static final int clientNum = 2; //include primary display
 	
@@ -57,6 +58,20 @@ public class MainActivity extends Activity {
 	public static String[] clientCommand = {"", "", ""};  // 0 should always be empty, because it is primary
 	
 	public static MapMasterActivity mapActivity;
+	
+	enum TaskType
+	{
+		Preliminary,
+		Training,
+		Task1Document,
+		Task2Photo,
+		Task3Email,
+		Task4Map
+	}
+	
+	
+	public static  TaskType taskType = TaskType.Preliminary;
+	
 	//Used to simulate keyboard or touch event
 	
 	
@@ -75,46 +90,37 @@ public class MainActivity extends Activity {
         initializeSystemInfo(); //get and save system info like screen solution
         
         
-//        Button btnStartServer = (Button)findViewById(R.id.btnStartServer);
-//        btnStartServer.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Intent intent = new Intent();
-//		        intent.setClass(MainActivity.this, KeySimulationService.class);
-//				startService(intent);
-//				
-//			}
-//		});
-        
-        Button btnStartClient1 = (Button)findViewById(R.id.btnStartClient1);
+        Button btnStartClient1 = (Button)findViewById(R.id.btnStartClient0);
         btnStartClient1.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.id = "0";  //master display
 				
-				Intent intentMainApp = new Intent();
-				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
-				startActivity(intentMainApp);
-				
+
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(MainActivity.this,
+						TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+
 				Intent intent = new Intent();
-		        intent.setClass(MainActivity.this, KeySimulationService.class);
+				intent.setClass(MainActivity.this, KeySimulationService.class);
 				startService(intent);
 				
 			}
 		});
         
-        Button btnStartClient2 = (Button)findViewById(R.id.btnStartClient2);
+        Button btnStartClient2 = (Button)findViewById(R.id.btnStartClient1);
         btnStartClient2.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.id = "1"; //slave
 				
-				Intent intentMainApp = new Intent();
-				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
-				startActivity(intentMainApp);
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(MainActivity.this,
+						TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
 				
 				Intent intent = new Intent();
 		        intent.setClass(MainActivity.this, KeySimulationSlaveService.class);
@@ -122,16 +128,17 @@ public class MainActivity extends Activity {
 			}
 		});
         
-        Button btnStartClient3 = (Button)findViewById(R.id.btnStartClient3);
+        Button btnStartClient3 = (Button)findViewById(R.id.btnStartClient2);
         btnStartClient3.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.id = "2"; //slave
 				
-				Intent intentMainApp = new Intent();
-				intentMainApp.setClass(MainActivity.this, MainAppActivity.class);
-				startActivity(intentMainApp);
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(MainActivity.this,
+						TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
 				
 				Intent intent = new Intent();
 		        intent.setClass(MainActivity.this, KeySimulationSlaveService.class);

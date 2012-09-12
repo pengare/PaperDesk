@@ -28,7 +28,7 @@ namespace DisplayStack
     public partial class MainWindow : Window
     {
         static string HostIP = "130.15.5.136";
-        //static string HostIP = "192.168.0.104";
+        //static string HostIP = "192.168.0.105";
         enum DisplayMode
         {
             Initial,
@@ -246,8 +246,14 @@ namespace DisplayStack
                 keyCode = "left";
             if (e.Key == Key.Right)
                 keyCode = "right";
+            if (e.Key == Key.Up)
+                keyCode = "up";
+            if (e.Key == Key.Down)
+                keyCode = "down";
             if (e.Key == Key.Enter)
                 keyCode = "enter";
+            if (e.Key == Key.Escape)
+                keyCode = "esc";
             
             if (e.Key == Key.H)
                 keyCode = "hot";
@@ -257,9 +263,37 @@ namespace DisplayStack
                 keyCode = "cold";
 
             if (e.Key == Key.N)
-                keyCode = "collocate#1:2";
+                keyCode = "collocate#0:1";
             if (e.Key == Key.M)
-                keyCode = "collocate#2:1";
+                keyCode = "collocate#1:0";
+
+            if (e.Key == Key.T) //simulate top bend sensor up
+                keyCode = "key#0:bendsensortopup";
+            if (e.Key == Key.Y)
+                keyCode = "key#0:bendsensortopdown";
+            if (e.Key == Key.U)
+                keyCode = "key#0:bendsensormiddleup";
+            if (e.Key == Key.I)
+                keyCode = "key#0:bendsensormiddledown";
+            if (e.Key == Key.O)
+                keyCode = "key#0:bendsensorleftup";
+            if (e.Key == Key.P)
+                keyCode = "key#0:bendsensorleftdown";
+
+            if (e.Key == Key.H)
+                keyCode = "zone#0:hot";
+            if (e.Key == Key.W)
+                keyCode = "zone#0:warm";
+            if (e.Key == Key.C)
+                keyCode = "zone#0:cold";
+            
+            //Training
+            if (e.Key == Key.Z)
+                keyCode = "tap#0:1:30";
+            if (e.Key == Key.X)
+                keyCode = "tap#0:1:reset";
+
+
 
             newKeyPressed = true;
         }

@@ -41,6 +41,7 @@ public class KeySimulationSlaveService extends Service {
 	
 	private Runnable CommandFromPrimaryStuff = new Thread()
 	{
+		@Override
 		public void run()
 		{
 			try

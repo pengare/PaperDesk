@@ -53,7 +53,8 @@ public class PhotoViewerSlaveActivity extends Activity {
         //Handler to receive information from master display and update photo
         myHandler = new Handler()
         {
-        	public void handleMessage(Message msg)
+        	@Override
+			public void handleMessage(Message msg)
         	{
         		if(msg.what == 0x1234)
         		{
@@ -174,7 +175,8 @@ public class PhotoViewerSlaveActivity extends Activity {
     //New thread to receive information from master display
     private Runnable DataStuff = new Thread()
     {
-    	public void run()
+    	@Override
+		public void run()
     	{
     		try {
 				Socket socket = new Socket(MasterDisplayIP, 3333);

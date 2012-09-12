@@ -6,7 +6,6 @@ import android.app.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,9 +13,7 @@ import java.net.UnknownHostException;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.IBinder;
-import android.text.InputFilter.LengthFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -61,7 +58,8 @@ public class KeySimulationService extends Service {
     
     //Thread used to receive notif from PC
 	private Runnable DataStuff = new Thread() {
-    	public void run() {
+    	@Override
+		public void run() {
     		
     		try
     		{	
@@ -110,9 +108,29 @@ public class KeySimulationService extends Service {
     				{
     					simulateKey(KeyEvent.KEYCODE_DPAD_RIGHT);
     				}
+    				else if(msg.equals("up"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_DPAD_UP);
+    				}
+    				else if(msg.equals("down"))
+    				{
+    					simulateKey(KeyEvent.KEYCODE_DPAD_DOWN);
+    				}
     				else if(msg.equals("enter"))
     				{
     					simulateKey(KeyEvent.KEYCODE_DPAD_CENTER);
+    				}
+    				else if(msg.equals("esc"))
+    				{
+    					if(MainActivity.activeActivity != null)
+    					{
+    						Intent intentMainApp = new Intent();
+    						intentMainApp.setClass(MainActivity.activeActivity, MainAppActivity.class);
+    						intentMainApp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    						startActivity(intentMainApp);
+    						
+    						MainActivity.activeActivity.finish();			
+    					}
     				}
     				else if(msg.equals("i"))
     				{
@@ -155,7 +173,7 @@ public class KeySimulationService extends Service {
     				}
     				
     				//new architecture
-    				else if(msg.startsWith("collocate"))
+    				else //collocate, key, zone
     				{
     					broadcastCommand(msg);
     				}
@@ -208,7 +226,8 @@ public class KeySimulationService extends Service {
         
     	//Thread used to broadcast command from every activity to slave display
     	private Runnable CommandToClientStuff = new Thread() {
-        	public void run() {
+        	@Override
+			public void run() {
         		
         		try
         		{	

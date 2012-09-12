@@ -24,6 +24,7 @@ public class DocPageViewActivity extends Activity {
 			
 		}
 		
+		@Override
 		public void onReceive(Context context, Intent intent)
 		{
 			Bundle bundle = intent.getExtras();

@@ -56,13 +56,13 @@ public class MainAppActivity extends Activity {
 				{
 					Intent intentPhoto = new Intent();
 					intentPhoto.setClass(MainAppActivity.this,
-							PhotoViewerActivity.class);
+							PhotoAlbumViewActivity.class);
 					startActivity(intentPhoto);
 				}
 				else if(MainActivity.id == "1" || MainActivity.id == "2")
 				{
 					Intent intentPhotoSlave = new Intent();
-					intentPhotoSlave.setClass(MainAppActivity.this, PhotoViewerSlaveActivity.class);
+					intentPhotoSlave.setClass(MainAppActivity.this, PhotoViewerActivity.class);
 					startActivity(intentPhotoSlave);
 				}
 				
@@ -100,7 +100,10 @@ public class MainAppActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intentEmail = new Intent();
-				//intentEmail.setClass(MainAppActivity.this, )
+				intentEmail.setClass(MainAppActivity.this, EmailFolderViewActivity.class);
+				startActivity(intentEmail);
+				
+				MainAppActivity.this.finish();
 				
 			}
 		});
