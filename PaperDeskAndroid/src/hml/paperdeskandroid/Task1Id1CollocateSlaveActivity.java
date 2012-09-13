@@ -62,19 +62,20 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         setContentView(R.layout.activity_task1_id1_collocate_slave);
         
         fillPage();
-        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask1Page);
+        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask1PageCollocateSlave);
         pageView.setImageResource(pages[Task1Service.selectedPage]);
         
         
         registerUIHandler();
         registerBroadcastReceiver();
+        
     }
 
     public void registerBroadcastReceiver()
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     
@@ -83,10 +84,30 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
     	//Task1Service.selectedPage = 0;
     	
     	//Todo: select books
-    	if(Task1Service.selectedBook == 0 )//android
+    	if(Task1Service.selectedBook == 0)
     	{
-    		pages = Task1Service.AndroidPage;
-    		chapterToPageMap = Task1Service.AndroidChapterMap;
+    		pages = Task1Service.Book1Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBook == 1)
+    	{
+    		pages = Task1Service.Book2Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBook == 2)
+    	{
+    		pages = Task1Service.Book3Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBook == 3)
+    	{
+    		pages = Task1Service.Book4Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBook == 4)
+    	{
+    		pages = Task1Service.Book5Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
     	}
     }
     
@@ -103,9 +124,11 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         		{
         			if(command.startsWith("doc#"))
         			{
-        				//update slave book page
+        				String tokens[] = command.split("\\#");
+        				int page = Integer.parseInt(tokens[1]);
+        				
         				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageCollocateSlave);
-        				imageViewPage.setImageResource(pages[Task1Service.selectedPage]);
+        				imageViewPage.setImageResource(pages[page]);
         			}
         			
         		}

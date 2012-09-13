@@ -229,24 +229,24 @@ namespace DisplayStack
                 keyCode = "collocate#1:0";
 
             if (e.Key == Key.T) //simulate top bend sensor up
-                keyCode = "key#0:bendsensortopup";
+                keyCode = "key#1:bendsensortopup";
             if (e.Key == Key.Y)
-                keyCode = "key#0:bendsensortopdown";
+                keyCode = "key#1:bendsensortopdown";
             if (e.Key == Key.U)
-                keyCode = "key#0:bendsensormiddleup";
+                keyCode = "key#1:bendsensorleftup";
             if (e.Key == Key.I)
-                keyCode = "key#0:bendsensormiddledown";
+                keyCode = "key#1:bendsensorleftdown";
             if (e.Key == Key.O)
-                keyCode = "key#0:bendsensorleftup";
+                keyCode = "key#0:bendsensortopup";
             if (e.Key == Key.P)
-                keyCode = "key#0:bendsensorleftdown";
+                keyCode = "key#0:bendsensortopdown";
 
             if (e.Key == Key.H)
-                keyCode = "zone#0:hot";
+                keyCode = "zone#1:hot";
             if (e.Key == Key.W)
-                keyCode = "zone#0:warm";
+                keyCode = "zone#1:warm";
             if (e.Key == Key.C)
-                keyCode = "zone#0:cold";
+                keyCode = "zone#1:cold";
             
             //Training
             if (e.Key == Key.Z)
@@ -254,11 +254,19 @@ namespace DisplayStack
             if (e.Key == Key.X)
                 keyCode = "tap#0:1:reset";
 
-            //Task 1
+            ////Task 1
+            //if (e.Key == Key.V)
+            //    keyCode = "tap#1:2:30:50";
+            //else if (e.Key == Key.B)
+            //    keyCode = "tap#0:1:40:60";
+            //else if (e.Key == Key.N)
+            //    keyCode = "collocate#1:0";
+
+            //Task 2
             if (e.Key == Key.V)
-                keyCode = "tap#1:2:30:50";
-            else if (e.Key == Key.B)
-                keyCode = "";
+                keyCode = "tap#0:2:30:50";
+            if (e.Key == Key.B)
+                keyCode = "tap#1:2:20:30";
 
 
 

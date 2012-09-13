@@ -31,6 +31,8 @@ public class Task1Id1BlankActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
+			
+			//start
 			if(command.startsWith("tap#1:2")) //0 tap 1 to pick one book
 			{
 				//Todo: Analyze the coordinate to get the selected book
@@ -40,6 +42,15 @@ public class Task1Id1BlankActivity extends Activity {
 				Intent intentBookcover = new Intent();
 				intentBookcover.setClass(Task1Id1BlankActivity.this, Task1Id1BookcoverActivity.class);
 				startActivity(intentBookcover);
+				
+				Task1Id1BlankActivity.this.finish();			
+			}
+			//start to collocate
+			else if(command.startsWith("collocate#1:0")) //1 collocate with 0
+			{
+				Intent intentCollocateSlave = new Intent();
+				intentCollocateSlave.setClass(Task1Id1BlankActivity.this, Task1Id1CollocateSlaveActivity.class);
+				startActivity(intentCollocateSlave);
 				
 				Task1Id1BlankActivity.this.finish();			
 			}

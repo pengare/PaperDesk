@@ -196,9 +196,11 @@ public class KeySimulationService extends Service {
 
     					broadcastCommand(msg);
         				MainActivity.clientCommandChanged[1] = true;
-						MainActivity.clientCommand[1] = msg;
+						MainActivity.clientCommand[1] = msg+"\n";
   						MainActivity.clientCommandChanged[2] = true;
-						MainActivity.clientCommand[2] = msg;
+						MainActivity.clientCommand[2] = msg + "\n";
+						
+						sleep(50);
     				}
     			}
     		}
@@ -266,7 +268,7 @@ public class KeySimulationService extends Service {
         			
         			while(true)
         			{
-        				for(int i = 1; i <= MainActivity.clientNum; ++i)
+        				for(int i = 1; i < MainActivity.clientNum; ++i)
         				{
         					if(MainActivity.clientCommandChanged[i] == true)
         					{
@@ -275,6 +277,7 @@ public class KeySimulationService extends Service {
         						MainActivity.clientCommandChanged[i] = false;
         					}
         				}
+        				sleep(50);
         			}
     	
         		}

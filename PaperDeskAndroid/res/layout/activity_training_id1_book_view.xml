@@ -28,7 +28,7 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a1_android_developer" 
+                    android:src="@drawable/album_book1" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
@@ -57,7 +57,7 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a2_beginning_python" 
+                    android:src="@drawable/album_book2" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
@@ -86,7 +86,7 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a3_opengl_es_for_android" 
+                    android:src="@drawable/album_book3" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
@@ -123,7 +123,7 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a4_biology" 
+                    android:src="@drawable/album_book4" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
@@ -151,7 +151,7 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a5_classical_composer" 
+                    android:src="@drawable/album_book5" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
@@ -180,14 +180,13 @@
                     android:scaleType="fitXY"
                     android:layout_marginLeft="10dip"
                     android:layout_marginRight="10dip"
-                    android:src="@drawable/a6_kingston" 
                     android:layout_weight="0.2"/>
 
                 <CheckedTextView
                     android:id="@+id/checkedTextView6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Uncovering Kingston" 
+                    android:text="" 
                     android:textSize="16sp"
                     android:gravity="center"
                     android:layout_weight="0.8"/>

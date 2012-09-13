@@ -62,6 +62,8 @@ public class Task2Id0Album1Activity extends Activity {
         
         setContentView(R.layout.activity_task2_id0_album1);
         
+        fillAlbum();
+        
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
         for(int i=0; i < photoIds.length; ++i)
         {
@@ -83,6 +85,18 @@ public class Task2Id0Album1Activity extends Activity {
         registerBroadcastReceiver();
     }
 
+    public void fillAlbum()
+    {
+    	if(Task2Service.iSelectedAlbum == 0)
+    	{
+    		photoIds = Task2Service.album1;
+    	}
+    	else
+    	{
+    		photoIds = Task2Service.album2;
+		}
+    }
+    
     public void registerBroadcastReceiver()
     {
     	receiver = new MyReceiver();

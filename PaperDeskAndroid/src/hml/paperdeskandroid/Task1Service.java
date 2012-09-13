@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.R.bool;
 import android.R.integer;
+import android.R.raw;
 
 public class Task1Service {
 
@@ -31,54 +32,165 @@ public class Task1Service {
 	
 	//all the bookcover image
 	public static int[] bookcoverImageList = new int[]{
-		R.drawable.a1_android_developer, R.drawable.a2_beginning_python, R.drawable.a3_opengl_es_for_android,
-		R.drawable.a4_biology, R.drawable.a5_classical_composer, R.drawable.a6_kingston
+		R.drawable.album_book1, 
+		R.drawable.album_book2, 
+		R.drawable.album_book3, 
+		R.drawable.album_book4, 
+		R.drawable.album_book5, 
 	};
 	
 	
 	//all the chapter list
-	final static String[] AndroidChapter = new String[]
+	final static String[] Book1Chapter = new String[]  // A Tale of Two Cities
 	{
-		"Chapter 1: Creating an Android Project",
-		"Chapter 2: Running Your App",
-		"Chapter 3: Building a Simple User Interface",
-		"Chapter 4: Starting Another Activity",
-		"Chapter 5: Pausing and Resuming an Activity"
+		"Chapter 1: The Period",
+		"Chapter 2: The Mail",
+		"Chapter 3: The Night Shadows",
+		"Chapter 4: The Preparation",
+		"Chapter 5: The Wine-shop"
 	};
 	
-	final static String[] PythonChapter = new String[]
+	final static String[] Book2Chpater = new String[] //Huckleberry Finn
 	{
-		"Chapter 1: Whetting Your Appetite",
-		"Chapter 2: Using the Python Interpreter",
-		"Chapter 3: An Informal Introduction to Python",
-		"Chapter 4: More Control Flow Tools",
-		"Chapter 5: Data Structures",
-		"Chapter 6: Modules",
-		"Chapter 7: Input and Output"
+		"Chapter 1",
+		"Chapter 2",
+		"Chapter 3",
+		"Chapter 4",
+		"Chapter 5",
 	};
 	
-	//all the pages and chapter-page map
-	final static int[] AndroidPage = new int[]
+	final static String[] Book3Chpater = new String[] //Just William
 	{
-		R.drawable.art_photo_1,
-		R.drawable.art_photo_2,
-		R.drawable.art_photo_3,
-		R.drawable.art_photo_4,
-		R.drawable.art_photo_5,
-		R.drawable.art_photo_6,
-		R.drawable.art_photo_7,
-		R.drawable.art_photo_8,
-		R.drawable.art_photo_9
+		"Chapter 1: WILLIAM GOES TO THE PICTURES",
+		"Chapter 2: WILLIAM THE INTRUDER",
+		"Chapter 3: WILLIAM BELOW STAIRS",
+		"Chapter 4: THE FALL OF THE IDOL",
+		"Chapter 5: THE SHOW",
 	};
 	
-	static Map AndroidChapterMap = new HashMap();
+	final static String[] Book4Chpater = new String[] //Secret Adversary
+	{
+		"Chapter 1: THE YOUNG ADVENTURERS, LTD",
+		"Chapter 2: MR. WHITTINGTON'S OFFER",
+		"Chapter 3: A SET BACK",
+		"Chapter 4: WHO IS JANE FINN?",
+		"Chapter 5: MR. JULIUS P.HERSHEIMMER",
+	};
+	
+	final static String[] Book5Chpater = new String[] //Siddhartha
+	{
+		"Chapter 1: THE SON OF THE BRAHMAN",
+		"Chapter 2: WITH THE SAMANAS",
+		"Chapter 3: GOTAMA",
+		"Chapter 4: AWAKENING",
+		"Chapter 5: KAMALA",
+	};
+	
+	//All pages per book
+	final static int[] Book1Page = new int[]
+	{
+		R.drawable.book1_1,
+		R.drawable.book1_2,
+		R.drawable.book1_3,
+		R.drawable.book1_4,
+		R.drawable.book1_5,
+		R.drawable.book1_6,
+		R.drawable.book1_7,
+		R.drawable.book1_8,
+		R.drawable.book1_9,
+		R.drawable.book1_10,
+		R.drawable.book1_11,
+		R.drawable.book1_12,
+		R.drawable.book1_13,
+		R.drawable.book1_14,
+		R.drawable.book1_15,
+		
+	};
+	
+	final static int[] Book2Page = new int[]
+	{
+		R.drawable.book2_1,
+		R.drawable.book2_2,
+		R.drawable.book2_3,
+		R.drawable.book2_4,
+		R.drawable.book2_5,
+		R.drawable.book2_6,
+		R.drawable.book2_7,
+		R.drawable.book2_8,
+		R.drawable.book2_9,
+		R.drawable.book2_10,
+		R.drawable.book2_11,
+		R.drawable.book2_12,
+		R.drawable.book2_13,
+		R.drawable.book2_14,
+		R.drawable.book2_15,
+	};
+	
+	final static int[] Book3Page = new int[]
+	{
+		R.drawable.book3_1,
+		R.drawable.book3_2,
+		R.drawable.book3_3,
+		R.drawable.book3_4,
+		R.drawable.book3_5,
+		R.drawable.book3_6,
+		R.drawable.book3_7,
+		R.drawable.book3_8,
+		R.drawable.book3_9,
+		R.drawable.book3_10,
+		R.drawable.book3_11,
+		R.drawable.book3_12,
+		R.drawable.book3_13,
+		R.drawable.book3_14,
+		R.drawable.book3_15,
+	};
+	
+	final static int[] Book4Page = new int[]
+	{
+		R.drawable.book4_1,
+		R.drawable.book4_2,
+		R.drawable.book4_3,
+		R.drawable.book4_4,
+		R.drawable.book4_5,
+		R.drawable.book4_6,
+		R.drawable.book4_7,
+		R.drawable.book4_8,
+		R.drawable.book4_9,
+		R.drawable.book4_10,
+		R.drawable.book4_11,
+		R.drawable.book4_12,
+		R.drawable.book4_13,
+		R.drawable.book4_14,
+		R.drawable.book4_15,
+	};
+	
+	final static int[] Book5Page = new int[]
+	{
+		R.drawable.book5_1,
+		R.drawable.book5_2,
+		R.drawable.book5_3,
+		R.drawable.book5_4,
+		R.drawable.book5_5,
+		R.drawable.book5_6,
+		R.drawable.book5_7,
+		R.drawable.book5_8,
+		R.drawable.book5_9,
+		R.drawable.book5_10,
+		R.drawable.book5_11,
+		R.drawable.book5_12,
+		R.drawable.book5_13,
+		R.drawable.book5_14,
+		R.drawable.book5_15,
+	};
+	
+	static Map ChapterMap = new HashMap();
 	
 	public Task1Service() {
-		AndroidChapterMap.put("1", "1");
-		AndroidChapterMap.put("2", "3");
-		AndroidChapterMap.put("3", "5");
-		AndroidChapterMap.put("4", "7");
-		AndroidChapterMap.put("5", "9");
+		ChapterMap.put("1", "1");
+		ChapterMap.put("2", "4");
+		ChapterMap.put("3", "7");
+		ChapterMap.put("4", "10");
+		ChapterMap.put("5", "13");
 		
 	}
 }

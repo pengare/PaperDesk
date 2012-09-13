@@ -62,13 +62,14 @@ public class KeySimulationSlaveService extends Service {
 //						broadcastCommand(msg);
 //					}
 //					else 
-					{
-						broadcastCommand(msg);
-					}
+					
+					broadcastCommand(msg);
+					
 				}
 			}
 			catch (Exception e) {
 				// TODO: handle exception
+				Log.v("slave error", e.toString());
 			}
 		}
 	};

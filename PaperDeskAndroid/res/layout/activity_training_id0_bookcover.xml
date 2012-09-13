@@ -10,6 +10,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"
-        android:src="@drawable/a2_beginning_python" />
+        android:src="@drawable/album_book1" />
 
 </RelativeLayout>

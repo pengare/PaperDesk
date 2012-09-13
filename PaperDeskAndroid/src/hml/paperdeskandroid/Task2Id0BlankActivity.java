@@ -34,6 +34,10 @@ public class Task2Id0BlankActivity extends Activity {
 			if(command.startsWith("tap#0:2")) //0 tap 1 to pick one book
 			{
 				//Id0 will open album1
+				//Get which album to tap, now set id0 to album 1, id1 to album 2
+				
+				Task2Service.iSelectedAlbum = 0;
+				
 				Intent intentAlbum1 = new Intent();
 				intentAlbum1.setClass(Task2Id0BlankActivity.this, Task2Id0Album1Activity.class);
 				startActivity(intentAlbum1);

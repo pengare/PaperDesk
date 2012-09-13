@@ -76,13 +76,25 @@ public class Task1Id1ChapterActivity extends ListActivity {
 
     public void fillChapterList()
     {
-    	if(Task1Service.selectedBook == 0) //android
+    	if(Task1Service.selectedBook == 0) 
     	{
-    		ChapterList = Task1Service.AndroidChapter;
+    		ChapterList = Task1Service.Book1Chapter;
     	}
-    	else if(Task1Service.selectedBook == 1) //python
+    	else if(Task1Service.selectedBook == 1)
     	{
-    		ChapterList = Task1Service.PythonChapter;
+    		ChapterList = Task1Service.Book2Chpater;
+    	}
+    	else if(Task1Service.selectedBook == 2)
+    	{
+    		ChapterList = Task1Service.Book3Chpater;
+    	}
+    	else if(Task1Service.selectedBook == 3)
+    	{
+    		ChapterList = Task1Service.Book4Chpater;
+    	}
+    	else if(Task1Service.selectedBook == 4)
+    	{
+    		ChapterList = Task1Service.Book5Chpater;
     	}
     }
     
@@ -90,7 +102,7 @@ public class Task1Id1ChapterActivity extends ListActivity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     @Override

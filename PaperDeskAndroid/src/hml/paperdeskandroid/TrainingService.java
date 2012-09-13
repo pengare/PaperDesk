@@ -34,8 +34,11 @@ public class TrainingService {
 	
 	//all the bookcover image
 	public static int[] bookcoverImageList = new int[]{
-		R.drawable.a1_android_developer, R.drawable.a2_beginning_python, R.drawable.a3_opengl_es_for_android,
-		R.drawable.a4_biology, R.drawable.a5_classical_composer, R.drawable.a6_kingston
+		R.drawable.album_book1, 
+		R.drawable.album_book2, 
+		R.drawable.album_book3, 
+		R.drawable.album_book4, 
+		R.drawable.album_book5, 
 	};
 	
 	

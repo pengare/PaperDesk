@@ -21,7 +21,10 @@ public class Task1Id0PageActivity extends Activity {
 	int[] pages;
 	Map chapterToPageMap = new HashMap();
 	
+	public static ImageView imageViewPage;
+	
 	static String command = "";
+	static boolean needRefresh = false;
 	
 	Handler myHandler;
 	
@@ -38,7 +41,21 @@ public class Task1Id0PageActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.equals("key#0:bendsensortopdown"))
+			if(command.startsWith("tap#0:1"))
+			{
+				//Todo: Analyze the coordinate to get the selected chapter
+				//First set it to the first of book;
+				
+				Task1Service.selectedBookId0 = Task1Service.selectedBook;
+				Task1Service.selectedChapterId0 = 0; //todo
+				Task1Service.selectedPageId0 = 0;
+				
+				
+				Message notif = new Message();
+				notif.what = 0x2000;
+				myHandler.sendMessage(notif);
+			}
+			else if(command.equals("key#0:bendsensortopdown"))
 			{
 				if(Task1Service.bCollocate == false)
 				{
@@ -64,6 +81,9 @@ public class Task1Id0PageActivity extends Activity {
 						Message notif = new Message();
 						notif.what = 0x2000;
 						myHandler.sendMessage(notif);
+						
+        				MainActivity.clientCommandChanged[1] = true;
+						MainActivity.clientCommand[1] = "doc#"+(Task1Service.selectedPageId0 - 1) + "\n";
 					}
 
 				}
@@ -94,6 +114,9 @@ public class Task1Id0PageActivity extends Activity {
 						Message notif = new Message();
 						notif.what = 0x2000;
 						myHandler.sendMessage(notif);
+						
+        				MainActivity.clientCommandChanged[1] = true;
+						MainActivity.clientCommand[1] = "doc#" + (Task1Service.selectedPageId0 - 1) + "\n";
 					}
 				}
 			}
@@ -123,13 +146,16 @@ public class Task1Id0PageActivity extends Activity {
         
         setContentView(R.layout.activity_task1_id0_page);
         
+        imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageId0);
+        
         fillPage();
-        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask1Page);
-        pageView.setImageResource(pages[Task1Service.selectedPage]);
+        
+        imageViewPage.setImageResource(pages[Task1Service.selectedPageId0]);
         
         
         registerUIHandler();
         registerBroadcastReceiver();
+        new Thread(refreshStuff).start();
     }
 
     public void registerBroadcastReceiver()
@@ -145,10 +171,30 @@ public class Task1Id0PageActivity extends Activity {
     	//Task1Service.selectedPage = 0;
     	
     	//Todo: select books
-    	if(Task1Service.selectedBookId0 == 0 )//android
+    	if(Task1Service.selectedBookId0 == 0 )
     	{
-    		pages = Task1Service.AndroidPage;
-    		chapterToPageMap = Task1Service.AndroidChapterMap;
+    		pages = Task1Service.Book1Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBookId0 == 1 )
+    	{
+    		pages = Task1Service.Book2Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBookId0 == 2 )
+    	{
+    		pages = Task1Service.Book3Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBookId0 == 3 )
+    	{
+    		pages = Task1Service.Book4Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
+    	}
+    	else if(Task1Service.selectedBookId0 == 4 )
+    	{
+    		pages = Task1Service.Book5Page;
+    		chapterToPageMap = Task1Service.ChapterMap;
     	}
     }
     
@@ -165,15 +211,22 @@ public class Task1Id0PageActivity extends Activity {
         		{
         			if(command.endsWith("bendsensortopdown"))
         			{
-        				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageId0);
-        				imageViewPage.setImageResource(pages[Task1Service.selectedPageId0]);
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				
+        				needRefresh = true;
         			}
         			else if(command.endsWith("bendsensortopup"))
         			{
-        				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageId0);
-        				imageViewPage.setImageResource(pages[Task1Service.selectedPageId0]);
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				
+        				needRefresh = true;
         			}
         			
+        		}
+        		else if(msg.what == 0x3000)
+        		{
+        			
+        			imageViewPage.setImageResource(pages[Task1Service.selectedPageId0]);
         		}
         	}
         	
@@ -186,4 +239,30 @@ public class Task1Id0PageActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_task1_id0_page, menu);
         return true;
     }
+    
+    private Runnable refreshStuff = new Thread()
+    {
+    	public void run()
+    	{
+    		try {
+				
+    			while(true)
+    			{
+    				if(needRefresh)
+    				{
+    					needRefresh = false;
+    					
+    					Message notif = new Message();
+    					notif.what = 0x3000;
+    					myHandler.sendMessage(notif);
+    					
+    					sleep(15);
+    					
+    				}
+    			}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
+    };
 }

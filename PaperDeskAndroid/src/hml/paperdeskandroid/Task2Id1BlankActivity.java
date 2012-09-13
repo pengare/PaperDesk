@@ -34,6 +34,10 @@ public class Task2Id1BlankActivity extends Activity {
 			if(command.startsWith("tap#1:2")) //0 tap 1 to pick one book
 			{
 				//Id1 will open album2
+				//Get which album to tap, now set id0 to album 1, id1 to album 2
+				
+				Task2Service.iSelectedAlbum = 1;
+				
 				Intent intentAlbum2 = new Intent();
 				intentAlbum2.setClass(Task2Id1BlankActivity.this, Task2Id1Album2Activity.class);
 				startActivity(intentAlbum2);
@@ -60,7 +64,7 @@ public class Task2Id1BlankActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     

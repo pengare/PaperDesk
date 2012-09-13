@@ -44,12 +44,23 @@ public class Task1Id1BookcoverActivity extends Activity {
 				
 				Task1Id1BookcoverActivity.this.finish();	
 			}
-			else if(command.startsWith("tap:1:2"))
+			else if(command.startsWith("zone#1:hot"))
+			{
+				Task1Service.iCurrentZone = Task1Service.Zone.Hot;
+				
+				Intent intentPage = new Intent();
+				intentPage.setClass(Task1Id1BookcoverActivity.this, Task1Id1PageActivity.class);
+				startActivity(intentPage);
+				
+				Task1Id1BookcoverActivity.this.finish();
+			}
+			else if(command.startsWith("tap#1:2"))
 			{
 				//Todo: check if tap empty area
 				//if yes
 				Intent intentBlankList = new Intent();
-				intentBlankList.setClass(Task1Id1BookcoverActivity.this, Task1Id1BlankBeforeCollocateActivity.class);
+				//intentBlankList.setClass(Task1Id1BookcoverActivity.this, Task1Id1BlankBeforeCollocateActivity.class);
+				intentBlankList.setClass(Task1Id1BookcoverActivity.this, Task1Id1BlankActivity.class);
 				startActivity(intentBlankList);
 				
 				Task1Id1BookcoverActivity.this.finish();
@@ -68,7 +79,7 @@ public class Task1Id1BookcoverActivity extends Activity {
         setContentView(R.layout.activity_task1_id1_bookcover);
         
         ImageView imageView = (ImageView)findViewById(R.id.imageViewTask1Bookcover);
-        imageView.setImageResource(Task1Service.bookcoverImageList[TrainingService.selectedBook]);
+        imageView.setImageResource(Task1Service.bookcoverImageList[Task1Service.selectedBook]);
         
         
         registerBroadcastReceiver();
@@ -78,7 +89,7 @@ public class Task1Id1BookcoverActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
 
