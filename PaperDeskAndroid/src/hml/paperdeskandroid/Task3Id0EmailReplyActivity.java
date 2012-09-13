@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 
 public class Task3Id0EmailReplyActivity extends Activity {
 
@@ -28,12 +29,16 @@ public class Task3Id0EmailReplyActivity extends Activity {
 
 			if(command.equals("key#0:bendsensorleftdown"))
 			{
-				//start the chapter activity
-//				Intent intentEmailList = new Intent();
-//				intentEmailList.setClass(Task3Id0NewEmailDetailActivity.this, Task3Id0EmailReplyActivity.class);
-//				
-//				startActivity(intentEmailList);
-//				Task3Id0NewEmailDetailActivity.this.finish();
+				//Send email replay
+				
+				Task3Service.bEmailReplySent = true;
+				
+				//start the list activity(show reply has been sent)
+				Intent intentEmailList = new Intent();
+				intentEmailList.setClass(Task3Id0EmailReplyActivity.this, Task3Id0EmailListActivity.class);
+				
+				startActivity(intentEmailList);
+				Task3Id0EmailReplyActivity.this.finish();
 			}
 
 		}
@@ -50,6 +55,9 @@ public class Task3Id0EmailReplyActivity extends Activity {
         setContentView(R.layout.activity_task3_id0_email_reply);
         
         registerBroadcastReceiver();
+        
+        AutoCompleteTextView emailContent= (AutoCompleteTextView)findViewById(R.id.Task3Id0EmailReplyContent);
+        emailContent.requestFocus();
     }
 
     public void registerBroadcastReceiver()

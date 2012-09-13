@@ -52,7 +52,7 @@ public class Task3Id0EmailDetailActivity extends Activity {
 			}
 			else if(command.equals("key#0:bendsensortopdown"))
 			{
-				if(Task3Service.selectedEmail < emails.length)
+				if(Task3Service.selectedEmail < emails.length - 1)
 				{
 					Task3Id0EmailDetailActivity.command = command;
 					
@@ -75,6 +75,15 @@ public class Task3Id0EmailDetailActivity extends Activity {
 					notif.what = 0x2000;
 					myHandler.sendMessage(notif);
 				}
+			}
+			else if(command.startsWith("key#0:bendsensorleftdown") && Task3Service.selectedEmail == 0)
+			{
+				//Reply the email
+				Intent intentEmailReply = new Intent();
+				intentEmailReply.setClass(Task3Id0EmailDetailActivity.this, Task3Id0EmailReplyActivity.class);
+				
+				startActivity(intentEmailReply);
+				Task3Id0EmailDetailActivity.this.finish();
 			}
 		}
 	}
@@ -108,10 +117,14 @@ public class Task3Id0EmailDetailActivity extends Activity {
     
     public void fillEmail()
     {
-    	if(Task3Service.selectedEmail == 0 )//android
-    	{
+
+    	if(!Task3Service.bNewEmailComing)
     		emails = Task3Service.emails;
-    	}
+    	else {
+			emails = Task3Service.emailsNewComing;
+			Task3Service.selectedEmail = 0;
+		}
+    	
     }
     
 	//This handle the received command

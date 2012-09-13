@@ -7,6 +7,18 @@ public class Task3Service {
 	public static int selectedEmail = 0;
 	
 	public static boolean bNewEmailComing = false;
+	public static boolean bEmailReplySent = false;
+	
+	public static int attachmentResId = R.drawable.attachment;
+	enum AttachmentStatus
+	{
+		Blank,
+		Attach,
+		Move
+	}
+	
+	public static AttachmentStatus attachmentStatus = AttachmentStatus.Blank;
+	
 	enum Zone
 	{
 		Hot,
@@ -16,12 +28,26 @@ public class Task3Service {
 	public static Zone iCurrentZone = Zone.Cold;
 	
 	//show in email list
-	public static int emailList = R.drawable.animal_album;
+	public static int emailList = R.drawable.inbox1;
 	
 	//show in email detail page
 	public static int[] emails = new int[]
 	{
-		R.drawable.animal_photo_1   //Todo: update email detail
+		R.drawable.email2,
+		R.drawable.email3,
+		R.drawable.email4,
+		R.drawable.email5,
+		R.drawable.email6
+	};
+	
+	public static int[] emailsNewComing = new int[]
+	{
+		R.drawable.email1,
+		R.drawable.email2,
+		R.drawable.email3,
+		R.drawable.email4,
+		R.drawable.email5,
+		R.drawable.email6
 	};
 	
 	

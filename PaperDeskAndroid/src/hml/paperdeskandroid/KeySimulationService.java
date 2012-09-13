@@ -174,6 +174,30 @@ public class KeySimulationService extends Service {
     				}
     				
     				//new architecture
+    				//simulate key
+    				else if(msg.startsWith("key#keycode"))
+    				{
+    					String tokens[] = msg.split("\\#");
+    					String wrap[] = tokens[1].split("\\:");
+    					String keycode = wrap[1];
+    					
+    					if(keycode.equals("Q"))
+    					{
+    						simulateKey(KeyEvent.KEYCODE_Q);
+    					}
+    					else if(keycode.equals("E"))
+    					{
+    						simulateKey(KeyEvent.KEYCODE_E);
+    					}
+    					else if(keycode.equals("LEFT"))
+    					{
+    						simulateKey(KeyEvent.KEYCODE_DPAD_LEFT);
+    					}
+    					else if(keycode.equals("ENTER"))
+    					{
+    						simulateKey(KeyEvent.KEYCODE_ENTER);
+    					}
+    				}
     				else //collocate, key, zone
     				{
         				//String[] tokens = msg.split("\\#");
@@ -193,7 +217,6 @@ public class KeySimulationService extends Service {
 //        						MainActivity.clientCommand[2] = msg;
 //        					}
 //        				}
-
     					broadcastCommand(msg);
         				MainActivity.clientCommandChanged[1] = true;
 						MainActivity.clientCommand[1] = msg+"\n";

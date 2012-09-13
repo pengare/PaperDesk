@@ -40,7 +40,7 @@ public class Task3Id1EmailDetailActivity extends Activity {
 			command = bundle.getString("command");
 			if(command.startsWith("tap#1:0")) //0 tap 1 to pick one book
 			{
-				//get seleected email index
+				//get selected email index
 				//Task3Service.selectedEmailId1 = 0;
 				
 				Message notif = new Message();
@@ -80,10 +80,9 @@ public class Task3Id1EmailDetailActivity extends Activity {
     
     public void fillEmail()
     {
-    	if(Task3Service.selectedEmailId1 == 0 )//android
-    	{
-    		emails = Task3Service.emails;
-    	}
+
+    	emails = Task3Service.emails;
+    
     }
     
 	//This handle the received command

@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="HandlerLeak">
+        <ignore path="src\hml\paperdeskandroid\Task3Id0EmailListActivity.java" />
+    </issue>
 </lint>

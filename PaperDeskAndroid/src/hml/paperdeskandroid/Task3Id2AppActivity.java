@@ -38,7 +38,7 @@ public class Task3Id2AppActivity extends Activity {
 			{
 				
 				Intent intentBlank = new Intent();
-				intentBlank.setClass(Task3Id2AppActivity.this, Task2Id2BlankActivity.class);
+				intentBlank.setClass(Task3Id2AppActivity.this, Task3Id2BlankActivity.class);
 				startActivity(intentBlank);
 				
 				Task3Id2AppActivity.this.finish();			

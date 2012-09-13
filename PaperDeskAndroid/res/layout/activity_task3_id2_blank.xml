@@ -4,12 +4,10 @@
     android:layout_height="match_parent" >
 
         <ImageView
-        android:id="@+id/imageViewTask3Id0EmailList"
+        android:id="@+id/imageViewTask3Id2BlankThenAttachment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/inbox1" />
-        
+        android:scaleType="fitXY" />
 </RelativeLayout>

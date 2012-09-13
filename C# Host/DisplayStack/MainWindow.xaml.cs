@@ -240,13 +240,17 @@ namespace DisplayStack
                 keyCode = "key#0:bendsensortopup";
             if (e.Key == Key.P)
                 keyCode = "key#0:bendsensortopdown";
+            if (e.Key == Key.K)
+                keyCode = "key#0:bendsensorleftup";
+            if (e.Key == Key.L)
+                keyCode = "key#0:bendsensorleftdown";
 
             if (e.Key == Key.H)
-                keyCode = "zone#1:hot";
+                keyCode = "zone#0:hot";
             if (e.Key == Key.W)
-                keyCode = "zone#1:warm";
+                keyCode = "zone#0:warm";
             if (e.Key == Key.C)
-                keyCode = "zone#1:cold";
+                keyCode = "zone#0:cold";
             
             //Training
             if (e.Key == Key.Z)
@@ -262,11 +266,26 @@ namespace DisplayStack
             //else if (e.Key == Key.N)
             //    keyCode = "collocate#1:0";
 
-            //Task 2
+            ////Task 2
+            //if (e.Key == Key.V)
+            //    keyCode = "tap#0:2:30:50";
+            //if (e.Key == Key.B)
+            //    keyCode = "tap#1:2:20:30";
+
+            //Task 3
             if (e.Key == Key.V)
-                keyCode = "tap#0:2:30:50";
-            if (e.Key == Key.B)
-                keyCode = "tap#1:2:20:30";
+                keyCode = "tap#0:2:30:40";
+            else if (e.Key == Key.F1)
+                keyCode = "key#0:NewEmail";
+            else if (e.Key == Key.Q)
+                keyCode = "key#keycode:Q";
+            else if (e.Key == Key.E)
+                keyCode = "key#keycode:E";
+            else if (e.Key == Key.Left)
+                keyCode = "key#keycode:LEFT";
+            else if (e.Key == Key.Enter)
+                keyCode = "key#keycode:ENTER";
+
 
 
 

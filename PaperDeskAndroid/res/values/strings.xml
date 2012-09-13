@@ -55,5 +55,6 @@
     <string name="title_activity_task3_id1_email_detail">Task3Id1EmailDetailActivity</string>
     <string name="title_activity_task3_id0_new_email_detail">Task3Id0NewEmailDetailActivity</string>
     <string name="title_activity_task3_id0_email_reply">Task3Id0EmailReplyActivity</string>
+    <string name="title_activity_task3_id2_blank">Task3Id2BlankActivity</string>
 
 </resources>

@@ -9,14 +9,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class Task3Id0EmailListActivity extends Activity {
+public class Task3Id2BlankActivity extends Activity {
 
-	static String command = "";
-	
 	Handler myHandler;
 	
 	MyReceiver receiver;
@@ -32,62 +31,45 @@ public class Task3Id0EmailListActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.equals("key#0:NewEmail"))
+
+		    if(command.startsWith("tap#2:1") && Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Blank)
 			{
-				Task3Service.bNewEmailComing = true;
-				Task3Id0EmailListActivity.command = command;
-				
-				//change the email list picture to show new added email
-				
+		    	Task3Service.attachmentStatus = Task3Service.AttachmentStatus.Attach;
+		    	
+		    	//set attachment image view visible and set image src
 				Message notif = new Message();
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);
-				
 			}
-			else if(command.startsWith("zone#0:hot"))
-			{
-				Task3Service.iCurrentZone = Task3Service.Zone.Hot;
-				
-/*				if(Task3Service.bNewEmailComing)
-				{
-					//start new email detail activity
-					Intent intentNewEmailDetail = new Intent();
-					intentNewEmailDetail.setClass(Task3Id0EmailListActivity.this, Task3Id0NewEmailDetailActivity.class);
-					
-					startActivity(intentNewEmailDetail);
-					Task3Id0EmailListActivity.this.finish();
-				}
-				else */
-				{
-					//start email detail activity
-					Intent intentEmailDetail = new Intent();
-					intentEmailDetail.setClass(Task3Id0EmailListActivity.this, Task3Id0EmailDetailActivity.class);
-					
-					startActivity(intentEmailDetail);
-					Task3Id0EmailListActivity.this.finish();
-				}
-				
-			}
+		    else if(command.startsWith("tap#2:0") && Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Attach)
+		    {
+		    	Task3Service.attachmentStatus = Task3Service.AttachmentStatus.Move;
+		    	
+		    	//set attachment image view invisible
+				Message notif = new Message();
+				notif.what = 0x2000;
+				myHandler.sendMessage(notif);
+		    }
 		}
 	}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         //set full screen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
+
+        setContentView(R.layout.activity_task3_id2_blank);
         
-        setContentView(R.layout.activity_task3_id0_email_list);
-        
-        if(Task3Service.bEmailReplySent)
+        if(Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Blank)
         {
-			ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask3Id0EmailList);
-			//Todo: replace it with real new mail list
-			imageViewPage.setImageResource(R.drawable.inbox3);
+        	ImageView attachmentImageView = (ImageView)findViewById(R.id.imageViewTask3Id2BlankThenAttachment);
+        	attachmentImageView.setVisibility(View.INVISIBLE);
         }
-        	
+        
         registerUIHandler();
         registerBroadcastReceiver();
     }
@@ -100,6 +82,7 @@ public class Task3Id0EmailListActivity extends Activity {
     	this.registerReceiver(receiver, filter);
     }
     
+	//This handle the received command
 	public void registerUIHandler()
 	{
         //Handler to receive information from master dispaly and update
@@ -108,15 +91,20 @@ public class Task3Id0EmailListActivity extends Activity {
         	@Override
 			public void handleMessage(Message msg)
         	{
-        		if(msg.what == 0x2000) //new email comes
+        		if(msg.what == 0x2000) //bend sensor
         		{
-        			if(command.startsWith("key#0:NewEmail"))
+        			if(Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Attach)
         			{
-        				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask3Id0EmailList);
-        				//Todo: replace it with real new mail list
-        				imageViewPage.setImageResource(R.drawable.inbox2);
+        				//set attachment image view visible and set image src
+        				ImageView imageViewAttachment = (ImageView)findViewById(R.id.imageViewTask3Id2BlankThenAttachment);
+        				imageViewAttachment.setVisibility(View.VISIBLE);
+        				imageViewAttachment.setImageResource(Task3Service.attachmentResId);
         			}
-        			
+        			else if(Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Move)
+        			{
+        				ImageView imageViewAttachment = (ImageView)findViewById(R.id.imageViewTask3Id2BlankThenAttachment);
+        				imageViewAttachment.setVisibility(View.INVISIBLE);
+        			}	
         		}
         	}    	
         	
@@ -125,7 +113,7 @@ public class Task3Id0EmailListActivity extends Activity {
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task3_id0_email_list, menu);
+        getMenuInflater().inflate(R.menu.activity_task3_id2_blank, menu);
         return true;
     }
 }
