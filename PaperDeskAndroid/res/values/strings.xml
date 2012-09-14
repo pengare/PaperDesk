@@ -56,5 +56,10 @@
     <string name="title_activity_task3_id0_new_email_detail">Task3Id0NewEmailDetailActivity</string>
     <string name="title_activity_task3_id0_email_reply">Task3Id0EmailReplyActivity</string>
     <string name="title_activity_task3_id2_blank">Task3Id2BlankActivity</string>
+    <string name="title_activity_task4_id2_app">Task4Id2AppActivity</string>
+    <string name="title_activity_task4_id0_blank">Task4Id0BlankActivity</string>
+    <string name="title_activity_task4_id0_map">Task4Id0MapActivity</string>
+    <string name="title_activity_task4_id1_blank">Task4Id1BlankActivity</string>
+    <string name="title_activity_task4_id1_slave_map">Task4Id1SlaveMapActivity</string>
 
 </resources>

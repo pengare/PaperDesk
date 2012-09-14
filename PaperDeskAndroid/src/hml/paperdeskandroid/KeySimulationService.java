@@ -300,7 +300,7 @@ public class KeySimulationService extends Service {
         						MainActivity.clientCommandChanged[i] = false;
         					}
         				}
-        				sleep(50);
+        				sleep(20);
         			}
     	
         		}

@@ -1,24 +1,20 @@
 package hml.paperdeskandroid;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Task3Id1BlankActivity extends Activity {
+public class Task4Id1BlankActivity extends Activity {
 
-	//command
-	private String command = "";
-	public static boolean bCommandChanged = false;
-	
-	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
 	MyReceiver receiver;
-	
 	public class MyReceiver extends BroadcastReceiver
 	{
 		public MyReceiver()
@@ -30,17 +26,22 @@ public class Task3Id1BlankActivity extends Activity {
 		public void onReceive(Context context, Intent intent)
 		{
 			Bundle bundle = intent.getExtras();
-			command = bundle.getString("command");
-			if(command.startsWith("tap#1:0")) //0 tap 1 to pick one book
+			String command = bundle.getString("command");
+
+		    if(command.startsWith("location"))
 			{
-				//get selected email index
-				Task3Service.selectedEmailId1 = 0;
+		    	String tokens[] = command.split("\\#");
+		    	String location = tokens[1];
+		    	String latlonglevel[] = location.split("\\:");
+		    	Task4Service.slaveMapCenterLat = Integer.parseInt(latlonglevel[0]);
+		    	Task4Service.slaveMapCenterLong = Integer.parseInt(latlonglevel[1]);
+		    	Task4Service.slaveMapZoomLevel = Integer.parseInt(latlonglevel[2]);
+		    	
+				Intent intentEmailList = new Intent();
+				intentEmailList.setClass(Task4Id1BlankActivity.this, Task4Id1SlaveMapActivity.class);
+				startActivity(intentEmailList);
 				
-				Intent intentEmailDetail = new Intent();
-				intentEmailDetail.setClass(Task3Id1BlankActivity.this, Task3Id1EmailDetailActivity.class);
-				startActivity(intentEmailDetail);
-				
-				Task3Id1BlankActivity.this.finish();			
+				Task4Id1BlankActivity.this.finish();
 			}
 		}
 	}
@@ -52,8 +53,8 @@ public class Task3Id1BlankActivity extends Activity {
         //set full screen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-      
-        setContentView(R.layout.activity_task3_id1_blank);
+        
+        setContentView(R.layout.activity_task4_id1_blank);
         
         registerBroadcastReceiver();
     }
@@ -68,7 +69,7 @@ public class Task3Id1BlankActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task3_id1_blank, menu);
+        getMenuInflater().inflate(R.menu.activity_task4_id1_blank, menu);
         return true;
     }
 }

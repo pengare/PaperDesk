@@ -143,7 +143,7 @@ public class TaskChooserActivity extends Activity {
 			}
 		});
 		
-		Button btnTask3 = (Button)findViewById(R.id.btnTask1);
+		Button btnTask3 = (Button)findViewById(R.id.btnTask3);
 		btnTask3.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
@@ -175,15 +175,30 @@ public class TaskChooserActivity extends Activity {
 		});
 		
 		
-		Button btnTask4 = (Button)findViewById(R.id.btnTask4);
+		Button btnTask4 = (Button)findViewById(R.id.btnTask1);
 		btnTask4.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				MainActivity.taskType = MainActivity.TaskType.Task4Map;
-				Intent intent = new Intent();
-				intent.setClass(TaskChooserActivity.this, MainActivity.class);
-				startActivity(intent);
+				if(MainActivity.id == "0")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task4Id0BlankActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "1")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task4Id1BlankActivity.class);
+					startActivity(intent);
+				}
+				else if(MainActivity.id == "2")
+				{
+					Intent intent = new Intent();
+					intent.setClass(TaskChooserActivity.this, Task4Id2AppActivity.class);
+					startActivity(intent);
+				}
 				
 				TaskChooserActivity.this.finish();
 			}

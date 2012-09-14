@@ -5,7 +5,7 @@
 
     <GridView  
 	android:id="@+id/photoGridTask2Id0"
-	android:layout_width="fill_parent" 
+	android:layout_width="wrap_content" 
 	android:layout_height="wrap_content" 
 	android:horizontalSpacing="pt"
 	android:verticalSpacing="2pt"

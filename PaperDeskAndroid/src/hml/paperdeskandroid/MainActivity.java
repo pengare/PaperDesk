@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 	public static final int clientNum = 2; //include primary display
 	
 	public static final String MasterDisplayIP = "130.15.5.171";
+	//public static final String MasterDisplayIP = "130.15.5.169";
 	public static final int MasterDisplayPort = 3333; //for the other two displays to connect
 	
 	public static final int clientPort[] = {0, 4444, 5555};  //

@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Task3Id1BlankActivity extends Activity {
+public class Task4Id0BlankActivity extends Activity {
 
 	//command
 	private String command = "";
@@ -31,16 +31,13 @@ public class Task3Id1BlankActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
-			if(command.startsWith("tap#1:0")) //0 tap 1 to pick one book
+			if(command.startsWith("tap#0:2")) //0 tap 1 to pick one book
 			{
-				//get selected email index
-				Task3Service.selectedEmailId1 = 0;
+				Intent intentMapMaster = new Intent();
+				intentMapMaster.setClass(Task4Id0BlankActivity.this, Task4Id0MapActivity.class);
+				startActivity(intentMapMaster);
 				
-				Intent intentEmailDetail = new Intent();
-				intentEmailDetail.setClass(Task3Id1BlankActivity.this, Task3Id1EmailDetailActivity.class);
-				startActivity(intentEmailDetail);
-				
-				Task3Id1BlankActivity.this.finish();			
+				Task4Id0BlankActivity.this.finish();			
 			}
 		}
 	}
@@ -52,8 +49,9 @@ public class Task3Id1BlankActivity extends Activity {
         //set full screen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-      
-        setContentView(R.layout.activity_task3_id1_blank);
+       
+        
+        setContentView(R.layout.activity_task4_id0_blank);
         
         registerBroadcastReceiver();
     }
@@ -62,13 +60,13 @@ public class Task3Id1BlankActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
+    	filter.addAction(KeySimulationService.receiverAction);
     	this.registerReceiver(receiver, filter);
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task3_id1_blank, menu);
+        getMenuInflater().inflate(R.menu.activity_task4_id0_blank, menu);
         return true;
     }
 }

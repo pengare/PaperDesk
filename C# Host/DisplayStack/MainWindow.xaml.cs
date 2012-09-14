@@ -251,6 +251,13 @@ namespace DisplayStack
                 keyCode = "zone#0:warm";
             if (e.Key == Key.C)
                 keyCode = "zone#0:cold";
+
+            if (e.Key == Key.G)
+                keyCode = "zone#1:hot";
+            if (e.Key == Key.F)
+                keyCode = "zone#1:warm";
+            if (e.Key == Key.D)
+                keyCode = "zone#1:cold";
             
             //Training
             if (e.Key == Key.Z)
@@ -272,19 +279,36 @@ namespace DisplayStack
             //if (e.Key == Key.B)
             //    keyCode = "tap#1:2:20:30";
 
-            //Task 3
+            ////Task 3
+            //if (e.Key == Key.V)
+            //    keyCode = "tap#0:2:30:40";
+            //if (e.Key == Key.B)
+            //    keyCode = "tap#1:0:30:40";
+            //else if (e.Key == Key.F1)
+            //    keyCode = "key#0:NewEmail";
+            //else if (e.Key == Key.Q)
+            //    keyCode = "key#keycode:Q";
+            //else if (e.Key == Key.E)
+            //    keyCode = "key#keycode:E";
+            //else if (e.Key == Key.Left)
+            //    keyCode = "key#keycode:LEFT";
+            //else if (e.Key == Key.Enter)
+            //    keyCode = "key#keycode:ENTER";
+
+            //Task 4
             if (e.Key == Key.V)
                 keyCode = "tap#0:2:30:40";
-            else if (e.Key == Key.F1)
-                keyCode = "key#0:NewEmail";
-            else if (e.Key == Key.Q)
-                keyCode = "key#keycode:Q";
-            else if (e.Key == Key.E)
-                keyCode = "key#keycode:E";
-            else if (e.Key == Key.Left)
-                keyCode = "key#keycode:LEFT";
-            else if (e.Key == Key.Enter)
-                keyCode = "key#keycode:ENTER";
+            if (e.Key == Key.B)
+                keyCode = "collocate#0:1";
+            if (e.Key == Key.Up)
+                keyCode = "yOffsetInc";
+            if (e.Key == Key.Down)
+                keyCode = "yOffsetDec";
+            if (e.Key == Key.Left)
+                keyCode = "xOffsetDec";
+            if (e.Key == Key.Right)
+                keyCode = "xOffsetInc";
+
 
 
 

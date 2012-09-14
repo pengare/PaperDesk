@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Task2Id2AppActivity extends Activity {
+public class Task4Id2AppActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -16,12 +16,13 @@ public class Task2Id2AppActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        setContentView(R.layout.activity_task2_id2_app);
+
+        setContentView(R.layout.activity_task4_id2_app);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task2_id2_app, menu);
+        getMenuInflater().inflate(R.menu.activity_task4_id2_app, menu);
         return true;
     }
 }

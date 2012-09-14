@@ -8,21 +8,22 @@ public class Task2Service {
 
 	public static int[] album1 = new int[]
 	{
-		R.drawable.architecture_photo_1,
-		R.drawable.architecture_photo_2,
-		R.drawable.architecture_photo_3,
-		R.drawable.architecture_photo_4,
-		R.drawable.architecture_photo_5
+		R.drawable.album1_1,
+		R.drawable.album1_2,
+		R.drawable.album1_3,
+		R.drawable.album1_4,
+		R.drawable.album1_5,
+		R.drawable.album1_6,
 	};
 	
 	public static int[] album2 = new int[]
 	{
-		R.drawable.car_photo_1,
-		R.drawable.car_photo_2,
-		R.drawable.car_photo_3,
-		R.drawable.car_photo_4,
-		R.drawable.car_photo_5,
-		R.drawable.car_photo_6,
-		R.drawable.car_photo_7
+		R.drawable.album2_1,
+		R.drawable.album2_2,
+		R.drawable.album2_3,
+		R.drawable.album2_4,
+		R.drawable.album2_5,
+		R.drawable.album2_6,
+		R.drawable.album2_7,
 	};
 }

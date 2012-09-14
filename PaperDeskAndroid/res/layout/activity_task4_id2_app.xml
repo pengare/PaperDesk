@@ -98,7 +98,7 @@
                     android:layout_marginRight="1dip"
                     android:layout_weight="0.2"
                     android:scaleType="fitXY"
-                    android:src="@drawable/album1_app" />
+                    android:src="@drawable/architecture_album" />
 
                  <CheckedTextView
                     android:id="@+id/checkedTextView3"
@@ -133,7 +133,7 @@
                     android:layout_marginRight="1dip"
                     android:layout_weight="0.2"
                     android:scaleType="fitXY"
-                    android:src="@drawable/album2_app" />
+                    android:src="@drawable/car_album" />
 
                  <CheckedTextView
                     android:id="@+id/checkedTextView4"
