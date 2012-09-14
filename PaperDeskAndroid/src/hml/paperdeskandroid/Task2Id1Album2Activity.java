@@ -49,6 +49,14 @@ public class Task2Id1Album2Activity extends Activity {
 			{
 				//move specific photo
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task2Id1Album2Activity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task2Id1Album2Activity.this.finish();
+			}
 		}
 	}
 	

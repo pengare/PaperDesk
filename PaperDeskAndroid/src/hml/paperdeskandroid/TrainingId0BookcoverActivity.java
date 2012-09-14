@@ -45,6 +45,14 @@ public class TrainingId0BookcoverActivity extends Activity {
 				
 				TrainingId0BookcoverActivity.this.finish();	
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(TrainingId0BookcoverActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				TrainingId0BookcoverActivity.this.finish();
+			}
 		}
 	}
 	

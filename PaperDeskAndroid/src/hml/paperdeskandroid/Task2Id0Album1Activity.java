@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -49,6 +48,14 @@ public class Task2Id0Album1Activity extends Activity {
 			if(command.startsWith("touch#"))
 			{
 				//move specific photo
+			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task2Id0Album1Activity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task2Id0Album1Activity.this.finish();
 			}
 		}
 	}

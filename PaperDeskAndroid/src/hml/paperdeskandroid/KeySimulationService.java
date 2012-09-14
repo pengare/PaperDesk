@@ -198,7 +198,29 @@ public class KeySimulationService extends Service {
     						simulateKey(KeyEvent.KEYCODE_ENTER);
     					}
     				}
-    				else //collocate, key, zone
+/*    				else if(!MainActivity.bDeviceSet || !MainActivity.bTaskSet)
+    				{
+    						if( msg.startsWith("key#0:bendsensortopup"))
+    						{
+    							simulateKey(KeyEvent.KEYCODE_DPAD_UP);
+    						}
+    						else if(msg.startsWith("key#0:bendsensortopdown"))
+    						{
+    							simulateKey(KeyEvent.KEYCODE_DPAD_DOWN);
+    						}
+    						else if(msg.startsWith("key#0:bendsensorleftdown"))
+    						{
+    							simulateKey(KeyEvent.KEYCODE_DPAD_CENTER);
+    						}
+    						else {
+    	    					broadcastCommand(msg);
+    	        				MainActivity.clientCommandChanged[1] = true;
+    							MainActivity.clientCommand[1] = msg+"\n";
+    	  						MainActivity.clientCommandChanged[2] = true;
+    							MainActivity.clientCommand[2] = msg + "\n";
+							}
+    				}*/
+    				else //collocate, key, zone, taskChooser
     				{
         				//String[] tokens = msg.split("\\#");
             			
@@ -223,8 +245,9 @@ public class KeySimulationService extends Service {
   						MainActivity.clientCommandChanged[2] = true;
 						MainActivity.clientCommand[2] = msg + "\n";
 						
-						sleep(50);
+						
     				}
+    				sleep(50);
     			}
     		}
     		catch (UnknownHostException e) 

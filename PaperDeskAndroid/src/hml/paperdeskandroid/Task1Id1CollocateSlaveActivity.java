@@ -46,6 +46,14 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);	
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task1Id1CollocateSlaveActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task1Id1CollocateSlaveActivity.this.finish();
+			}
 
 		}
 	}

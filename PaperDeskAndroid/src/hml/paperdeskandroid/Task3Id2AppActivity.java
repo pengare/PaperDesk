@@ -43,6 +43,14 @@ public class Task3Id2AppActivity extends Activity {
 				
 				Task3Id2AppActivity.this.finish();			
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task3Id2AppActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task3Id2AppActivity.this.finish();
+			}
 		}
 	}
 	
@@ -64,7 +72,7 @@ public class Task3Id2AppActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     

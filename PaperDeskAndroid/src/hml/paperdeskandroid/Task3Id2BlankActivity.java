@@ -50,6 +50,14 @@ public class Task3Id2BlankActivity extends Activity {
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);
 		    }
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task3Id2BlankActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task3Id2BlankActivity.this.finish();
+			}
 		}
 	}
 	
@@ -78,7 +86,7 @@ public class Task3Id2BlankActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     

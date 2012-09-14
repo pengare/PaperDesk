@@ -25,6 +25,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
+	public static boolean bDeviceSet = false;
+	public static boolean bTaskSet = false;
 	
 	//all information saved here 
 	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
@@ -39,8 +41,10 @@ public class MainActivity extends Activity {
 	
 	public static final int clientNum = 2; //include primary display
 	
-	public static final String MasterDisplayIP = "130.15.5.171";
+	public static final String MasterDisplayIP = "130.15.5.171"; //phone
 	//public static final String MasterDisplayIP = "130.15.5.169";
+	
+	//public static final String MasterDisplayIP = "130.15.5.177";
 	public static final int MasterDisplayPort = 3333; //for the other two displays to connect
 	
 	public static final int clientPort[] = {0, 4444, 5555};  //

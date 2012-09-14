@@ -43,6 +43,14 @@ public class Task4Id1BlankActivity extends Activity {
 				
 				Task4Id1BlankActivity.this.finish();
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task4Id1BlankActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task4Id1BlankActivity.this.finish();
+			}
 		}
 	}
 	

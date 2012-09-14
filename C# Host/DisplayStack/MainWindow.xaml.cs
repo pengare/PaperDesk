@@ -213,8 +213,6 @@ namespace DisplayStack
                 keyCode = "down";
             if (e.Key == Key.Enter)
                 keyCode = "enter";
-            if (e.Key == Key.Escape)
-                keyCode = "esc";
             
             if (e.Key == Key.H)
                 keyCode = "hot";
@@ -258,6 +256,13 @@ namespace DisplayStack
                 keyCode = "zone#1:warm";
             if (e.Key == Key.D)
                 keyCode = "zone#1:cold";
+
+            if (e.Key == Key.F2)
+                keyCode = "zone#2:hot";
+            if (e.Key == Key.F3)
+                keyCode = "zone#2:warm";
+            if (e.Key == Key.F4)
+                keyCode = "zone#2:cold";
             
             //Training
             if (e.Key == Key.Z)
@@ -279,37 +284,46 @@ namespace DisplayStack
             //if (e.Key == Key.B)
             //    keyCode = "tap#1:2:20:30";
 
-            ////Task 3
-            //if (e.Key == Key.V)
-            //    keyCode = "tap#0:2:30:40";
-            //if (e.Key == Key.B)
-            //    keyCode = "tap#1:0:30:40";
-            //else if (e.Key == Key.F1)
-            //    keyCode = "key#0:NewEmail";
-            //else if (e.Key == Key.Q)
-            //    keyCode = "key#keycode:Q";
-            //else if (e.Key == Key.E)
-            //    keyCode = "key#keycode:E";
-            //else if (e.Key == Key.Left)
-            //    keyCode = "key#keycode:LEFT";
-            //else if (e.Key == Key.Enter)
-            //    keyCode = "key#keycode:ENTER";
-
-            //Task 4
+            //Task 3
             if (e.Key == Key.V)
                 keyCode = "tap#0:2:30:40";
             if (e.Key == Key.B)
-                keyCode = "collocate#0:1";
-            if (e.Key == Key.Up)
-                keyCode = "yOffsetInc";
-            if (e.Key == Key.Down)
-                keyCode = "yOffsetDec";
-            if (e.Key == Key.Left)
-                keyCode = "xOffsetDec";
-            if (e.Key == Key.Right)
-                keyCode = "xOffsetInc";
+                keyCode = "tap#1:0:30:40";
+
+            else if (e.Key == Key.N)
+                keyCode = "tap#2:1:30:40";
+            else if (e.Key == Key.M)
+                keyCode = "tap#2:0:30:40";
+
+            else if (e.Key == Key.F1)
+                keyCode = "key#0:NewEmail";
+            else if (e.Key == Key.Q)
+                keyCode = "key#keycode:Q";
+            else if (e.Key == Key.E)
+                keyCode = "key#keycode:E";
+            else if (e.Key == Key.Left)
+                keyCode = "key#keycode:LEFT";
+            else if (e.Key == Key.Enter)
+                keyCode = "key#keycode:ENTER";
+
+            ////Task 4
+            //if (e.Key == Key.V)
+            //    keyCode = "tap#0:2:30:40";
+            //if (e.Key == Key.B)
+            //    keyCode = "collocate#0:1";
+            //if (e.Key == Key.Up)
+            //    keyCode = "yOffsetInc";
+            //if (e.Key == Key.Down)
+            //    keyCode = "yOffsetDec";
+            //if (e.Key == Key.Left)
+            //    keyCode = "xOffsetDec";
+            //if (e.Key == Key.Right)
+            //    keyCode = "xOffsetInc";
 
 
+
+            if (e.Key == Key.Escape)
+                keyCode = "taskChooser";
 
 
 

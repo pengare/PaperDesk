@@ -53,6 +53,14 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
 				myHandler.sendMessage(notif);	    	
 		    	
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task4Id1SlaveMapActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task4Id1SlaveMapActivity.this.finish();
+			}
 		    else  //bend sensor, xoffsetinc, dec 
 		    {
 		    	Message notif = new Message();

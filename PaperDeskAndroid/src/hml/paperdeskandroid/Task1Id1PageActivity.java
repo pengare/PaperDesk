@@ -92,6 +92,14 @@ public class Task1Id1PageActivity extends Activity {
 					myHandler.sendMessage(notif);
 				}
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task1Id1PageActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task1Id1PageActivity.this.finish();
+			}
 //			else if(command.startsWith("tap") && command.endsWith("reset"))
 //			{
 //				Intent intentBlankBetweenDocAndPhoto = new Intent();

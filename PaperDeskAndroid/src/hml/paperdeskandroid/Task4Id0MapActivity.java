@@ -100,6 +100,14 @@ public class Task4Id0MapActivity extends MapActivity {
 				notif.what = 0x2001;   //move to pan
 				myHandler.sendMessage(notif);
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task4Id0MapActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task4Id0MapActivity.this.finish();
+			}
 		}
 	}
 	

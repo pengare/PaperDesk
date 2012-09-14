@@ -58,6 +58,14 @@ public class Task1Id1ChapterActivity extends ListActivity {
 					Task1Id1ChapterActivity.this.finish();
 				}
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task1Id1ChapterActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task1Id1ChapterActivity.this.finish();
+			}
 
 		}
 	}

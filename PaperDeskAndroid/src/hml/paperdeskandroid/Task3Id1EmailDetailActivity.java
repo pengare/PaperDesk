@@ -47,6 +47,14 @@ public class Task3Id1EmailDetailActivity extends Activity {
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);			
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task3Id1EmailDetailActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task3Id1EmailDetailActivity.this.finish();
+			}
 		}
 	}
 	
@@ -62,7 +70,7 @@ public class Task3Id1EmailDetailActivity extends Activity {
         setContentView(R.layout.activity_task3_id1_email_detail);
         
         fillEmail();
-        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask3Id0EmailDetail);
+        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask3Id1EmailDetail);
         pageView.setImageResource(emails[Task3Service.selectedEmail]);
         
         

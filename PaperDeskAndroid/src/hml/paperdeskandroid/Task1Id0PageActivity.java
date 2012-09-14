@@ -124,6 +124,14 @@ public class Task1Id0PageActivity extends Activity {
 			{
 				Task1Service.bCollocate = true;
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task1Id0PageActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task1Id0PageActivity.this.finish();
+			}
 //			else if(command.startsWith("tap") && command.endsWith("reset"))
 //			{
 //				Intent intentBlankBetweenDocAndPhoto = new Intent();
