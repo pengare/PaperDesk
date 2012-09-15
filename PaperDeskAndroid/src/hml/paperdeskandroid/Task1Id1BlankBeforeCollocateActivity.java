@@ -31,8 +31,14 @@ public class Task1Id1BlankBeforeCollocateActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
-			if(command.startsWith("collocate#1:0")) //1 collocate with 0
+			if(command.startsWith("collocate#1:0")) //1 collocate with 0    collocate#1:0:bookId:chapterId
 			{
+				String tokens[] = command.split("\\#");
+				String Ids[] = tokens[1].split("\\:");
+				
+				Task1Service.selectedBook = Integer.parseInt(Ids[2]);
+				Task1Service.selectedPage = Integer.parseInt(Ids[3]);
+				
 				Intent intentCollocateSlave = new Intent();
 				intentCollocateSlave.setClass(Task1Id1BlankBeforeCollocateActivity.this, Task1Id1CollocateSlaveActivity.class);
 				startActivity(intentCollocateSlave);

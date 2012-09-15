@@ -82,8 +82,8 @@ public class Task1Id0PageActivity extends Activity {
 						notif.what = 0x2000;
 						myHandler.sendMessage(notif);
 						
-        				MainActivity.clientCommandChanged[1] = true;
-						MainActivity.clientCommand[1] = "doc#"+(Task1Service.selectedPageId0 - 1) + "\n";
+//        				MainActivity.clientCommandChanged[1] = true;
+//						MainActivity.clientCommand[1] = "doc#"+(Task1Service.selectedPageId0 - 1) + "\n";
 					}
 
 				}
@@ -105,7 +105,7 @@ public class Task1Id0PageActivity extends Activity {
 				}
 				else 
 				{
-					if(Task1Service.selectedPageId0 > 1)
+					if(Task1Service.selectedPageId0 > 2)
 					{
 						Task1Id0PageActivity.command = command;
 						
@@ -115,8 +115,8 @@ public class Task1Id0PageActivity extends Activity {
 						notif.what = 0x2000;
 						myHandler.sendMessage(notif);
 						
-        				MainActivity.clientCommandChanged[1] = true;
-						MainActivity.clientCommand[1] = "doc#" + (Task1Service.selectedPageId0 - 1) + "\n";
+//        				MainActivity.clientCommandChanged[1] = true;
+//						MainActivity.clientCommand[1] = "doc#" + (Task1Service.selectedPageId0 - 1) + "\n";
 					}
 				}
 			}

@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 public class Task1Id2BookActivity extends Activity {
 
@@ -25,7 +27,15 @@ public class Task1Id2BookActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.startsWith("taskChooser"))
+			if(command.startsWith("tap#1:2"))
+			{
+				//Todo: find the tapped book, gray it
+				int selectedBook = 0;
+				
+				ImageButton bookButton = (ImageButton)findViewById(R.id.imageButtonTask1Id2Book1);
+				bookButton.setVisibility(View.INVISIBLE);
+			}
+			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
 				intentTaskChooser.setClass(Task1Id2BookActivity.this, TaskChooserActivity.class);

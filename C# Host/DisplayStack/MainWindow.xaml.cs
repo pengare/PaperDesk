@@ -270,13 +270,13 @@ namespace DisplayStack
             if (e.Key == Key.X)
                 keyCode = "tap#0:1:reset";
 
-            ////Task 1
-            //if (e.Key == Key.V)
-            //    keyCode = "tap#1:2:30:50";
-            //else if (e.Key == Key.B)
-            //    keyCode = "tap#0:1:40:60";
-            //else if (e.Key == Key.N)
-            //    keyCode = "collocate#1:0";
+            //Task 1
+            if (e.Key == Key.V)
+                keyCode = "tap#1:2:30:50";
+            else if (e.Key == Key.B)
+                keyCode = "tap#0:1:40:60";
+            else if (e.Key == Key.N)
+                keyCode = "collocate#1:0";
 
             ////Task 2
             //if (e.Key == Key.V)
@@ -284,27 +284,27 @@ namespace DisplayStack
             //if (e.Key == Key.B)
             //    keyCode = "tap#1:2:20:30";
 
-            //Task 3
-            if (e.Key == Key.V)
-                keyCode = "tap#0:2:30:40";
-            if (e.Key == Key.B)
-                keyCode = "tap#1:0:30:40";
+            ////Task 3
+            //if (e.Key == Key.V)
+            //    keyCode = "tap#0:2:30:40";
+            //if (e.Key == Key.B)
+            //    keyCode = "tap#1:0:30:40";
 
-            else if (e.Key == Key.N)
-                keyCode = "tap#2:1:30:40";
-            else if (e.Key == Key.M)
-                keyCode = "tap#2:0:30:40";
+            //else if (e.Key == Key.N)
+            //    keyCode = "tap#2:1:30:40";
+            //else if (e.Key == Key.M)
+            //    keyCode = "tap#2:0:30:40";
 
-            else if (e.Key == Key.F1)
-                keyCode = "key#0:NewEmail";
-            else if (e.Key == Key.Q)
-                keyCode = "key#keycode:Q";
-            else if (e.Key == Key.E)
-                keyCode = "key#keycode:E";
-            else if (e.Key == Key.Left)
-                keyCode = "key#keycode:LEFT";
-            else if (e.Key == Key.Enter)
-                keyCode = "key#keycode:ENTER";
+            //else if (e.Key == Key.F1)
+            //    keyCode = "key#0:NewEmail";
+            //else if (e.Key == Key.Q)
+            //    keyCode = "key#keycode:Q";
+            //else if (e.Key == Key.E)
+            //    keyCode = "key#keycode:E";
+            //else if (e.Key == Key.Left)
+            //    keyCode = "key#keycode:LEFT";
+            //else if (e.Key == Key.Enter)
+            //    keyCode = "key#keycode:ENTER";
 
             ////Task 4
             //if (e.Key == Key.V)

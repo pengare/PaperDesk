@@ -68,7 +68,7 @@ public class Task1Id1PageActivity extends Activity {
 			}
 			else if(command.equals("key#1:bendsensortopdown"))
 			{
-				if(Task1Service.selectedPage < pages.length)
+				if(Task1Service.selectedPage < pages.length - 1)
 				{
 					Task1Id1PageActivity.command = command;
 					
@@ -86,6 +86,112 @@ public class Task1Id1PageActivity extends Activity {
 					Task1Id1PageActivity.command = command;
 					
 					--Task1Service.selectedPage;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+			}
+			else if(command.equals("key#1:bendsensorleftup")) //prev chapter
+			{
+				if(Task1Service.selectedPage > 0 && Task1Service.selectedPage <= 3)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 0;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage > 3 && Task1Service.selectedPage <= 6)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 3;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage > 6 && Task1Service.selectedPage <= 9)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 6;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage > 9 && Task1Service.selectedPage <= 12)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 9;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage > 12 && Task1Service.selectedPage <= 14)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 12;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+			}
+			else if(command.equals("key#1:bendsensorleftdown")) //next chapter
+			{
+				if(Task1Service.selectedPage >= 0 && Task1Service.selectedPage < 3)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 3;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage >= 3 && Task1Service.selectedPage < 6)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 6;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage >= 6 && Task1Service.selectedPage < 9)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 9;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage >= 9 && Task1Service.selectedPage < 12)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 12;
+					
+					Message notif = new Message();
+					notif.what = 0x2000;
+					myHandler.sendMessage(notif);
+				}
+				else if(Task1Service.selectedPage >= 12 && Task1Service.selectedPage < 14)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedPage = 14;
 					
 					Message notif = new Message();
 					notif.what = 0x2000;
@@ -194,6 +300,20 @@ public class Task1Id1PageActivity extends Activity {
         				
         			}
         			else if(command.endsWith("bendsensortopup"))
+        			{
+        				
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				
+        				needRefresh = true;
+        			}
+        			else if(command.endsWith("bendsensorleftup")) //prev chapter
+        			{
+        				
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				
+        				needRefresh = true;
+        			}
+        			else if(command.endsWith("bendsensorleftdown")) //next chapter
         			{
         				
         				imageViewPage.setImageResource(R.drawable.black_blank);

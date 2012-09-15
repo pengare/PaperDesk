@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import android.R.integer;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
@@ -30,10 +31,13 @@ public class MainActivity extends Activity {
 	
 	//all information saved here 
 	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
-	public static final String HostIP = "130.15.5.136";
+	//public static final String HostIP = "130.15.5.136"; //macbook air
+	public static final String HostIP = "130.15.5.144"; //lab mac pro
 	//public static final String HostIP = "130.15.5.156";
 	//public static final String HostIP = "192.168.0.105";
 	public static final int HostIPPort = 7777;
+	
+	public static final int HostKeyboardIPPort = 7778;
 	
 	public static final int AndroidServerListenPort = 8888;
 	
@@ -41,10 +45,10 @@ public class MainActivity extends Activity {
 	
 	public static final int clientNum = 2; //include primary display
 	
-	public static final String MasterDisplayIP = "130.15.5.171"; //phone
+	//public static final String MasterDisplayIP = "130.15.5.171"; //phone
 	//public static final String MasterDisplayIP = "130.15.5.169";
 	
-	//public static final String MasterDisplayIP = "130.15.5.177";
+	public static final String MasterDisplayIP = "130.15.5.178"; //72
 	public static final int MasterDisplayPort = 3333; //for the other two displays to connect
 	
 	public static final int clientPort[] = {0, 4444, 5555};  //

@@ -186,11 +186,11 @@ public class Task1Service {
 	static Map ChapterMap = new HashMap();
 	
 	public Task1Service() {
-		ChapterMap.put("1", "1");
-		ChapterMap.put("2", "4");
-		ChapterMap.put("3", "7");
-		ChapterMap.put("4", "10");
-		ChapterMap.put("5", "13");
+		ChapterMap.put("1", "0");
+		ChapterMap.put("2", "3");
+		ChapterMap.put("3", "6");
+		ChapterMap.put("4", "9");
+		ChapterMap.put("5", "12");
 		
 	}
 }

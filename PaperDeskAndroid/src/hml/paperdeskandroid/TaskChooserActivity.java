@@ -89,6 +89,7 @@ public class TaskChooserActivity extends Activity {
 			public void onClick(View v) {
 				
 				MainActivity.taskType = MainActivity.TaskType.Task1Document;
+				
 				if(MainActivity.id == "0")
 				{
 					Intent intent = new Intent();
@@ -124,12 +125,14 @@ public class TaskChooserActivity extends Activity {
 				{
 					Intent intent = new Intent();
 					intent.setClass(TaskChooserActivity.this, Task2Id0BlankActivity.class);
+					//intent.setClass(TaskChooserActivity.this, Task2Id0Album1Activity.class);
 					startActivity(intent);
 				}
 				else if(MainActivity.id == "1")
 				{
 					Intent intent = new Intent();
 					intent.setClass(TaskChooserActivity.this, Task2Id1BlankActivity.class);
+					//intent.setClass(TaskChooserActivity.this, Task2Id1Album2Activity.class);
 					startActivity(intent);
 				}
 				else if(MainActivity.id == "2")

@@ -68,6 +68,14 @@ public class Task3Id0EmailListActivity extends Activity {
 				}
 				
 			}
+			else if(command.startsWith("taskChooser"))
+			{
+				Intent intentTaskChooser = new Intent();
+				intentTaskChooser.setClass(Task3Id0EmailListActivity.this, TaskChooserActivity.class);
+				startActivity(intentTaskChooser);
+				
+				Task3Id0EmailListActivity.this.finish();
+			}
 		}
 	}
 	

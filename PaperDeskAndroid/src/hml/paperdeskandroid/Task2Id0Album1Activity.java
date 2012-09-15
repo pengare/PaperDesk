@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,17 +13,29 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsoluteLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 public class Task2Id0Album1Activity extends Activity {
 
+	public boolean bInMoving = false;
+	public int movingX = 0, movingY = 0;
+	public int movingDectedThreshold = 5;
+	public int movingPhotoId = -1;  //index in raw list
+	public int imageIndex;  //index in current list
+	
+	ImageView photoMove;
 	int[] photoIds = new int[]
 	{
 			//Todo: add photo in album1;
 	};
+	int rawPhotoIds[];
 	
 	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
 	MyReceiver receiver;
@@ -45,9 +58,10 @@ public class Task2Id0Album1Activity extends Activity {
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
 			bCommandChanged = true;
-			if(command.startsWith("touch#"))
+			if(command.startsWith("touch#0"))
 			{
 				//move specific photo
+				
 			}
 			else if(command.startsWith("taskChooser"))
 			{
@@ -69,9 +83,111 @@ public class Task2Id0Album1Activity extends Activity {
         
         setContentView(R.layout.activity_task2_id0_album1);
         
-        fillAlbum();
+        photoMove = (ImageView)findViewById(R.id.imageViewTask2MovePhoto);
+        photoMove.setVisibility(View.INVISIBLE);
         
-        List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
+        fillAlbum();
+        updateAlbum();  //set adapter
+            
+        //receive command
+        registerBroadcastReceiver();
+    }
+
+    	
+    public boolean dispatchTouchEvent(MotionEvent event)
+    {
+    	int x = (int)event.getX();
+    	int y = (int)event.getY();
+    	
+    	try {
+    		
+    		switch(event.getAction())
+    		{
+	    		case MotionEvent.ACTION_DOWN:
+	    		case MotionEvent.ACTION_MOVE:
+					if(!bInMoving)
+					{
+						imageIndex = getImageIndexByTouchCoordinate(x, y);
+						if( imageIndex != -1)
+						{
+							movingPhotoId = 0;
+							//movingX = x;
+							//movingY = y;
+							
+							//find raw image index using imageIndex
+							for(int i = 0; i < rawPhotoIds.length; ++i)
+							{
+								if(rawPhotoIds[i] == photoIds[imageIndex])
+								{
+									movingPhotoId = i;
+									break;
+								}
+							}
+
+							bInMoving = true;
+							photoMove.setImageResource(photoIds[imageIndex]);
+							photoMove.setVisibility(View.VISIBLE);
+						}	
+					}
+					else
+					{
+						if(Math.abs(x - movingX) > movingDectedThreshold && Math.abs(y - movingY) > movingDectedThreshold)
+						{
+							movingX = x;
+							movingY = y;
+							photoMove.setLayoutParams(
+									new AbsoluteLayout.LayoutParams(320, 320, (int)movingX-160, (int)movingY-160));
+						}
+						
+						if(movingX < 60/*out from left*/ || movingX > 900/*out from right*/)
+						{
+							bInMoving = false;
+							
+							photoMove.setImageResource(0);
+							photoMove.setVisibility(View.INVISIBLE);
+							
+							//Create command to slave display
+							String command = "";
+							
+							command = "move#" + Task2Service.iSelectedAlbum + ":" + movingPhotoId +  ":" + movingX + ":" + movingY;
+            				MainActivity.clientCommandChanged[1] = true;
+    						MainActivity.clientCommand[1] = command +"\n";
+							
+							removeMovingPhotoFromList();
+							updateAlbum();
+						}
+					}
+    		}
+    		
+    		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	
+    	return false;
+    }
+
+    
+    public void removeMovingPhotoFromList() //After moving photo, we need to remove that one from album
+    {
+    	int[] tempPhotoIds = new int[photoIds.length - 1];
+    	
+    	for(int i = 0; i < imageIndex; ++i)
+    	{
+    		tempPhotoIds[i] = photoIds[i];
+    	}
+    	
+    	for(int i = imageIndex; i < photoIds.length - 1; ++i)
+    	{
+    		tempPhotoIds[i] = photoIds[i+1];
+    	}
+    	
+    	photoIds = tempPhotoIds;
+    }
+
+    public void updateAlbum()
+    {
+    	List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
         for(int i=0; i < photoIds.length; ++i)
         {
         	Map<String, Object> listItem = new HashMap<String, Object>();
@@ -86,12 +202,8 @@ public class Task2Id0Album1Activity extends Activity {
         		new int[]{R.id.image1});
         GridView grid = (GridView)findViewById(R.id.photoGridTask2Id0);
         grid.setAdapter(simpleAdapter);
-        
-        
-        //receive command
-        registerBroadcastReceiver();
     }
-
+    
     public void fillAlbum()
     {
     	if(Task2Service.iSelectedAlbum == 0)
@@ -102,7 +214,50 @@ public class Task2Id0Album1Activity extends Activity {
     	{
     		photoIds = Task2Service.album2;
 		}
+    	
+    	rawPhotoIds = photoIds;
     }
+    
+    public int getImageIndexByTouchCoordinate(int x, int y)  //x, y are all by pixel, return -1 if no photo in touch place
+    {
+    	if(y >= 0 && y < 320)  //first line
+    	{
+    		if(x >= 0 && x < 320)
+    		{
+    			return 0;
+    		}
+    		else if(x >= 320 && x < 640)
+    		{
+    			return 1;
+    		}
+    		else if(x > 640 && x < 960)
+    		{
+    			return 2;
+    		}
+    	}
+    	else if(y >= 320 && y < 640)
+    	{
+    		if(x >= 0 && x < 320)
+    		{
+    			return 3;
+    		}
+    		else if(x >= 320 && x < 640)
+    		{
+    			return 4;
+    		}
+    		else if(x > 640 && x < 960)
+    		{
+    			return 5;
+    		}
+    	}
+    	else
+    	{
+    		return -1;
+    	}
+    	
+    	return -1;
+    }
+    
     
     public void registerBroadcastReceiver()
     {

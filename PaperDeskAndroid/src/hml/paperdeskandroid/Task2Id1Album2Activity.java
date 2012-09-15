@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -49,6 +50,17 @@ public class Task2Id1Album2Activity extends Activity {
 			{
 				//move specific photo
 			}
+			else if(command.startsWith("move#"))  //there comes a new photo moved from another album
+			{
+				String tokens[] = command.split("\\#");
+				String infos[] = tokens[1].split("\\:");
+				int sourceAlbumId = Integer.parseInt(infos[0]);
+				int sourcePhotoId = Integer.parseInt(infos[1]);
+				
+				addMovingPhotoToList(sourceAlbumId, sourcePhotoId);
+				updateAlbum();
+				
+			}
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
@@ -71,7 +83,37 @@ public class Task2Id1Album2Activity extends Activity {
         setContentView(R.layout.activity_task2_id1_album2);
         
         fillAlbum();
+        updateAlbum();
         
+        //receive command
+        registerBroadcastReceiver();
+    }
+
+    public void addMovingPhotoToList(int sourceAlbumId, int sourcePhotoId)
+    {
+    	int sourcePhotoIds[];
+    	if(sourceAlbumId == 0)
+    	{
+    		sourcePhotoIds = Task2Service.album1;
+    	}
+    	else
+    	{
+    		sourcePhotoIds = Task2Service.album2;
+		}
+    	
+    	int targetPhotoIds[] = new int[photoIds.length + 1];
+    	for(int i = 0; i < photoIds.length; ++i)
+    	{
+    		targetPhotoIds[i] = photoIds[i];
+    	}
+    	targetPhotoIds[photoIds.length] = sourcePhotoIds[sourcePhotoId];
+    	
+    	photoIds = targetPhotoIds;
+    	
+    }
+    
+    public void updateAlbum()
+    {
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
         for(int i=0; i < photoIds.length; ++i)
         {
@@ -86,13 +128,9 @@ public class Task2Id1Album2Activity extends Activity {
         		new String[]{"photo"},
         		new int[]{R.id.image1});
         GridView grid = (GridView)findViewById(R.id.photoGridTask2Id1);
-        grid.setAdapter(simpleAdapter);
-        
-        
-        //receive command
-        registerBroadcastReceiver();
+        grid.setAdapter(simpleAdapter);  
     }
-
+    
     public void fillAlbum()
     {
     	if(Task2Service.iSelectedAlbum == 0)
