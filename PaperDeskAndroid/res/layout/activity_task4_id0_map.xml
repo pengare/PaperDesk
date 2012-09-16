@@ -11,4 +11,11 @@
 		android:layout_height="match_parent"
 		android:apiKey="0nvSurcPcJ7qoKPo45XTFDJTCso-y2jC9OT5qjg"/>
     	
+        <EditText android:id="@+id/editTextTask4Id0SearchMap"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1100px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

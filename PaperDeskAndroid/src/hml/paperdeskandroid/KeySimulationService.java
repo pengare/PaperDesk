@@ -267,6 +267,22 @@ public class KeySimulationService extends Service {
       						MainActivity.clientCommand[1] = slaveMsg+"\n";
       					}
       				}
+    				else if(msg.startsWith("collocate#0:1"))
+      				{
+      					broadcastCommand(msg);
+      				}
+      				else if(msg.endsWith("bendsensortopup") && Task4Service.bCollocate == true) //map zoom, dont directly send to slave
+      				{
+      					broadcastCommand(msg);  //braodcast to main map, and map will calculate new slave position and send it using keyservice
+      				}
+      				else if(msg.endsWith("bendsensortopdown") && Task4Service.bCollocate == true)  //map zoom, dont directly send to slave
+      				{
+      					broadcastCommand(msg);
+      				}
+      				else if(msg.endsWith("Inc") || msg.endsWith("Dec"))
+      				{
+      					broadcastCommand(msg);
+      				}
       				else //collocate, key, zone, taskChooser
       				{
           				//String[] tokens = msg.split("\\#");

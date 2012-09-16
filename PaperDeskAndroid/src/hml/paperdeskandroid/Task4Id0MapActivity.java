@@ -1,6 +1,5 @@
 package hml.paperdeskandroid;
 
-import android.R.integer;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +10,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ZoomButtonsController.OnZoomListener;
 
 import com.google.android.maps.GeoPoint;
@@ -24,6 +26,8 @@ public class Task4Id0MapActivity extends MapActivity {
 
 	MapView mv;
 	MapController mapController;
+	EditText editTextSearch;
+	String strSearchWord = "";
 	
 	int collocateSide = 1;//side -1 means at slave at left, 1 means right
 	//command
@@ -77,7 +81,7 @@ public class Task4Id0MapActivity extends MapActivity {
 				}
 				else if(deviceId[1].equals("0")) //1-0, 1 is at the left of 0
 				{
-					collocateSide = -1; //on the right
+					collocateSide = -1; //on the left
 					Task4Service.xOffset = 0;
 					Task4Service.yOffset = 0;
 					
@@ -88,17 +92,105 @@ public class Task4Id0MapActivity extends MapActivity {
 					MainActivity.clientCommandChanged[1] = true;
 				}
 			}
-			else if(command.endsWith("bendsensortopup") || command.endsWith("bendsensortopdown"))
+			else if(command.endsWith("bendsensortopup") )
 			{
-				Message notif = new Message();
+				mapController.zoomOut();
+				
+       		    if(Task4Service.bCollocate)
+				{
+					//Calculate the map center lat/long of other device and inform to other device
+					CalculateMapOffset(collocateSide);
+					
+					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+					MainActivity.clientCommandChanged[1] = true;
+				}
+/*				Message notif = new Message();
 				notif.what = 0x2000;   //bend sensor
-				myHandler.sendMessage(notif);
+				myHandler.sendMessage(notif);*/
 			}
-			else if(command.endsWith("Inc") || command.endsWith("Dec"))
+			else if(command.endsWith("bendsensortopdown"))
 			{
-				Message notif = new Message();
-				notif.what = 0x2001;   //move to pan
-				myHandler.sendMessage(notif);
+				mapController.zoomIn();
+				
+       		    if(Task4Service.bCollocate)
+				{
+					//Calculate the map center lat/long of other device and inform to other device
+					CalculateMapOffset(collocateSide);
+					
+					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+					MainActivity.clientCommandChanged[1] = true;
+				}
+			}
+			else if(command.startsWith("xOffsetInc"))
+			{
+				Task4Service.xOffset += 1E5;
+				
+    					//Calculate the map center lat/long of other device and inform to other device
+				CalculateMapOffset(collocateSide);
+				
+				MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+				MainActivity.clientCommandChanged[1] = true;
+			}
+			else if(command.startsWith("xOffsetDec"))
+			{
+				Task4Service.xOffset -= 1E5;
+				
+    					//Calculate the map center lat/long of other device and inform to other device
+				CalculateMapOffset(collocateSide);
+				
+				MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+				MainActivity.clientCommandChanged[1] = true;
+			}
+			else if(command.startsWith("yOffsetInc"))
+			{
+				Task4Service.yOffset += 2E5;
+				
+    					//Calculate the map center lat/long of other device and inform to other device
+				CalculateMapOffset(collocateSide);
+				
+				MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+				MainActivity.clientCommandChanged[1] = true;
+			}
+			else if(command.startsWith("yOffsetDec"))
+			{
+				Task4Service.yOffset -= 2E5;
+				
+    					//Calculate the map center lat/long of other device and inform to other device
+				CalculateMapOffset(collocateSide);
+				
+				MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
+				MainActivity.clientCommandChanged[1] = true;
+			}
+			else if(command.startsWith("bendsensorleftdown"))  //bend left down to type, bend again to confirm search
+			{
+				if(!Task4Service.bInSearch) //user want to search
+				{
+					Task4Service.bInSearch = true;
+					
+					editTextSearch.setVisibility(View.VISIBLE);
+					editTextSearch.requestFocus();
+					
+				}
+				else //user want to search
+				{
+					Toast.makeText(Task4Id0MapActivity.this, "finding location", Toast.LENGTH_SHORT).show();
+					
+					//reset search bar
+					Task4Service.bInSearch = false;
+					
+					editTextSearch.setVisibility(View.INVISIBLE);
+					strSearchWord = "";
+				}
+			}
+			else if(command.startsWith("bendsensorleftup"))  //bend left up to hide input box
+			{
+				if(Task4Service.bInSearch)
+				{
+					Task4Service.bInSearch = false;
+					
+					editTextSearch.setVisibility(View.INVISIBLE);
+					strSearchWord = "";
+				}
 			}
 			else if(command.startsWith("taskChooser"))
 			{
@@ -166,97 +258,13 @@ public class Task4Id0MapActivity extends MapActivity {
         mapController = mv.getController();
         updateMapView();
         
-        registerUIHandler();
+        
+        editTextSearch = (EditText)findViewById(R.id.editTextTask4Id0SearchMap);
+        editTextSearch.setVisibility(View.INVISIBLE);
+        
         registerBroadcastReceiver();
     }
 
-	//This handle the received command
-	public void registerUIHandler()
-	{
-        //Handler to receive information from master dispaly and update
-        myHandler = new Handler()
-        {
-        	@Override
-			public void handleMessage(Message msg)
-        	{
-        		if(msg.what == 0x2000) //zoom in/out using bend sensor:
-        		{
-        			if(command.endsWith("key#0:bendsensortopup"))
-        			{
-        				mapController.zoomOut();
-        				
-/*        				if(Task4Service.bCollocate)
-        				{
-        					//Calculate the map center lat/long of other device and inform to other device
-        					CalculateMapOffset(collocateSide);
-        					
-        					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
-        					MainActivity.clientCommandChanged[1] = true;
-        				}*/
-        				
-        			}
-        			else if(command.endsWith("key#0:bendsensortopdown"))
-        			{
-        				mapController.zoomIn();
-        				
-/*        				if(Task4Service.bCollocate)
-        				{
-        					//Calculate the map center lat/long of other device and inform to other device
-        					CalculateMapOffset(collocateSide);
-        					
-        					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
-        					MainActivity.clientCommandChanged[1] = true;
-        				}*/
-        			}
-        		}
-        		else if(msg.what == 0x2001) //move to pan
-        		{
-        			if(command.startsWith("xOffsetInc"))
-        			{
-        				Task4Service.xOffset += 2E6;
-        				
-/*    					//Calculate the map center lat/long of other device and inform to other device
-    					CalculateMapOffset(collocateSide);
-    					
-    					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
-    					MainActivity.clientCommandChanged[1] = true;*/
-        			}
-        			else if(command.startsWith("xOffsetDec"))
-        			{
-        				Task4Service.xOffset -= 2E6;
-        				
-/*    					//Calculate the map center lat/long of other device and inform to other device
-    					CalculateMapOffset(collocateSide);
-    					
-    					MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
-    					MainActivity.clientCommandChanged[1] = true;*/
-        			}
-        		}
-        	}
-        	
-        	
-        	public void simulateOnePan(int side)  //-1 left, 1 right
-        	{
-        		//Get the size of screen
-        		int screenWidth = MainActivity.screenWidth;
-        		int screenHeight = MainActivity.screenHeight;
-        		
-        		GeoPoint ptGeoCenter = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
-        		GeoPoint ptGeoEdge = mv.getProjection().fromPixels(0, screenHeight/2);
-        		
-        		int slaveMapCenterLong = ptGeoCenter.getLongitudeE6() + side * (ptGeoCenter.getLongitudeE6() - ptGeoEdge.getLongitudeE6());
-        		int slaveMapCenterLat = ptGeoCenter.getLatitudeE6();
-        		
-        		GeoPoint mapPoint = new GeoPoint(slaveMapCenterLat, slaveMapCenterLong + Task4Service.yOffset);
-        		
-        		
-        		//TODO decide wihch is better on eink, animateto is smooth, setcenter is quick
-        		mapController.animateTo(mapPoint);
-        		//mapController.setCenter(mapPoint);
-        		
-        	}
-        };
-	}
 	
 	public void updateMapView()
 	{

@@ -37,6 +37,17 @@ namespace DisplayStack
             Linear,
             Fan
         }
+
+        enum TaskType
+        {
+            Preliminary,
+            Task1Doc,
+            Task2Photo,
+            Task3Email,
+            Task4Map
+        }
+        TaskType taskType = TaskType.Task1Doc;
+
         DisplayMode displayMode = DisplayMode.Initial;
         Boolean modeChanged = true;
 
@@ -52,7 +63,7 @@ namespace DisplayStack
         int readCounter = 0;
 
         //eInk Socket
-        static TcpListener eink = new TcpListener(IPAddress.Parse(HostIP), 7777);
+        static TcpListener eink = new TcpListener(IPAddress.Parse(HostIP), 7778);
         //Socket communicate with device 1
         Socket soc;
         NetworkStream s;
@@ -270,64 +281,103 @@ namespace DisplayStack
             if (e.Key == Key.X)
                 keyCode = "tap#0:1:reset";
 
-            //Task 1
+            if (taskType == TaskType.Task1Doc)
+            {
+                //Task 1
+                if (e.Key == Key.V)
+                    keyCode = "tap#1:2:30:50";
+                else if (e.Key == Key.B)
+                    keyCode = "tap#0:1:40:60";
+                else if (e.Key == Key.N)
+                    keyCode = "collocate#1:0";
+            }
+            else if(taskType == TaskType.Task2Photo)
+            {
+            //Task 2
             if (e.Key == Key.V)
-                keyCode = "tap#1:2:30:50";
-            else if (e.Key == Key.B)
-                keyCode = "tap#0:1:40:60";
-            else if (e.Key == Key.N)
-                keyCode = "collocate#1:0";
+                keyCode = "tap#0:2:30:50";
+            if (e.Key == Key.B)
+                keyCode = "tap#1:2:20:30";
+            }
+            else if (taskType == TaskType.Task3Email)
+            {
+                //Task 3
+                if (e.Key == Key.V)
+                    keyCode = "tap#0:2:30:40";
+                if (e.Key == Key.B)
+                    keyCode = "tap#1:0:30:40";
 
-            ////Task 2
-            //if (e.Key == Key.V)
-            //    keyCode = "tap#0:2:30:50";
-            //if (e.Key == Key.B)
-            //    keyCode = "tap#1:2:20:30";
+                else if (e.Key == Key.N)
+                    keyCode = "tap#2:1:30:40";
+                else if (e.Key == Key.M)
+                    keyCode = "tap#2:0:30:40";
 
-            ////Task 3
-            //if (e.Key == Key.V)
-            //    keyCode = "tap#0:2:30:40";
-            //if (e.Key == Key.B)
-            //    keyCode = "tap#1:0:30:40";
-
-            //else if (e.Key == Key.N)
-            //    keyCode = "tap#2:1:30:40";
-            //else if (e.Key == Key.M)
-            //    keyCode = "tap#2:0:30:40";
-
-            //else if (e.Key == Key.F1)
-            //    keyCode = "key#0:NewEmail";
-            //else if (e.Key == Key.Q)
-            //    keyCode = "key#keycode:Q";
-            //else if (e.Key == Key.E)
-            //    keyCode = "key#keycode:E";
-            //else if (e.Key == Key.Left)
-            //    keyCode = "key#keycode:LEFT";
-            //else if (e.Key == Key.Enter)
-            //    keyCode = "key#keycode:ENTER";
-
-            ////Task 4
-            //if (e.Key == Key.V)
-            //    keyCode = "tap#0:2:30:40";
-            //if (e.Key == Key.B)
-            //    keyCode = "collocate#0:1";
-            //if (e.Key == Key.Up)
-            //    keyCode = "yOffsetInc";
-            //if (e.Key == Key.Down)
-            //    keyCode = "yOffsetDec";
-            //if (e.Key == Key.Left)
-            //    keyCode = "xOffsetDec";
-            //if (e.Key == Key.Right)
-            //    keyCode = "xOffsetInc";
+                else if (e.Key == Key.F1)
+                    keyCode = "key#0:NewEmail";
+                else if (e.Key == Key.Q)
+                    keyCode = "key#keycode:Q";
+                else if (e.Key == Key.E)
+                    keyCode = "key#keycode:E";
+                else if (e.Key == Key.Left)
+                    keyCode = "key#keycode:LEFT";
+                else if (e.Key == Key.Enter)
+                    keyCode = "key#keycode:ENTER";
+            }
+            else if (taskType == TaskType.Task4Map)
+            {
+                //Task 4
+                if (e.Key == Key.V)
+                    keyCode = "tap#0:2:30:40";
+                if (e.Key == Key.B)
+                    keyCode = "collocate#0:1";
+                if (e.Key == Key.Right)
+                    keyCode = "yOffsetInc";
+                if (e.Key == Key.Left)
+                    keyCode = "yOffsetDec";
+                if (e.Key == Key.Down)
+                    keyCode = "xOffsetDec";
+                if (e.Key == Key.Up)
+                    keyCode = "xOffsetInc";
+                else if (e.Key == Key.Q)
+                    keyCode = "key#keycode:Q";
+                else if (e.Key == Key.E)
+                    keyCode = "key#keycode:E";
+            }
 
 
 
             if (e.Key == Key.Escape)
                 keyCode = "taskChooser";
 
-
-
             newKeyPressed = true;
+
+            if (e.Key == Key.D0)
+            {
+                taskType = TaskType.Preliminary;
+                newKeyPressed = false;
+            }
+            else if (e.Key == Key.D1)
+            {
+                taskType = TaskType.Task1Doc;
+                newKeyPressed = false;
+            }
+            else if (e.Key == Key.D2)
+            {
+                taskType = TaskType.Task2Photo;
+                newKeyPressed = false;
+            }
+            else if (e.Key == Key.D3)
+            {
+                taskType = TaskType.Task3Email;
+                newKeyPressed = false;
+            }
+            else if (e.Key == Key.D4)
+            {
+                taskType = TaskType.Task4Map;
+                newKeyPressed = false;
+            }
+                
+
         }
 
 

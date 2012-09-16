@@ -26,4 +26,6 @@ public class Task4Service {
 	public static int xOffset = 0; //x distance from slave to master map
 	public static int yOffset = 0;
 	
+	public static boolean bInSearch = false;
+	
 }

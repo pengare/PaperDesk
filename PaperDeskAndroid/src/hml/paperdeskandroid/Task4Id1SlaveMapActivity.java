@@ -61,12 +61,12 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
 				
 				Task4Id1SlaveMapActivity.this.finish();
 			}
-		    else  //bend sensor, xoffsetinc, dec 
+/*		    else  //bend sensor, xoffsetinc, dec 
 		    {
 		    	Message notif = new Message();
 				notif.what = 0x2001;
 				myHandler.sendMessage(notif);	
-			}
+			}*/
 
 		}
 	}
@@ -109,7 +109,7 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
         		}
         		else if(msg.what == 0x2001)
         		{
-        		    if(command.startsWith("key#0:bendsensortopup"))
+/*        		    if(command.startsWith("key#0:bendsensortopup"))
         		    {
         		    	mapControllerSlave.zoomOut();
         		    }
@@ -117,14 +117,15 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
         		    {
         		    	mapControllerSlave.zoomIn();
         		    }
-        		    else if(command.startsWith("xOffsetInc"))
+        		    else */
+/*        			if(command.startsWith("xOffsetInc"))
         		    {
         		    	Task4Service.slaveMapCenterLat += 1E6;
         		    }
         		    else if(command.startsWith("xOffsetDec"))
         		    {
         		    	Task4Service.slaveMapCenterLat -= 1E6;
-        		    }
+        		    }*/
         		}
         	}
         };
