@@ -3,6 +3,7 @@ package hml.paperdeskandroid;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,6 +21,11 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
 
 	int[] pages;
 	Map chapterToPageMap = new HashMap();
+	
+	boolean needRefresh = false;
+	int currentPageIndex = 0;
+	
+	public static ImageView imageViewPage;
 	
 	static String command = "";
 	
@@ -69,14 +75,16 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         
         setContentView(R.layout.activity_task1_id1_collocate_slave);
         
+        imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageCollocateSlave);
+        		
         fillPage();
-        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask1PageCollocateSlave);
-        pageView.setImageResource(pages[Task1Service.selectedPage]);
+        
+        imageViewPage.setImageResource(pages[Task1Service.selectedPage]);
         
         
         registerUIHandler();
         registerBroadcastReceiver();
-        
+        new Thread(refreshStuff).start();
     }
 
     public void registerBroadcastReceiver()
@@ -134,11 +142,16 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         			{
         				String tokens[] = command.split("\\#");
         				int page = Integer.parseInt(tokens[1]);
-        				
-        				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask1PageCollocateSlave);
-        				imageViewPage.setImageResource(pages[page]);
+        				currentPageIndex = page; //save current page for future set after set black background
+        			
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				needRefresh = true;
         			}
         			
+        		}
+        		else if(msg.what == 0x3000)
+        		{
+        			imageViewPage.setImageResource(pages[currentPageIndex]);
         		}
         	}
         		
@@ -150,4 +163,31 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_task1_id1_collocate_slave, menu);
         return true;
     }
+    
+    private Runnable refreshStuff = new Thread()
+    {
+    	public void run()
+    	{
+    		try {
+				
+    			while(true)
+    			{
+    				if(needRefresh)
+    				{
+    					needRefresh = false;
+    					
+    					Message notif = new Message();
+    					notif.what = 0x3000;
+    					myHandler.sendMessage(notif);
+    					
+    					sleep(15);
+    					
+    				}
+    			}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
+    };
+
 }
