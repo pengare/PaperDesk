@@ -17,5 +17,6 @@
         android:layout_marginTop="1100px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:layout_height="wrap_content" />
+        android:layout_height="70px" 
+        android:textSize="15sp"/>
 </RelativeLayout>

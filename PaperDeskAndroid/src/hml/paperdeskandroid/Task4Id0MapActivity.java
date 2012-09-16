@@ -1,5 +1,7 @@
 package hml.paperdeskandroid;
 
+import java.util.List;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,19 +10,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.ZoomButtonsController.OnZoomListener;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class Task4Id0MapActivity extends MapActivity {
 
@@ -42,6 +43,8 @@ public class Task4Id0MapActivity extends MapActivity {
 	
 	//Pin
 	Bitmap posBitmap;
+	GeoPoint[] mapPinGeoPoints;
+	int mapPinNum;
 	
 	Handler myHandler;
 	
@@ -161,7 +164,7 @@ public class Task4Id0MapActivity extends MapActivity {
 				MainActivity.clientCommand[1] = "location#"+slaveMapCenterLat+":"+slaveMapCenterLong+":"+slaveMapZoomLevel+"\n";
 				MainActivity.clientCommandChanged[1] = true;
 			}
-			else if(command.startsWith("bendsensorleftdown"))  //bend left down to type, bend again to confirm search
+			else if(command.endsWith("bendsensorleftdown"))  //bend left down to type, bend again to confirm search
 			{
 				if(!Task4Service.bInSearch) //user want to search
 				{
@@ -173,7 +176,8 @@ public class Task4Id0MapActivity extends MapActivity {
 				}
 				else //user want to search
 				{
-					Toast.makeText(Task4Id0MapActivity.this, "finding location", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(Task4Id0MapActivity.this, "finding location", Toast.LENGTH_SHORT).show();
+					showPins();
 					
 					//reset search bar
 					Task4Service.bInSearch = false;
@@ -182,7 +186,7 @@ public class Task4Id0MapActivity extends MapActivity {
 					strSearchWord = "";
 				}
 			}
-			else if(command.startsWith("bendsensorleftup"))  //bend left up to hide input box
+			else if(command.endsWith("bendsensorleftup"))  //bend left up to hide input box
 			{
 				if(Task4Service.bInSearch)
 				{
@@ -191,6 +195,27 @@ public class Task4Id0MapActivity extends MapActivity {
 					editTextSearch.setVisibility(View.INVISIBLE);
 					strSearchWord = "";
 				}
+			}
+			else if(command.startsWith("tap#2:0"))
+			{
+				double lon = -76.5 * 1E6;
+				double lat = 44.25 * 1E6;
+				
+		
+				//Get the size of screen
+				int screenWidth = MainActivity.screenWidth;
+				int screenHeight = MainActivity.screenHeight;
+				
+				GeoPoint ptGeoCenter = mv.getProjection().fromPixels(screenWidth, screenHeight);
+				//mapController.animateTo(ptGeoCenter);
+				
+				mapController.setCenter(ptGeoCenter);
+				GeoPoint pt1 = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
+				
+				mapController.setCenter(new GeoPoint((int)lat, (int)lon));
+				GeoPoint pt2 = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
+				
+				GeoPoint pt3 = pt1;
 			}
 			else if(command.startsWith("taskChooser"))
 			{
@@ -201,6 +226,28 @@ public class Task4Id0MapActivity extends MapActivity {
 				Task4Id0MapActivity.this.finish();
 			}
 		}
+	}
+	
+	public void showPins()
+	{
+		posBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pos);
+		
+		//pin on map
+		List<Overlay> ol = mv.getOverlays();
+		ol.clear();
+		ol.add(new PosOverLay(mapPinGeoPoints, posBitmap)); 
+		
+		//Get the size of screen
+		int screenWidth = MainActivity.screenWidth;
+		int screenHeight = MainActivity.screenHeight;
+		
+		GeoPoint ptGeoCenter = mv.getProjection().fromPixels(screenWidth/2, screenHeight/2);
+		mapController.animateTo(ptGeoCenter);
+		
+		
+		//call slave to show pin
+		MainActivity.clientCommand[1] = "showpin#\n";
+		MainActivity.clientCommandChanged[1] = true;
 	}
 	
  	//Now we only support two devices, one master(id 1), one slave(id 2) 
@@ -256,11 +303,21 @@ public class Task4Id0MapActivity extends MapActivity {
        // mv.displayZoomControls(true);
         
         mapController = mv.getController();
+        
+        mapPinNum = Task4Service.mapPinNum;
+        mapPinGeoPoints = new GeoPoint[mapPinNum];
+		for(int i = 0; i < mapPinNum; ++i)
+		{
+			mapPinGeoPoints[i] = new GeoPoint(Task4Service.pinLat[i], Task4Service.pinLong[i]);
+		}
+		
+		
         updateMapView();
         
         
         editTextSearch = (EditText)findViewById(R.id.editTextTask4Id0SearchMap);
         editTextSearch.setVisibility(View.INVISIBLE);
+
         
         registerBroadcastReceiver();
     }
@@ -274,10 +331,10 @@ public class Task4Id0MapActivity extends MapActivity {
 		GeoPoint mapPoint = new GeoPoint((int)lat, (int)lon);
 		mapController.animateTo(mapPoint);
 		
-//		//pin on map
-//		List<Overlay> ol = mv.getOverlays();
-//		ol.clear();
-//		ol.add(new PosOverLay(mapPoint, posBitmap)); 
+/*		//pin on map
+		List<Overlay> ol = mv.getOverlays();
+		ol.clear();
+		ol.add(new PosOverLay(mapPinGeoPoints, posBitmap)); */
 	}
 	
     public void registerBroadcastReceiver()

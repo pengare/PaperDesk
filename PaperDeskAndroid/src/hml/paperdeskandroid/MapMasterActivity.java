@@ -253,7 +253,7 @@ public class MapMasterActivity extends MapActivity {
 		//pin on map
 		List<Overlay> ol = mv.getOverlays();
 		ol.clear();
-		ol.add(new PosOverLay(mapPoint, posBitmap)); 
+		//ol.add(new PosOverLay(mapPoint, posBitmap)); 
 	}
 
 	

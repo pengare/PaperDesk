@@ -23,6 +23,8 @@ public class Task3Id1EmailDetailActivity extends Activity {
 	
 	Handler myHandler;
 	
+	ImageView imageViewPage;
+	
 	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
 	MyReceiver receiver;
 	
@@ -47,6 +49,22 @@ public class Task3Id1EmailDetailActivity extends Activity {
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);			
 			}
+			else if(command.startsWith("key#1:bendsensortopup"))
+			{
+				if(Task3Service.selectedEmailId1 > 0)
+				{
+					--Task3Service.selectedEmailId1;
+					imageViewPage.setImageResource(emails[Task3Service.selectedEmailId1]);	
+				}
+			}
+			else if(command.startsWith("key#1:bendsensortopdown"))
+			{
+				if(Task3Service.selectedEmailId1 < (emails.length - 1))
+				{
+					++Task3Service.selectedEmailId1;
+					imageViewPage.setImageResource(emails[Task3Service.selectedEmailId1]);	
+				}
+			}
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
@@ -70,8 +88,9 @@ public class Task3Id1EmailDetailActivity extends Activity {
         setContentView(R.layout.activity_task3_id1_email_detail);
         
         fillEmail();
-        ImageView pageView = (ImageView)findViewById(R.id.imageViewTask3Id1EmailDetail);
-        pageView.setImageResource(emails[Task3Service.selectedEmail]);
+
+        imageViewPage = (ImageView)findViewById(R.id.imageViewTask3Id1EmailDetail);
+        imageViewPage.setImageResource(emails[Task3Service.selectedEmailId1]);
         
         
         registerUIHandler();
@@ -82,7 +101,7 @@ public class Task3Id1EmailDetailActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationService.receiverAction);
+    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
     	this.registerReceiver(receiver, filter);
     }
     
@@ -104,8 +123,8 @@ public class Task3Id1EmailDetailActivity extends Activity {
         	{
         		if(msg.what == 0x2000) //tap on the email list
         		{
-        				ImageView imageViewPage = (ImageView)findViewById(R.id.imageViewTask3Id1EmailDetail);
-        				imageViewPage.setImageResource(emails[Task3Service.selectedEmailId1]);	
+        				
+        			imageViewPage.setImageResource(emails[Task3Service.selectedEmailId1]);	
         			
         		}
         	}    	

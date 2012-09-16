@@ -1,9 +1,13 @@
 package hml.paperdeskandroid;
 
+import java.util.List;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +19,7 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class Task4Id1SlaveMapActivity extends MapActivity {
 
@@ -23,6 +28,11 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
 	
 	String command; //receive command from primary display
 	
+	//Pin
+	Bitmap posBitmap;
+	GeoPoint[] mapPinGeoPoints;
+	int mapPinNum;
+		
 	Handler myHandler;
 	
 	MyReceiver receiver;
@@ -53,6 +63,10 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
 				myHandler.sendMessage(notif);	    	
 		    	
 			}
+		    else if(command.startsWith("showpin#"))
+		    {
+		    	showPins();
+		    }
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
@@ -71,6 +85,28 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
 		}
 	}
 	
+	public void showPins()
+	{
+		posBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pos);
+		
+		//pin on map
+		List<Overlay> ol = mvSlave.getOverlays();
+		ol.clear();
+		ol.add(new PosOverLay(mapPinGeoPoints, posBitmap)); 
+		
+		//Get the size of screen
+		int screenWidth = MainActivity.screenWidth;
+		int screenHeight = MainActivity.screenHeight;
+		
+		GeoPoint ptGeoCenter = mvSlave.getProjection().fromPixels(screenWidth/2, screenHeight/2);
+		mapControllerSlave.animateTo(ptGeoCenter);
+		
+		
+		//call slave to show pin
+		MainActivity.clientCommand[1] = "showpin#\n";
+		MainActivity.clientCommandChanged[1] = true;
+	}
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,10 +117,21 @@ public class Task4Id1SlaveMapActivity extends MapActivity {
        
         setContentView(R.layout.activity_task4_id1_slave_map);
         
+        posBitmap = BitmapFactory.decodeResource(getResources(),
+    			R.drawable.pos);
+        
         mvSlave = (MapView)findViewById(R.id.mapViewTask4Id1Slave);
-        mvSlave.setBuiltInZoomControls(true);
-        mvSlave.displayZoomControls(true);
+        //mvSlave.setBuiltInZoomControls(true);
+        //mvSlave.displayZoomControls(true);
         mapControllerSlave = mvSlave.getController();
+        
+        mapPinNum = Task4Service.mapPinNum;
+        mapPinGeoPoints = new GeoPoint[mapPinNum];
+		for(int i = 0; i < mapPinNum; ++i)
+		{
+			mapPinGeoPoints[i] = new GeoPoint(Task4Service.pinLat[i], Task4Service.pinLong[i]);
+		}
+		
         updateMapView();
         
         registerUIHandler();

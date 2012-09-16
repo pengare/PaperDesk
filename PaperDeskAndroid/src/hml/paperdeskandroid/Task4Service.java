@@ -28,4 +28,39 @@ public class Task4Service {
 	
 	public static boolean bInSearch = false;
 	
+	public static int mapPinNum = 7;
+	//public static GeoPoint[] mapPinGeoPoints;
+	public static int pinLong[] = new int[]
+	{
+		//kingston
+		(int)(-76.5 * 1E6),
+		(int)(-76.5 * 1E6),
+		//ottawa
+		(int)(-76.5 * 1E6),
+		(int)(-76.5 * 1E6),
+		(int)(-76.5 * 1E6),
+		//montreal
+		(int)(-76.5 * 1E6),
+		(int)(-76.5 * 1E6),
+		(int)(-76.5 * 1E6)
+		
+	};
+	
+	public static int pinLat[] = new int[]
+	{
+		//kingston
+		(int)(44.25 * 1E6),
+		(int)(45.25 * 1E6),
+		//ottawa
+		(int)(46.25 * 1E6),
+		(int)(47.25 * 1E6),
+		(int)(48.25 * 1E6),
+		//montreal
+		(int)(49.25 * 1E6),
+		(int)(50.25 * 1E6),
+		(int)(51.25 * 1E6)
+	};
+
+	
+	
 }

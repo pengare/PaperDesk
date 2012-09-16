@@ -1,5 +1,6 @@
 package hml.paperdeskandroid;
 
+import android.R.integer;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
@@ -14,8 +15,8 @@ public class PosOverLay extends Overlay {
 	// 定义该PosOverLay所绘制的位图
 	Bitmap posBitmap;
 	// 定义该PosOverLay绘制位图的位置
-	GeoPoint gp;
-	public PosOverLay(GeoPoint gp, Bitmap posBitmap)
+	GeoPoint[] gp;
+	public PosOverLay(GeoPoint[] gp, Bitmap posBitmap)
 	{
 		super();
 		this.gp = gp;
@@ -32,10 +33,13 @@ public class PosOverLay extends Overlay {
 			Projection proj = mapView.getProjection();
 			Point p = new Point();
 			// 将真实的地理坐标转化为屏幕上的坐标
-			proj.toPixels(gp, p);
-			// 在指定位置绘制图片
-			canvas.drawBitmap(posBitmap, p.x - posBitmap.getWidth() / 2
-				, p.y - posBitmap.getHeight(), null);
+			for(int i = 0; i < gp.length; ++i)
+			{
+				proj.toPixels(gp[i], p);
+				// 在指定位置绘制图片
+				canvas.drawBitmap(posBitmap, p.x - posBitmap.getWidth() / 2
+						, p.y - posBitmap.getHeight(), null);
+			}
 		}
 	}
 

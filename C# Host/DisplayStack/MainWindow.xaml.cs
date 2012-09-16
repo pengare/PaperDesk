@@ -342,6 +342,8 @@ namespace DisplayStack
                     keyCode = "key#keycode:Q";
                 else if (e.Key == Key.E)
                     keyCode = "key#keycode:E";
+                else if (e.Key == Key.X)
+                    keyCode = "tap#2:0";
             }
 
 

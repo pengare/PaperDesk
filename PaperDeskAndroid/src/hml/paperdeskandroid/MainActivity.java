@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 	
 	public static Activity activeActivity;
 	
-	public static final int clientNum = 2; //include primary display
+	public static final int clientNum = 3; //include primary display
 	
 	//public static final String MasterDisplayIP = "130.15.5.171"; //phone
 	//public static final String MasterDisplayIP = "130.15.5.169";
