@@ -27,7 +27,7 @@ public class Task1Id2BookActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.startsWith("tap#1:2"))
+			if(command.startsWith("tap#0:2"))
 			{
 				//Todo: find the tapped book, gray it
 				int selectedBook = 0;

@@ -11,7 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class Task1Id1BookcoverActivity extends Activity {
+public class Task1Id0BookcoverActivity extends Activity {
 
 	//this activity has inner class intends broadcast receiver to recive msg from service that comm with pc
 	MyReceiver receiver;
@@ -34,44 +34,44 @@ public class Task1Id1BookcoverActivity extends Activity {
 			command = bundle.getString("command");
 			bCommandChanged = true;
 			
-			if(command.startsWith("zone#1:warm"))
+			if(command.startsWith("zone#0:warm"))
 			{
 				Task1Service.iCurrentZone = Task1Service.Zone.Warm;
 				
 				Intent intentChapterList = new Intent();
-				intentChapterList.setClass(Task1Id1BookcoverActivity.this, Task1Id1ChapterActivity.class);
+				intentChapterList.setClass(Task1Id0BookcoverActivity.this, Task1Id0ChapterActivity.class);
 				startActivity(intentChapterList);
 				
-				Task1Id1BookcoverActivity.this.finish();	
+				Task1Id0BookcoverActivity.this.finish();	
 			}
 			else if(command.startsWith("zone#1:hot"))
 			{
 				Task1Service.iCurrentZone = Task1Service.Zone.Hot;
 				
 				Intent intentPage = new Intent();
-				intentPage.setClass(Task1Id1BookcoverActivity.this, Task1Id1PageActivity.class);
+				intentPage.setClass(Task1Id0BookcoverActivity.this, Task1Id0PageActivity.class);
 				startActivity(intentPage);
 				
-				Task1Id1BookcoverActivity.this.finish();
+				Task1Id0BookcoverActivity.this.finish();
 			}
-			else if(command.startsWith("tap#1:2"))
+/*			else if(command.startsWith("tap#1:2"))
 			{
 				//Todo: check if tap empty area
 				//if yes
 				Intent intentBlankList = new Intent();
 				//intentBlankList.setClass(Task1Id1BookcoverActivity.this, Task1Id1BlankBeforeCollocateActivity.class);
-				intentBlankList.setClass(Task1Id1BookcoverActivity.this, Task1Id1BlankActivity.class);
+				intentBlankList.setClass(Task1Id0BookcoverActivity.this, Task1Id1BlankActivity.class);
 				startActivity(intentBlankList);
 				
-				Task1Id1BookcoverActivity.this.finish();
-			}
+				Task1Id0BookcoverActivity.this.finish();
+			}*/
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
-				intentTaskChooser.setClass(Task1Id1BookcoverActivity.this, TaskChooserActivity.class);
+				intentTaskChooser.setClass(Task1Id0BookcoverActivity.this, TaskChooserActivity.class);
 				startActivity(intentTaskChooser);
 				
-				Task1Id1BookcoverActivity.this.finish();
+				Task1Id0BookcoverActivity.this.finish();
 			}
 		}
 	}
@@ -84,7 +84,7 @@ public class Task1Id1BookcoverActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        setContentView(R.layout.activity_task1_id1_bookcover);
+        setContentView(R.layout.activity_task1_id0_bookcover);
         
         ImageView imageView = (ImageView)findViewById(R.id.imageViewTask1Bookcover);
         imageView.setImageResource(Task1Service.bookcoverImageList[Task1Service.selectedBook]);
@@ -97,7 +97,7 @@ public class Task1Id1BookcoverActivity extends Activity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
+    	filter.addAction(KeySimulationService.receiverAction);
     	this.registerReceiver(receiver, filter);
     }
 

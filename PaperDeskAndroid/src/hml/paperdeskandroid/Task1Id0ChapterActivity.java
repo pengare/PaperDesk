@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Task1Id1ChapterActivity extends ListActivity {
+public class Task1Id0ChapterActivity extends ListActivity {
 
 	static String[] ChapterList;
 	MyReceiver receiver;
@@ -30,41 +30,41 @@ public class Task1Id1ChapterActivity extends ListActivity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.startsWith("zone#1:cold"))
+			if(command.startsWith("zone#0:cold"))
 			{
 				Task1Service.iCurrentZone = Task1Service.Zone.Cold; //cold zone
 				
 				//start the book activity
 				Intent intentBook = new Intent();
-				intentBook.setClass(Task1Id1ChapterActivity.this, Task1Id1BookcoverActivity.class);
+				intentBook.setClass(Task1Id0ChapterActivity.this, Task1Id0BookcoverActivity.class);
 				
 				startActivity(intentBook);
-				Task1Id1ChapterActivity.this.finish();
+				Task1Id0ChapterActivity.this.finish();
 			}
-			else if(command.startsWith("zone#1:warm"))
+			else if(command.startsWith("zone#0:warm"))
 			{
 				Task1Service.iCurrentZone = Task1Service.Zone.Warm; //warm zone
 			}
-			else if(command.startsWith("zone#1:hot"))
+			else if(command.startsWith("zone#0:hot"))
 			{
 				Task1Service.iCurrentZone = Task1Service.Zone.Hot; //hot zone
 				//if(BookService.iBookIndex != -1 && BookService.iChapterIndex != -1)
 				{
 					//start the page activity
 					Intent intentPage = new Intent();
-					intentPage.setClass(Task1Id1ChapterActivity.this, Task1Id1PageActivity.class);
+					intentPage.setClass(Task1Id0ChapterActivity.this, Task1Id0PageActivity.class);
 					
 					startActivity(intentPage);
-					Task1Id1ChapterActivity.this.finish();
+					Task1Id0ChapterActivity.this.finish();
 				}
 			}
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
-				intentTaskChooser.setClass(Task1Id1ChapterActivity.this, TaskChooserActivity.class);
+				intentTaskChooser.setClass(Task1Id0ChapterActivity.this, TaskChooserActivity.class);
 				startActivity(intentTaskChooser);
 				
-				Task1Id1ChapterActivity.this.finish();
+				Task1Id0ChapterActivity.this.finish();
 			}
 
 		}
@@ -110,7 +110,7 @@ public class Task1Id1ChapterActivity extends ListActivity {
     {
     	receiver = new MyReceiver();
     	IntentFilter filter = new IntentFilter();
-    	filter.addAction(KeySimulationSlaveService.receiverSlaveAction);
+    	filter.addAction(KeySimulationService.receiverAction);
     	this.registerReceiver(receiver, filter);
     }
     @Override

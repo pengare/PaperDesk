@@ -151,31 +151,31 @@
             android:label="@string/title_activity_task1_id2_book" >
         </activity>
         <activity
-            android:name=".Task1Id1BlankActivity"
+            android:name=".Task1Id0BlankActivity"
             android:label="@string/title_activity_task1_id1_blank" >
         </activity>
         <activity
-            android:name=".Task1Id1BookcoverActivity"
+            android:name=".Task1Id0BookcoverActivity"
             android:label="@string/title_activity_task1_id1_bookcover" >
         </activity>
         <activity
-            android:name=".Task1Id1ChapterActivity"
+            android:name=".Task1Id0ChapterActivity"
             android:label="@string/title_activity_task1_id1_chapter" >
         </activity>
         <activity
-            android:name=".Task1Id1PageActivity"
+            android:name=".Task1Id0PageActivity"
             android:label="@string/title_activity_task1_id1_page" >
         </activity>
         <activity
-            android:name=".Task1Id0BlankActivity"
+            android:name=".Task1Id1BlankActivity"
             android:label="@string/title_activity_task1_id0_blank" >
         </activity>
         <activity
-            android:name=".Task1Id0PageActivity"
+            android:name=".Task1Id1PageActivity"
             android:label="@string/title_activity_task1_id0_page" >
         </activity>
         <activity
-            android:name=".Task1Id1BlankBeforeCollocateActivity"
+            android:name=".Task1Id0BlankBeforeCollocateActivity"
             android:label="@string/title_activity_task1_id1_blank_before_collocate" >
         </activity>
         <activity

@@ -15,18 +15,19 @@ public class Task1Service {
 		Warm,
 		Cold
 	}
-	public static Zone iCurrentZone = Zone.Cold;
+	
 	
 	//view doc, open first doc, first chapter, first page by default
 	public static int selectedBook = 0;
 	public static int selectedChapter = 0;
 	public static int selectedPage = 0;
+	public static Zone iCurrentZone = Zone.Cold;
 	
-	//for id 0 device
-	public static int selectedBookId0 = 0;
-	public static int selectedChapterId0 = 0;
-	public static int selectedPageId0 = 0;
-	public static Zone iCurrentZoneId0 = Zone.Cold;
+	//for id 1 device
+	public static int selectedBookId1 = 0;
+	public static int selectedChapterId1 = 0;
+	public static int selectedPageId1 = 0;
+	public static Zone iCurrentZoneId1 = Zone.Cold;
 	
 	public static boolean bCollocate = false;
 	

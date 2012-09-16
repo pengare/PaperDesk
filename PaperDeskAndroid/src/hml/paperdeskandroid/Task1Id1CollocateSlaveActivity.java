@@ -79,7 +79,7 @@ public class Task1Id1CollocateSlaveActivity extends Activity {
         		
         fillPage();
         
-        imageViewPage.setImageResource(pages[Task1Service.selectedPage]);
+        imageViewPage.setImageResource(pages[Task1Service.selectedPageId1]);
         
         
         registerUIHandler();

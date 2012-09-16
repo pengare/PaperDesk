@@ -31,18 +31,17 @@ public class Task1Id0BlankActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
-			if(command.startsWith("tap#0:1")) //0 tap 1 to pick one book
+			
+			//start
+			if(command.startsWith("tap#0:2")) //0 tap 1 to pick one book
 			{
-				//Todo: Analyze the coordinate to get the selected chapter
+				//Todo: Analyze the coordinate to get the selected book
 				//First set it to the first of book;
+				Task1Service.selectedBook = 0;
 				
-				Task1Service.selectedBookId0 = Task1Service.selectedBook;
-				Task1Service.selectedChapterId0 = 0; //todo
-				Task1Service.selectedPageId0 = 0;
-				
-				Intent intentId0Page = new Intent();
-				intentId0Page.setClass(Task1Id0BlankActivity.this, Task1Id0PageActivity.class);
-				startActivity(intentId0Page);
+				Intent intentBookcover = new Intent();
+				intentBookcover.setClass(Task1Id0BlankActivity.this, Task1Id0BookcoverActivity.class);
+				startActivity(intentBookcover);
 				
 				Task1Id0BlankActivity.this.finish();			
 			}
@@ -68,7 +67,6 @@ public class Task1Id0BlankActivity extends Activity {
         setContentView(R.layout.activity_task1_id0_blank);
         
         registerBroadcastReceiver();
-        
     }
 
     public void registerBroadcastReceiver()
@@ -81,7 +79,7 @@ public class Task1Id0BlankActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task1_id0_blank, menu);
+        getMenuInflater().inflate(R.menu.activity_task1_id1_blank, menu);
         return true;
     }
 }

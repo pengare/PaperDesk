@@ -31,23 +31,30 @@ public class Task1Id1BlankActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
-			
-			//start
-			if(command.startsWith("tap#1:2")) //0 tap 1 to pick one book
+			if(command.startsWith("tap#1:0:nonempty")) // tap one chapter to read
 			{
-				//Todo: Analyze the coordinate to get the selected book
+				//Todo: Analyze the coordinate to get the selected chapter
 				//First set it to the first of book;
-				Task1Service.selectedBook = 0;
 				
-				Intent intentBookcover = new Intent();
-				intentBookcover.setClass(Task1Id1BlankActivity.this, Task1Id1BookcoverActivity.class);
-				startActivity(intentBookcover);
+				Task1Service.selectedBookId1 = Task1Service.selectedBook;
+				Task1Service.selectedChapterId1 = 0; //todo
+				Task1Service.selectedPageId1 = 0;
+				
+				Intent intentId1Page = new Intent();
+				intentId1Page.setClass(Task1Id1BlankActivity.this, Task1Id1PageActivity.class);
+				startActivity(intentId1Page);
 				
 				Task1Id1BlankActivity.this.finish();			
 			}
 			//start to collocate
-			else if(command.startsWith("collocate#1:0")) //1 collocate with 0
+			else if(command.startsWith("collocate#0:1")) //1 collocate with 0   collocate#0:1:bookid:pageid
 			{
+				String tokens[] = command.split("\\#");
+				String Ids[] = tokens[1].split("\\:");
+				
+				Task1Service.selectedBookId1 = Integer.parseInt(Ids[2]);
+				Task1Service.selectedPageId1 = Integer.parseInt(Ids[3]);
+						
 				Intent intentCollocateSlave = new Intent();
 				intentCollocateSlave.setClass(Task1Id1BlankActivity.this, Task1Id1CollocateSlaveActivity.class);
 				startActivity(intentCollocateSlave);
@@ -76,6 +83,7 @@ public class Task1Id1BlankActivity extends Activity {
         setContentView(R.layout.activity_task1_id1_blank);
         
         registerBroadcastReceiver();
+        
     }
 
     public void registerBroadcastReceiver()
@@ -88,7 +96,7 @@ public class Task1Id1BlankActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_task1_id1_blank, menu);
+        getMenuInflater().inflate(R.menu.activity_task1_id0_blank, menu);
         return true;
     }
 }

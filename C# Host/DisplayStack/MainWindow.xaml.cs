@@ -285,11 +285,13 @@ namespace DisplayStack
             {
                 //Task 1
                 if (e.Key == Key.V)
-                    keyCode = "tap#1:2:30:50";
+                    keyCode = "tap#0:2:30:50";
                 else if (e.Key == Key.B)
-                    keyCode = "tap#0:1:40:60";
+                    keyCode = "tap#1:0:nonempty";
                 else if (e.Key == Key.N)
-                    keyCode = "collocate#1:0";
+                    keyCode = "tap#1:0:empty";
+                else if(e.Key == Key.M)
+                    keyCode = "collocate#0:1";
             }
             else if(taskType == TaskType.Task2Photo)
             {

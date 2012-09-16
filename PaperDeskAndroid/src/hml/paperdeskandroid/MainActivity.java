@@ -31,8 +31,8 @@ public class MainActivity extends Activity {
 	
 	//all information saved here 
 	public static String id = "0";  //device id, used to mark master and slave display. initialize during press role button
-	//public static final String HostIP = "130.15.5.136"; //macbook air
-	public static final String HostIP = "130.15.5.144"; //lab mac pro
+	public static final String HostIP = "130.15.5.136"; //macbook air
+	//public static final String HostIP = "130.15.5.144"; //lab mac pro
 	//public static final String HostIP = "130.15.5.156";
 	//public static final String HostIP = "192.168.0.105";
 	public static final int HostIPPort = 7777;
