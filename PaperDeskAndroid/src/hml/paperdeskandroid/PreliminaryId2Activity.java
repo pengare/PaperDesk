@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.RelativeLayout;
 
 public class PreliminaryId2Activity extends Activity {
 
@@ -30,7 +34,7 @@ public class PreliminaryId2Activity extends Activity {
 				Intent intentTaskChooser = new Intent();
 				intentTaskChooser.setClass(PreliminaryId2Activity.this, TaskChooserActivity.class);
 				startActivity(intentTaskChooser);
-				
+		        
 				PreliminaryId2Activity.this.finish();
 			}
 
@@ -47,6 +51,11 @@ public class PreliminaryId2Activity extends Activity {
         
         setContentView(R.layout.activity_preliminary_id2);
   
+        Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotation);
+        LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layoutPreliminaryId2);
+        layout.setLayoutAnimation(animController);
+        
         registerBroadcastReceiver();
     }
 

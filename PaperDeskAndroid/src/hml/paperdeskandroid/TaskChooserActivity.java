@@ -83,7 +83,7 @@ public class TaskChooserActivity extends Activity {
 			}
 		});
         
-/*		Button btnTask1 = (Button) findViewById(R.id.btnTask1);
+		Button btnTask1 = (Button) findViewById(R.id.btnTask1);
 		btnTask1.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -112,7 +112,7 @@ public class TaskChooserActivity extends Activity {
 				TaskChooserActivity.this.finish();
 
 			}
-		});*/
+		});
 		
 		Button btnTask2 = (Button)findViewById(R.id.btnTask2);
 		btnTask2.setOnClickListener(new OnClickListener() {
@@ -146,7 +146,7 @@ public class TaskChooserActivity extends Activity {
 			}
 		});
 		
-		Button btnTask3 = (Button)findViewById(R.id.btnTask1);
+		Button btnTask3 = (Button)findViewById(R.id.btnTask3);
 		btnTask3.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
