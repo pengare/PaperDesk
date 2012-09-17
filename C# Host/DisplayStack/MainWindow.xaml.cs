@@ -287,9 +287,9 @@ namespace DisplayStack
                 if (e.Key == Key.V)
                     keyCode = "tap#0:2:30:50";
                 else if (e.Key == Key.B)
-                    keyCode = "tap#1:0:nonempty";
+                    keyCode = "tap#1:0:200:250";
                 else if (e.Key == Key.N)
-                    keyCode = "tap#1:0:empty";
+                    keyCode = "tap#1:0:200:900";
                 else if(e.Key == Key.M)
                     keyCode = "collocate#0:1";
             }

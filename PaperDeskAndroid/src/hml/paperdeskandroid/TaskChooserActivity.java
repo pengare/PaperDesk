@@ -52,6 +52,7 @@ public class TaskChooserActivity extends Activity {
 			}
 		});
         
+        //Now training button open stack function
         Button btnTrainingButton = (Button)findViewById(R.id.btnTraining);
         btnTrainingButton.setOnClickListener(new OnClickListener() {
 			
@@ -63,19 +64,19 @@ public class TaskChooserActivity extends Activity {
 				if(MainActivity.id == "0") //primary
 				{
 					Intent intent = new Intent();
-					intent.setClass(TaskChooserActivity.this, TrainingId0BlankActivity.class);
+					intent.setClass(TaskChooserActivity.this, Task5Id0DocActivity.class);
 					startActivity(intent);
 				}
 				else if(MainActivity.id == "1")
 				{
 					Intent intent = new Intent();
-					intent.setClass(TaskChooserActivity.this, TrainingId1BookViewActivity.class);
+					intent.setClass(TaskChooserActivity.this, Task5Id1EmailActivity.class);
 					startActivity(intent);
 				}
 				else if(MainActivity.id == "2")
 				{
 					Intent intent = new Intent();
-					intent.setClass(TaskChooserActivity.this, TrainingId2AppActivity.class);
+					intent.setClass(TaskChooserActivity.this, Task5Id2PhotoActivity.class);
 					startActivity(intent);
 				}
 				

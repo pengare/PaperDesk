@@ -71,6 +71,17 @@ public class Task2Id0Album1Activity extends Activity {
 				
 				Task2Id0Album1Activity.this.finish();
 			}
+			else if(command.startsWith("zone#0:hot") && !Task2Service.bStartMoving)
+			{
+				Task2Service.iCurrentZone = Task2Service.Zone.Hot; //hot zone
+				
+				//start the book activity
+				Intent intentBook = new Intent();
+				intentBook.setClass(Task2Id0Album1Activity.this, Task2Id0PhotoDetailActivity.class);
+				
+				startActivity(intentBook);
+				Task2Id0Album1Activity.this.finish();
+			}
 		}
 	}
     @Override
@@ -125,6 +136,7 @@ public class Task2Id0Album1Activity extends Activity {
 							}
 
 							bInMoving = true;
+							Task2Service.bStartMoving = true;
 							photoMove.setImageResource(photoIds[imageIndex]);
 							photoMove.setVisibility(View.VISIBLE);
 						}	

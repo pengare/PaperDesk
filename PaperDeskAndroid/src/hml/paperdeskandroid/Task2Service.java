@@ -1,9 +1,18 @@
 package hml.paperdeskandroid;
 
+import android.R.bool;
 import android.R.integer;
 
 public class Task2Service {
 
+	enum Zone
+	{
+		Hot,
+		Warm,
+		Cold
+	}
+	public static Zone iCurrentZone = Zone.Warm;
+	
 	public static int iSelectedAlbum = 0;  // 0 first album, 1 second album
 
 	public static int[] album1 = new int[]
@@ -26,4 +35,8 @@ public class Task2Service {
 		R.drawable.album2_6,
 		R.drawable.album2_7,
 	};
+	public static int selectedPhoto = 0;
+	
+	public static Boolean bStartMoving = false;
+	
 }

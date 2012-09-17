@@ -41,28 +41,73 @@ public class Task1Id1PageActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			String command = bundle.getString("command");
-			if(command.startsWith("tap#1:0:nonempty"))
+			if(command.startsWith("tap#1:0"))
 			{
 				//Todo: Analyze the coordinate to get the selected chapter
 				//First set it to the first of book;
+				String tokens[] = command.split("\\#");
+				String infos[] = tokens[1].split("\\:");
 				
-				Task1Service.selectedBookId1 = Task1Service.selectedBook;
-				Task1Service.selectedChapterId1 = 0; //todo
-				Task1Service.selectedPageId1 = 0;
+				int tapYCoord =  Integer.parseInt(infos[3]);
+				int listHeight = 150;  //px
+				Task1Service.selectedBookId1 = 0; //Task1Service.selectedBook;
+				if(tapYCoord > 0 && tapYCoord <= 150)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedChapterId1 = 0; //0; //todo
+					Task1Service.selectedPageId1 = 0;
+				}
+				else if(tapYCoord > 150 && tapYCoord <= 300)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedChapterId1 = 1; //0; //todo
+					Task1Service.selectedPageId1 = 3;
+				}
+				else if(tapYCoord > 300 && tapYCoord <= 450 )
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedChapterId1 = 2; //0; //todo
+					Task1Service.selectedPageId1 = 6;
+				}
+				else if(tapYCoord > 450 && tapYCoord <= 600)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedChapterId1 = 3; //0; //todo
+					Task1Service.selectedPageId1 = 9;
+				}
+				else if(tapYCoord > 600 && tapYCoord <= 750)
+				{
+					Task1Id1PageActivity.command = command;
+					
+					Task1Service.selectedChapterId1 = 4; //0; //todo
+					Task1Service.selectedPageId1 = 12;
+				}
+				else if(tapYCoord > 750)
+				{
+					Intent intentBlankBeforeCollocate = new Intent();
+					intentBlankBeforeCollocate.setClass(Task1Id1PageActivity.this, Task1Id1BlankActivity.class);
+					startActivity(intentBlankBeforeCollocate);
+					
+					Task1Id1PageActivity.this.finish();
+				}
 				
 				
 				Message notif = new Message();
 				notif.what = 0x2000;
 				myHandler.sendMessage(notif);
 			}
-			else if(command.startsWith("tap#1:0:empty"))
+/*			else if(command.startsWith("tap#1:0:empty"))
 			{
 				Intent intentBlankBeforeCollocate = new Intent();
 				intentBlankBeforeCollocate.setClass(Task1Id1PageActivity.this, Task1Id1BlankActivity.class);
 				startActivity(intentBlankBeforeCollocate);
 				
 				Task1Id1PageActivity.this.finish();
-			}
+			}*/
 			else if(command.equals("key#1:bendsensortopdown"))
 			{
 				if(Task1Service.selectedPageId1 < pages.length - 1)
@@ -94,7 +139,7 @@ public class Task1Id1PageActivity extends Activity {
 			{
 				if(Task1Service.selectedPageId1 > 0 && Task1Service.selectedPageId1 <= 3)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 0;
 					
@@ -104,7 +149,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 > 3 && Task1Service.selectedPageId1 <= 6)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 3;
 					
@@ -114,7 +159,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 > 6 && Task1Service.selectedPageId1 <= 9)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 6;
 					
@@ -124,7 +169,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 > 9 && Task1Service.selectedPageId1 <= 12)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 9;
 					
@@ -134,7 +179,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 > 12 && Task1Service.selectedPageId1 <= 14)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 12;
 					
@@ -147,7 +192,7 @@ public class Task1Id1PageActivity extends Activity {
 			{
 				if(Task1Service.selectedPageId1 >= 0 && Task1Service.selectedPageId1 < 3)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 3;
 					
@@ -157,7 +202,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 >= 3 && Task1Service.selectedPageId1 < 6)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 6;
 					
@@ -167,7 +212,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 >= 6 && Task1Service.selectedPageId1 < 9)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 9;
 					
@@ -177,7 +222,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 >= 9 && Task1Service.selectedPageId1 < 12)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 12;
 					
@@ -187,7 +232,7 @@ public class Task1Id1PageActivity extends Activity {
 				}
 				else if(Task1Service.selectedPageId1 >= 12 && Task1Service.selectedPageId1 < 14)
 				{
-					Task1Id0PageActivity.command = command;
+					Task1Id1PageActivity.command = command;
 					
 					Task1Service.selectedPageId1 = 14;
 					
@@ -293,6 +338,12 @@ public class Task1Id1PageActivity extends Activity {
         	{
         		if(msg.what == 0x2000) //bend sensor
         		{
+        			if(command.startsWith("tap#1:0"))
+        			{
+        				imageViewPage.setImageResource(R.drawable.black_blank);
+        				
+        				needRefresh = true;
+        			}
         			if(command.endsWith("bendsensortopdown"))
         			{
         				imageViewPage.setImageResource(R.drawable.black_blank);

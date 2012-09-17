@@ -52,7 +52,7 @@ public class KeySimulationService extends Service {
     	new Thread(KeyboardStuff).start();
     	
     	//thread get command from pc keyboard, port is 7778
-    	//new Thread(TouchSensorStuff).start();
+    	new Thread(TouchSensorStuff).start();
     	
     	//thread send processed command to secondary display
     	new Thread(CommandToClientStuff).start();
@@ -315,16 +315,6 @@ public class KeySimulationService extends Service {
       				}
       				sleep(50);
       			}
-      		}
-      		catch (UnknownHostException e) 
-      		{
-      			Log.d(id, "UnknownHost");
-      			
-      		} catch (IOException e) 
-      		{
-      			String error = e.toString();
-      			String msg = e.getMessage();
-      			Log.d(id, "IOException");
       		}
       		catch(Exception e)
       		{

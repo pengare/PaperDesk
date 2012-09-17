@@ -31,14 +31,42 @@ public class Task1Id1BlankActivity extends Activity {
 		{
 			Bundle bundle = intent.getExtras();
 			command = bundle.getString("command");
-			if(command.startsWith("tap#1:0:nonempty")) // tap one chapter to read
+			if(command.startsWith("tap#1:0")) // tap one chapter to read
 			{
 				//Todo: Analyze the coordinate to get the selected chapter
 				//First set it to the first of book;
 				
-				Task1Service.selectedBookId1 = Task1Service.selectedBook;
-				Task1Service.selectedChapterId1 = 0; //todo
-				Task1Service.selectedPageId1 = 0;
+				String tokens[] = command.split("\\#");
+				String infos[] = tokens[1].split("\\:");
+				
+				int tapYCoord =  Integer.parseInt(infos[3]);
+				int listHeight = 150;  //px
+				Task1Service.selectedBookId1 = 0; //Task1Service.selectedBook;
+				if(tapYCoord > 0 && tapYCoord <= 150)
+				{
+					Task1Service.selectedChapterId1 = 0; //0; //todo
+					Task1Service.selectedPageId1 = 0;
+				}
+				else if(tapYCoord > 150 && tapYCoord <= 300)
+				{
+					Task1Service.selectedChapterId1 = 1; //0; //todo
+					Task1Service.selectedPageId1 = 3;
+				}
+				else if(tapYCoord > 300 && tapYCoord <= 450 )
+				{
+					Task1Service.selectedChapterId1 = 2; //0; //todo
+					Task1Service.selectedPageId1 = 6;
+				}
+				else if(tapYCoord > 450 && tapYCoord <= 600)
+				{
+					Task1Service.selectedChapterId1 = 3; //0; //todo
+					Task1Service.selectedPageId1 = 9;
+				}
+				else if(tapYCoord > 600 && tapYCoord <= 750)
+				{
+					Task1Service.selectedChapterId1 = 4; //0; //todo
+					Task1Service.selectedPageId1 = 12;
+				}
 				
 				Intent intentId1Page = new Intent();
 				intentId1Page.setClass(Task1Id1BlankActivity.this, Task1Id1PageActivity.class);

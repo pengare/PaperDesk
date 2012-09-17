@@ -61,5 +61,12 @@
     <string name="title_activity_task4_id0_map">Task4Id0MapActivity</string>
     <string name="title_activity_task4_id1_blank">Task4Id1BlankActivity</string>
     <string name="title_activity_task4_id1_slave_map">Task4Id1SlaveMapActivity</string>
+    <string name="title_activity_task2_id0_photo_detail">Task2Id0PhotoDetailActivity</string>
+    <string name="title_activity_task5_id0_email">Task5Id0EmailActivity</string>
+    <string name="title_activity_task5_id1_email">Task5Id1EmailActivity</string>
+    <string name="title_activity_task5_id2_photo">Task5Id2PhotoActivity</string>
+    <string name="title_activity_task5_id1_blank">Task5Id1BlankActivity</string>
+    <string name="title_activity_task5_id2_blank">Task5Id2BlankActivity</string>
+    <string name="title_activity_task5_id0_stack">Task5Id0StackActivity</string>
 
 </resources>
