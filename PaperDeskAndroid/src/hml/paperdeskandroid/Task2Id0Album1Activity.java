@@ -61,6 +61,71 @@ public class Task2Id0Album1Activity extends Activity {
 			if(command.startsWith("touch#0"))
 			{
 				//move specific photo
+				String tokens[] = command.split("\\#");
+				String infos[] = tokens[1].split("\\:");
+				
+				
+		    	int x = Integer.parseInt(infos[1]);//(int)event.getX();
+		    	int y = Integer.parseInt(infos[2]);//(int)event.getY();
+				
+				if(!bInMoving)
+				{
+					imageIndex = getImageIndexByTouchCoordinate(x, y);
+					if( imageIndex != -1)
+					{
+						movingPhotoId = 0;
+						//movingX = x;
+						//movingY = y;
+						
+						//find raw image index using imageIndex
+						for(int i = 0; i < rawPhotoIds.length; ++i)
+						{
+							if(rawPhotoIds[i] == photoIds[imageIndex])
+							{
+								movingPhotoId = i;
+								break;
+							}
+						}
+
+						bInMoving = true;
+						Task2Service.bStartMoving = true;
+						photoMove.setImageResource(photoIds[imageIndex]);
+						photoMove.setVisibility(View.VISIBLE);
+					}	
+				}
+				else
+				{
+					if(Math.abs(x - movingX) > movingDectedThreshold && Math.abs(y - movingY) > movingDectedThreshold)
+					{
+						movingX = x;
+						movingY = y;
+						photoMove.setLayoutParams(
+								new AbsoluteLayout.LayoutParams(320, 320, (int)movingX-160, (int)movingY-160));
+					}
+					
+					if(movingX < 100/*out from left*/ || movingX > 850/*out from right*/)
+					{
+							
+						photoMove.setImageResource(0);
+						photoMove.setVisibility(View.INVISIBLE);
+						photoMove.setLayoutParams(
+								new AbsoluteLayout.LayoutParams(320, 320, 480, 240));
+						movingX = 480;
+						movingY = 480;
+						
+						//Create command to slave display
+						String command = "";
+						
+						command = "move#" + Task2Service.iSelectedAlbum + ":" + movingPhotoId +  ":" + movingX + ":" + movingY;
+        				MainActivity.clientCommandChanged[1] = true;
+						MainActivity.clientCommand[1] = command +"\n";
+						
+						removeMovingPhotoFromList();
+						updateAlbum();
+						
+						bInMoving = false;
+					}
+				}
 				
 			}
 			else if(command.startsWith("taskChooser"))
@@ -105,79 +170,79 @@ public class Task2Id0Album1Activity extends Activity {
     }
 
     	
-    public boolean dispatchTouchEvent(MotionEvent event)
-    {
-    	int x = (int)event.getX();
-    	int y = (int)event.getY();
-    	
-    	try {
-    		
-    		switch(event.getAction())
-    		{
-	    		case MotionEvent.ACTION_DOWN:
-	    		case MotionEvent.ACTION_MOVE:
-					if(!bInMoving)
-					{
-						imageIndex = getImageIndexByTouchCoordinate(x, y);
-						if( imageIndex != -1)
-						{
-							movingPhotoId = 0;
-							//movingX = x;
-							//movingY = y;
-							
-							//find raw image index using imageIndex
-							for(int i = 0; i < rawPhotoIds.length; ++i)
-							{
-								if(rawPhotoIds[i] == photoIds[imageIndex])
-								{
-									movingPhotoId = i;
-									break;
-								}
-							}
-
-							bInMoving = true;
-							Task2Service.bStartMoving = true;
-							photoMove.setImageResource(photoIds[imageIndex]);
-							photoMove.setVisibility(View.VISIBLE);
-						}	
-					}
-					else
-					{
-						if(Math.abs(x - movingX) > movingDectedThreshold && Math.abs(y - movingY) > movingDectedThreshold)
-						{
-							movingX = x;
-							movingY = y;
-							photoMove.setLayoutParams(
-									new AbsoluteLayout.LayoutParams(320, 320, (int)movingX-160, (int)movingY-160));
-						}
-						
-						if(movingX < 60/*out from left*/ || movingX > 900/*out from right*/)
-						{
-							bInMoving = false;
-							
-							photoMove.setImageResource(0);
-							photoMove.setVisibility(View.INVISIBLE);
-							
-							//Create command to slave display
-							String command = "";
-							
-							command = "move#" + Task2Service.iSelectedAlbum + ":" + movingPhotoId +  ":" + movingX + ":" + movingY;
-            				MainActivity.clientCommandChanged[1] = true;
-    						MainActivity.clientCommand[1] = command +"\n";
-							
-							removeMovingPhotoFromList();
-							updateAlbum();
-						}
-					}
-    		}
-    		
-    		
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-    	
-    	return false;
-    }
+//    public boolean dispatchTouchEvent(MotionEvent event)
+//    {
+//    	int x = (int)event.getX();
+//    	int y = (int)event.getY();
+//    	
+//    	try {
+//    		
+//    		switch(event.getAction())
+//    		{
+//	    		case MotionEvent.ACTION_DOWN:
+//	    		case MotionEvent.ACTION_MOVE:
+//					if(!bInMoving)
+//					{
+//						imageIndex = getImageIndexByTouchCoordinate(x, y);
+//						if( imageIndex != -1)
+//						{
+//							movingPhotoId = 0;
+//							//movingX = x;
+//							//movingY = y;
+//							
+//							//find raw image index using imageIndex
+//							for(int i = 0; i < rawPhotoIds.length; ++i)
+//							{
+//								if(rawPhotoIds[i] == photoIds[imageIndex])
+//								{
+//									movingPhotoId = i;
+//									break;
+//								}
+//							}
+//
+//							bInMoving = true;
+//							Task2Service.bStartMoving = true;
+//							photoMove.setImageResource(photoIds[imageIndex]);
+//							photoMove.setVisibility(View.VISIBLE);
+//						}	
+//					}
+//					else
+//					{
+//						if(Math.abs(x - movingX) > movingDectedThreshold && Math.abs(y - movingY) > movingDectedThreshold)
+//						{
+//							movingX = x;
+//							movingY = y;
+//							photoMove.setLayoutParams(
+//									new AbsoluteLayout.LayoutParams(320, 320, (int)movingX-160, (int)movingY-160));
+//						}
+//						
+//						if(movingX < 60/*out from left*/ || movingX > 900/*out from right*/)
+//						{
+//							bInMoving = false;
+//							
+//							photoMove.setImageResource(0);
+//							photoMove.setVisibility(View.INVISIBLE);
+//							
+//							//Create command to slave display
+//							String command = "";
+//							
+//							command = "move#" + Task2Service.iSelectedAlbum + ":" + movingPhotoId +  ":" + movingX + ":" + movingY;
+//            				MainActivity.clientCommandChanged[1] = true;
+//    						MainActivity.clientCommand[1] = command +"\n";
+//							
+//							removeMovingPhotoFromList();
+//							updateAlbum();
+//						}
+//					}
+//    		}
+//    		
+//    		
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//    	
+//    	return false;
+//    }
 
     
     public void removeMovingPhotoFromList() //After moving photo, we need to remove that one from album

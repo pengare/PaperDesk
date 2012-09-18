@@ -15,8 +15,8 @@
     
     <ImageView
         android:id="@+id/imageViewTask2MovePhoto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="320px"
+        android:layout_height="320px"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop" />

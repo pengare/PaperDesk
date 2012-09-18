@@ -35,7 +35,7 @@ public class Task5Id0DocActivity extends Activity {
 				ImageView img = (ImageView)findViewById(R.id.imageViewTask5Id0DocView);
 				img.setImageResource(R.drawable.art_album);
 			}
-			else if(command.startsWith("zone#1:hot") && Task5Service.bStacked)
+			else if(command.startsWith("zone#0:hot") && Task5Service.bStacked)
 			{
 				ImageView img = (ImageView)findViewById(R.id.imageViewTask5Id0DocView);
 				img.setImageResource(R.drawable.book1_1);

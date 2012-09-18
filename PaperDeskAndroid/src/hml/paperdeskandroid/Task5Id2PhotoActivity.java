@@ -30,7 +30,7 @@ public class Task5Id2PhotoActivity extends Activity {
 				Task5Service.bStacked = true;
 				
 				Intent intentblank = new Intent();
-				intentblank.setClass(Task5Id2PhotoActivity.this, Task5Id2PhotoActivity.class);
+				intentblank.setClass(Task5Id2PhotoActivity.this, Task5Id2BlankActivity.class);
 				startActivity(intentblank);
 				
 				Task5Id2PhotoActivity.this.finish();
