@@ -179,15 +179,16 @@ public final class R {
         public static final int pile2=0x7f0200a2;
         public static final int pile3=0x7f0200a3;
         public static final int pos=0x7f0200a4;
-        public static final int travel_album=0x7f0200a5;
-        public static final int travel_photo_1=0x7f0200a6;
-        public static final int travel_photo_2=0x7f0200a7;
-        public static final int travel_photo_3=0x7f0200a8;
-        public static final int travel_photo_4=0x7f0200a9;
-        public static final int travel_photo_5=0x7f0200aa;
-        public static final int travel_photo_6=0x7f0200ab;
-        public static final int travel_photo_7=0x7f0200ac;
-        public static final int travel_photo_8=0x7f0200ad;
+        public static final int stack=0x7f0200a5;
+        public static final int travel_album=0x7f0200a6;
+        public static final int travel_photo_1=0x7f0200a7;
+        public static final int travel_photo_2=0x7f0200a8;
+        public static final int travel_photo_3=0x7f0200a9;
+        public static final int travel_photo_4=0x7f0200aa;
+        public static final int travel_photo_5=0x7f0200ab;
+        public static final int travel_photo_6=0x7f0200ac;
+        public static final int travel_photo_7=0x7f0200ad;
+        public static final int travel_photo_8=0x7f0200ae;
     }
     public static final class id {
         public static final int AutoCompleteTextView01=0x7f08002d;
