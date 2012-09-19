@@ -41,17 +41,18 @@ public class Task3Id0EmailReplyActivity extends Activity {
 				Task3Service.bEmailReplySent = true;
 				
 				//start the list activity(show reply has been sent)
-				Intent intentEmailList = new Intent();
-				intentEmailList.setClass(Task3Id0EmailReplyActivity.this, Task3Id0EmailListActivity.class);
+				Intent intentEmailDetail = new Intent();
+				intentEmailDetail.setClass(Task3Id0EmailReplyActivity.this, Task3Id0EmailDetailActivity.class);
 				
-				startActivity(intentEmailList);
+				startActivity(intentEmailDetail);
 				Task3Id0EmailReplyActivity.this.finish();
+				
 			}
-			else if(command.startsWith("tap#2:1") && Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Blank)
-			{
-				Task3Service.attachmentStatus = Task3Service.AttachmentStatus.Attach;
-			}
-			else if(command.startsWith("tap#2:0") && Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Attach)
+//			else if(command.startsWith("tap#2:1") && Task3Service.attachmentStatus == Task3Service.AttachmentStatus.Blank)
+//			{
+//				Task3Service.attachmentStatus = Task3Service.AttachmentStatus.Attach;
+//			}
+			else if(command.startsWith("touch#0"))
 			{
 				Task3Service.attachmentStatus = Task3Service.AttachmentStatus.Move;
 				
