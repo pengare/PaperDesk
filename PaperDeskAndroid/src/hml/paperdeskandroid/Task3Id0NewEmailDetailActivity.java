@@ -35,6 +35,15 @@ public class Task3Id0NewEmailDetailActivity extends Activity {
 				startActivity(intentEmailList);
 				Task3Id0NewEmailDetailActivity.this.finish();
 			}
+			else if(command.startsWith("zone#0:warm") && Task3Service.bEmailReplySent == true)
+			{
+				//start the list activity(show reply has been sent)
+				Intent intentEmailList = new Intent();
+				intentEmailList.setClass(Task3Id0NewEmailDetailActivity.this, Task3Id0EmailListActivity.class);
+				
+				startActivity(intentEmailList);
+				Task3Id0NewEmailDetailActivity.this.finish();
+			}
 			else if(command.startsWith("taskChooser"))
 			{
 				Intent intentTaskChooser = new Intent();
