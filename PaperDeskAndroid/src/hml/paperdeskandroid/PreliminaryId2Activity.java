@@ -51,11 +51,6 @@ public class PreliminaryId2Activity extends Activity {
         
         setContentView(R.layout.activity_preliminary_id2);
   
-        Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotation);
-        LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layoutPreliminaryId2);
-        layout.setLayoutAnimation(animController);
-        
         registerBroadcastReceiver();
     }
 

@@ -50,14 +50,7 @@ public class PreliminaryId1Activity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         setContentView(R.layout.activity_preliminary_id1);
-   
-        
-        Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotation);
-        LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layoutPreliminaryId1);
-        layout.setLayoutAnimation(animController);
-        
-        
+
         registerBroadcastReceiver();
     }
 
