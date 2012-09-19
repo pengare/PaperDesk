@@ -28,7 +28,31 @@ public class TaskChooserActivity extends Activity {
 	{
 		Bundle bundle = intent.getExtras();
 		String command = bundle.getString("command");
-		if(command.startsWith("task1"))
+		if(command.startsWith("task0"))
+		{
+			MainActivity.taskType = MainActivity.TaskType.Preliminary;
+			
+			if(MainActivity.id == "0")
+			{
+				Intent intentTemp = new Intent();
+				intentTemp.setClass(TaskChooserActivity.this, PreliminaryId0Activity.class);
+				startActivity(intentTemp);
+			}
+			else if(MainActivity.id == "1")
+			{
+				Intent intentTemp = new Intent();
+				intentTemp.setClass(TaskChooserActivity.this, PreliminaryId1Activity.class);
+				startActivity(intentTemp);
+			}
+			else if (MainActivity.id == "2") {
+				Intent intentTemp = new Intent();
+				intentTemp.setClass(TaskChooserActivity.this, PreliminaryId2Activity.class);
+				startActivity(intentTemp);
+			}
+			
+			TaskChooserActivity.this.finish();
+		}
+		else if(command.startsWith("task1"))
 		{
 			MainActivity.taskType = MainActivity.TaskType.Task1Document;
 			
