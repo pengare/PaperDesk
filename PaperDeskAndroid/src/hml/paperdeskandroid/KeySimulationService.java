@@ -453,13 +453,110 @@ public class KeySimulationService extends Service {
       					String wrap[] = tokens[1].split("\\:");
       					String keycode = wrap[1];
       					
-      					if(keycode.equals("Q"))
+      					if(keycode.equals("A"))
       					{
-      						simulateKey(KeyEvent.KEYCODE_Q);
+      						simulateKey(KeyEvent.KEYCODE_A);
+      					}
+      					else if(keycode.equals("B"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_B);
+      					}
+      					else if(keycode.equals("C"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_C);
+      					}
+      					else if(keycode.equals("D"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_D);
       					}
       					else if(keycode.equals("E"))
       					{
       						simulateKey(KeyEvent.KEYCODE_E);
+      					}
+      					else if(keycode.equals("F"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_F);
+      					}
+      					else if(keycode.equals("G"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_G);
+      					}
+      					else if(keycode.equals("H"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_H);
+      					}
+      					else if(keycode.equals("I"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_H);
+      					}
+      					else if(keycode.equals("J"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_J);
+      					}
+      					else if(keycode.equals("K"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_K);
+      					}
+      					else if(keycode.equals("L"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_L);
+      					}
+      					else if(keycode.equals("M"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_M);
+      					}
+      					else if(keycode.equals("N"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_N);
+      					}
+      					else if(keycode.equals("O"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_O);
+      					}
+      					else if(keycode.equals("P"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_P);
+      					}
+      					else if(keycode.equals("Q"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_Q);
+      					}
+      					else if(keycode.equals("R"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_R);
+      					}
+      					else if(keycode.equals("S"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_S);
+      					}
+      					else if(keycode.equals("T"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_T);
+      					}
+      					else if(keycode.equals("U"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_U);
+      					}
+      					
+      					else if(keycode.equals("V"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_V);
+      					}
+      					else if(keycode.equals("W"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_W);
+      					}
+      					else if(keycode.equals("X"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_X);
+      					}
+      					else if(keycode.equals("Y"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_Y);
+      					}
+      					else if(keycode.equals("Z"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_Z);
       					}
       					else if(keycode.equals("LEFT"))
       					{
@@ -468,6 +565,14 @@ public class KeySimulationService extends Service {
       					else if(keycode.equals("ENTER"))
       					{
       						simulateKey(KeyEvent.KEYCODE_ENTER);
+      					}
+      					else if(keycode.equals("DELETE"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_DEL);
+      					}
+      					else if(keycode.equals("SPACE"))
+      					{
+      						simulateKey(KeyEvent.KEYCODE_SPACE);
       					}
       				}
   /*    				else if(!MainActivity.bDeviceSet || !MainActivity.bTaskSet)
