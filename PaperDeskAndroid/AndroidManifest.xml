@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,46 +27,56 @@
 
         <activity
             android:name=".DocBookViewActivity"
-            android:label="@string/title_activity_doc_book_view" >
+            android:label="@string/title_activity_doc_book_view"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".DocChapterViewActivity"
-            android:label="@string/title_activity_doc_chapter_view" >
+            android:label="@string/title_activity_doc_chapter_view" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".DocPageViewActivity"
-            android:label="@string/title_activity_doc_page_view" >
+            android:label="@string/title_activity_doc_page_view" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".MapMasterActivity"
-            android:label="@string/title_activity_map_master" >
+            android:label="@string/title_activity_map_master"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".MapSlaveActivity"
-            android:label="@string/title_activity_map_slave" >
+            android:label="@string/title_activity_map_slave"
+            android:screenOrientation="reversePortait" >
         </activity>
 
         <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name=".PhotoViewerActivity"
-            android:label="@string/title_activity_photo_viewer" >
+            android:label="@string/title_activity_photo_viewer" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".PhotoViewerSlaveActivity"
-            android:label="@string/title_activity_photo_viewer_slave" >
+            android:label="@string/title_activity_photo_viewer_slave" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".PhotoViewerEmailActivity"
-            android:label="@string/title_activity_photo_viewer_email" >
+            android:label="@string/title_activity_photo_viewer_email"
+			android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".BlankActivity"
-            android:label="@string/title_activity_blank" >
+            android:label="@string/title_activity_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".MainAppActivity"
-            android:label="@string/title_activity_main_app" >
+            android:label="@string/title_activity_main_app" 
+            android:screenOrientation="reversePortait">
         </activity>
 
         <service
@@ -76,175 +87,218 @@
 
         <activity
             android:name=".PhotoAlbumViewActivity"
-            android:label="@string/title_activity_photo_album_view" >
+            android:label="@string/title_activity_photo_album_view" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".PhotoDetailViewActivity"
-            android:label="@string/title_activity_photo_detail_view" >
+            android:label="@string/title_activity_photo_detail_view"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".EmailFolderViewActivity"
-            android:label="@string/title_activity_email_folder_view" >
+            android:label="@string/title_activity_email_folder_view"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".EmailListViewActivity"
-            android:label="@string/title_activity_email_list_view" >
+            android:label="@string/title_activity_email_list_view" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".EmailDetailActivity"
-            android:label="@string/title_activity_email_detail" >
+            android:label="@string/title_activity_email_detail" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TaskChooserActivity"
-            android:label="@string/title_activity_task_chooser" >
+            android:label="@string/title_activity_task_chooser"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".PreliminaryId0Activity"
-            android:label="@string/title_activity_preliminary_id0" >
+            android:label="@string/title_activity_preliminary_id0"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".PreliminaryId1Activity"
-            android:label="@string/title_activity_preliminary_id1" >
+            android:label="@string/title_activity_preliminary_id1" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".PreliminaryId2Activity"
-            android:label="@string/title_activity_preliminary_id2" >
+            android:label="@string/title_activity_preliminary_id2"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".TrainingId0BlankActivity"
-            android:label="@string/title_activity_training_id0_blank" >
+            android:label="@string/title_activity_training_id0_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".TrainingId0BookcoverActivity"
-            android:label="@string/title_activity_training_id0_bookcover" >
+            android:label="@string/title_activity_training_id0_bookcover" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TrainingId0ChapterActivity"
-            android:label="@string/title_activity_training_id0_chapter" >
+            android:label="@string/title_activity_training_id0_chapter" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TrainingId0PageActivity"
-            android:label="@string/title_activity_training_id0_page" >
+            android:label="@string/title_activity_training_id0_page" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TrainingId0BlankBetweenDocAndPhotoActivity"
-            android:label="@string/title_activity_training_id0_blank_between_doc_and_photo" >
+            android:label="@string/title_activity_training_id0_blank_between_doc_and_photo" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TrainingId1BookViewActivity"
-            android:label="@string/title_activity_training_id1_book_view" >
+            android:label="@string/title_activity_training_id1_book_view"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".TrainingId2AppActivity"
-            android:label="@string/title_activity_training_id2_app" >
+            android:label="@string/title_activity_training_id2_app" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TestActivity"
-            android:label="@string/title_activity_test" >
+            android:label="@string/title_activity_test" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".TempActivity"
-            android:label="@string/title_activity_temp" >
+            android:label="@string/title_activity_temp"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task1Id2BookActivity"
-            android:label="@string/title_activity_task1_id2_book" >
+            android:label="@string/title_activity_task1_id2_book"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task1Id0BlankActivity"
-            android:label="@string/title_activity_task1_id1_blank" >
+            android:label="@string/title_activity_task1_id1_blank" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task1Id0BookcoverActivity"
-            android:label="@string/title_activity_task1_id1_bookcover" >
+            android:label="@string/title_activity_task1_id1_bookcover" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task1Id0ChapterActivity"
-            android:label="@string/title_activity_task1_id1_chapter" >
+            android:label="@string/title_activity_task1_id1_chapter" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task1Id0PageActivity"
-            android:label="@string/title_activity_task1_id1_page" >
+            android:label="@string/title_activity_task1_id1_page" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task1Id1BlankActivity"
-            android:label="@string/title_activity_task1_id0_blank" >
+            android:label="@string/title_activity_task1_id0_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task1Id1PageActivity"
-            android:label="@string/title_activity_task1_id0_page" >
+            android:label="@string/title_activity_task1_id0_page"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task1Id0BlankBeforeCollocateActivity"
-            android:label="@string/title_activity_task1_id1_blank_before_collocate" >
+            android:label="@string/title_activity_task1_id1_blank_before_collocate" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task1Id1CollocateSlaveActivity"
-            android:label="@string/title_activity_task1_id1_collocate_slave" >
+            android:label="@string/title_activity_task1_id1_collocate_slave" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task2Id2AppActivity"
-            android:label="@string/title_activity_task2_id2_app" >
+            android:label="@string/title_activity_task2_id2_app"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task2Id1BlankActivity"
-            android:label="@string/title_activity_task2_id1_blank" >
+            android:label="@string/title_activity_task2_id1_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task2Id1Album2Activity"
-            android:label="@string/title_activity_task2_id1_album2" >
+            android:label="@string/title_activity_task2_id1_album2"
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task2Id0BlankActivity"
-            android:label="@string/title_activity_task2_id0_blank" >
+            android:label="@string/title_activity_task2_id0_blank"
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task2Id0Album1Activity"
-            android:label="@string/title_activity_task2_id0_album1" >
+            android:label="@string/title_activity_task2_id0_album1" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task3Id2AppActivity"
-            android:label="@string/title_activity_task3_id2_app" >
+            android:label="@string/title_activity_task3_id2_app" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task2Id2BlankActivity"
-            android:label="@string/title_activity_task2_id2_blank" >
+            android:label="@string/title_activity_task2_id2_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task3Id0BlankActivity"
-            android:label="@string/title_activity_task3_id0_blank" >
+            android:label="@string/title_activity_task3_id0_blank" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task3Id0EmailListActivity"
-            android:label="@string/title_activity_task3_id0_email_list" >
+            android:label="@string/title_activity_task3_id0_email_list" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task3Id0EmailDetailActivity"
-            android:label="@string/title_activity_task3_id0_email_detail" >
+            android:label="@string/title_activity_task3_id0_email_detail"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task3Id1BlankActivity"
-            android:label="@string/title_activity_task3_id1_blank" >
+            android:label="@string/title_activity_task3_id1_blank"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task3Id1EmailDetailActivity"
-            android:label="@string/title_activity_task3_id1_email_detail" >
+            android:label="@string/title_activity_task3_id1_email_detail" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task3Id0NewEmailDetailActivity"
-            android:label="@string/title_activity_task3_id0_new_email_detail" >
+            android:label="@string/title_activity_task3_id0_new_email_detail"
+            android:screenOrientation="reversePortait" >
         </activity>
         <activity
             android:name=".Task3Id0EmailReplyActivity"
-            android:label="@string/title_activity_task3_id0_email_reply" >
+            android:label="@string/title_activity_task3_id0_email_reply" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task3Id2BlankActivity"
-            android:label="@string/title_activity_task3_id2_blank" >
+            android:label="@string/title_activity_task3_id2_blank" 
+            android:screenOrientation="reversePortait">
         </activity>
         <activity
             android:name=".Task4Id2AppActivity"
-            android:label="@string/title_activity_task4_id2_app" >
+            android:label="@string/title_activity_task4_id2_app"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -253,7 +307,8 @@
         </activity>
         <activity
             android:name=".Task4Id0BlankActivity"
-            android:label="@string/title_activity_task4_id0_blank" >
+            android:label="@string/title_activity_task4_id0_blank" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -262,7 +317,8 @@
         </activity>
         <activity
             android:name=".Task4Id0MapActivity"
-            android:label="@string/title_activity_task4_id0_map" >
+            android:label="@string/title_activity_task4_id0_map"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -271,7 +327,8 @@
         </activity>
         <activity
             android:name=".Task4Id1BlankActivity"
-            android:label="@string/title_activity_task4_id1_blank" >
+            android:label="@string/title_activity_task4_id1_blank"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -280,7 +337,8 @@
         </activity>
         <activity
             android:name=".Task4Id1SlaveMapActivity"
-            android:label="@string/title_activity_task4_id1_slave_map" >
+            android:label="@string/title_activity_task4_id1_slave_map"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -289,7 +347,8 @@
         </activity>
         <activity
             android:name=".Task2Id0PhotoDetailActivity"
-            android:label="@string/title_activity_task2_id0_photo_detail" >
+            android:label="@string/title_activity_task2_id0_photo_detail" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -298,7 +357,8 @@
         </activity>
         <activity
             android:name=".Task5Id0DocActivity"
-            android:label="@string/title_activity_task5_id0_email" >
+            android:label="@string/title_activity_task5_id0_email" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -307,7 +367,8 @@
         </activity>
         <activity
             android:name=".Task5Id1EmailActivity"
-            android:label="@string/title_activity_task5_id1_email" >
+            android:label="@string/title_activity_task5_id1_email"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -316,7 +377,8 @@
         </activity>
         <activity
             android:name=".Task5Id2PhotoActivity"
-            android:label="@string/title_activity_task5_id2_photo" >
+            android:label="@string/title_activity_task5_id2_photo" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -325,7 +387,8 @@
         </activity>
         <activity
             android:name=".Task5Id1BlankActivity"
-            android:label="@string/title_activity_task5_id1_blank" >
+            android:label="@string/title_activity_task5_id1_blank"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -334,7 +397,8 @@
         </activity>
         <activity
             android:name=".Task5Id2BlankActivity"
-            android:label="@string/title_activity_task5_id2_blank" >
+            android:label="@string/title_activity_task5_id2_blank"
+            android:screenOrientation="reversePortait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -343,7 +407,8 @@
         </activity>
         <activity
             android:name=".Task5Id0StackActivity"
-            android:label="@string/title_activity_task5_id0_stack" >
+            android:label="@string/title_activity_task5_id0_stack" 
+            android:screenOrientation="reversePortait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
