@@ -54,6 +54,8 @@ public class Task2Id1Album2Activity extends Activity {
 			{
 				String tokens[] = command.split("\\#");
 				String infos[] = tokens[1].split("\\:");
+				if(infos.length < 2)
+					return;
 				int sourceAlbumId = Integer.parseInt(infos[0]);
 				int sourcePhotoId = Integer.parseInt(infos[1]);
 				

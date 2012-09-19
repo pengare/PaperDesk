@@ -64,6 +64,8 @@ public class Task2Id0Album1Activity extends Activity {
 				String tokens[] = command.split("\\#");
 				String infos[] = tokens[1].split("\\:");
 				
+				if(infos.length < 3)
+					return;
 				
 		    	int x = Integer.parseInt(infos[1]);//(int)event.getX();
 		    	int y = Integer.parseInt(infos[2]);//(int)event.getY();
