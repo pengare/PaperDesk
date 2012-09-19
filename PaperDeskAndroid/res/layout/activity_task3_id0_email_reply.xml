@@ -15,6 +15,7 @@
         android:ems="10"
         android:lines="15"
         android:text="" 
+        android:textSize="20dp"
         android:gravity="top|left"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp">
